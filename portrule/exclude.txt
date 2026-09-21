@@ -1,0 +1,41 @@
+# 暂不参与编译的上游 Thunk 模块
+#
+# 与 port/thunks.manifest 配合使用：
+#   thunks.manifest 保存上游 vcxproj 的完整有序清单（可直接 --refresh 重新生成），
+#   exclude.txt     保存"当前移植阶段尚未打通"的模块。
+# 二者分离的好处是：刷新上游清单不会丢掉排除记录，而上游新增模块会立刻暴露出来。
+#
+# 每一行一个模块名（相对 upstream/YY-Thunks/src/Thunks）。
+# 移除某行即可让该模块重新参与编译。
+
+# WinRT 相关：MinGW 缺少 roerrorapi.h 与 windows.graphics.directx.direct3d11.interop.h
+api-ms-win-core-winrt.hpp
+api-ms-win-core-winrt-error.hpp
+api-ms-win-core-winrt-string.hpp
+d3d11.hpp
+
+# CNG 的 ncryptprotect.h 未被 MinGW-w64 提供
+ncrypy.hpp
+
+# MinGW-w64 的 ndfapi.h / ndattrib.h 自身存在缺陷
+# （NDFHANDLE 未声明、DIAG_SOCKADDR 不完整、LIFE_TYPE 缺失），非移植层可修
+ndfapi.hpp
+
+# MinGW-w64 的 windns.h 缺少 DnsQueryEx/DnsCancelQuery 及其参数类型别名
+dnsapi.hpp
+
+# MinGW-w64 的 dwrite.h 版本落后：IDWriteFactory1/2/3 的 using 声明重复、
+# IDWriteFactory3::CreateFontFaceReference 签名不同，Fallback 工厂无法编译
+dwrite.hpp
+
+# MinGW-w64 的 lmjoin.h 缺少 NetGetAadJoinInformation/NetFreeAadJoinInformation
+netapi32.hpp
+
+# MinGW-w64 的 ws2tcpip.h 缺少 GetAddrInfoExOverlappedResult，
+# 且 addrinfoexW::ai_canonname 的 cv 限定导致上游赋值报错
+WS2_32.hpp
+
+# DllMainCRTStartup.hpp 依赖 MSVC 的 /alternatename 弱别名（YY_ThunksOriginal
+# DllMainCRTStartup -> _DllMainCRTStartup），且其全部逻辑只在 YY_Thunks_Target
+# < Vista 时才生效。本移植的最低受支持目标就是 Vista，排除它不损失任何功能。
+DllMainCRTStartup.hpp

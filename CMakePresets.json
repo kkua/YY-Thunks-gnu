@@ -1,0 +1,42 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "mingw-x64",
+      "displayName": "MinGW-w64 x86_64",
+      "description": "64 位 MinGW-w64（GCC），默认最低兼容系统为 Windows Vista",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "YY_THUNKS_TARGET_MACRO": "__WindowsNT6"
+      }
+    },
+    {
+      "name": "mingw-x64-win10",
+      "inherits": "mingw-x64",
+      "displayName": "MinGW-w64 x86_64（最低 Windows 10 1507）",
+      "binaryDir": "${sourceDir}/build/x64-win10",
+      "cacheVariables": {
+        "YY_THUNKS_TARGET_MACRO": "__WindowsNT10_10240"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "mingw-x64", "configurePreset": "mingw-x64" },
+    { "name": "mingw-x64-win10", "configurePreset": "mingw-x64-win10" }
+  ],
+  "testPresets": [
+    {
+      "name": "mingw-x64",
+      "configurePreset": "mingw-x64",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}

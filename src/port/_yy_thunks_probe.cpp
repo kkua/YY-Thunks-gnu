@@ -1,0 +1,1893 @@
+// 本文件由 tools/portgen.py 自动生成，仅用于预处理探测，不参与编译。
+//
+// 作用：借用真实编译器的预处理器，精确得到
+//   (a) 当前 YY_Thunks_Target / 编译选项下每个 thunk 的实际签名；
+//   (b) 哪些 thunk 真正参与编译。
+//
+// 上游 YY_Thunks.cpp 用"两遍包含"实现声明与定义分离，并用 MSVC 专有的
+// __if_not_exists 在第一遍里"跳过函数体"。这里把第一遍(声明)整体挪到
+// 预处理阶段一次生成（YY_Thunks_Declarations.hpp），从而：
+//   - 不再需要 __if_exists / __if_not_exists；
+//   - 不再需要"吞噬函数体"的模板技巧；
+//   - 声明与定义始终来自同一份宏实参，天然不会漂移。
+#include <yy_thunks_prelude.h>
+
+#define YY_Thunks_Implemented 1
+
+#undef __DEFINE_THUNK
+#define __DEFINE_THUNK(_Module, _Size, _Return, _Conv, _Function, ...)                    \
+    YYTHUNKDECL_BEGIN                                                                    \
+    __APPLY_UNIT_TEST_BOOL(_Function);                                                   \
+    typedef _Return(_Conv* _CRT_CONCATENATE(YY_THUNK_FNTYPE_, _Function))(__VA_ARGS__);  \
+    EXTERN_C _Return _Conv _CRT_CONCATENATE_(__FALLBACK_PREFIX, _Function)(__VA_ARGS__); \
+    static _CRT_CONCATENATE(YY_THUNK_FNTYPE_, _Function) __cdecl                         \
+        _CRT_CONCATENATE(try_get_, _Function)() noexcept;                                \
+    YYTHUNKDECL_END
+
+#include "YY_Thunks_List.hpp"
+
+// ---- 守卫表自校验（由 portgen 生成，勿手工修改）----
+#include "YY_Thunks_EnableTable.hpp"
+#if YY_THUNK_GUARD_try_get_AcquireSRWLockExclusive
+YYGUARD_ON_AcquireSRWLockExclusive
+#endif
+#if YY_THUNK_GUARD_try_get_AcquireSRWLockShared
+YYGUARD_ON_AcquireSRWLockShared
+#endif
+#if YY_THUNK_GUARD_try_get_ActivateAudioInterfaceAsync
+YYGUARD_ON_ActivateAudioInterfaceAsync
+#endif
+#if YY_THUNK_GUARD_try_get_AddClipboardFormatListener
+YYGUARD_ON_AddClipboardFormatListener
+#endif
+#if YY_THUNK_GUARD_try_get_AddDllDirectory
+YYGUARD_ON_AddDllDirectory
+#endif
+#if YY_THUNK_GUARD_try_get_AddMandatoryAce
+YYGUARD_ON_AddMandatoryAce
+#endif
+#if YY_THUNK_GUARD_try_get_AdjustWindowRectExForDpi
+YYGUARD_ON_AdjustWindowRectExForDpi
+#endif
+#if YY_THUNK_GUARD_try_get_AllocateUserPhysicalPagesNuma
+YYGUARD_ON_AllocateUserPhysicalPagesNuma
+#endif
+#if YY_THUNK_GUARD_try_get_AreDpiAwarenessContextsEqual
+YYGUARD_ON_AreDpiAwarenessContextsEqual
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptCloseAlgorithmProvider
+YYGUARD_ON_BCryptCloseAlgorithmProvider
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptCreateHash
+YYGUARD_ON_BCryptCreateHash
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptDecrypt
+YYGUARD_ON_BCryptDecrypt
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptDeriveKeyCapi
+YYGUARD_ON_BCryptDeriveKeyCapi
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptDeriveKeyPBKDF2
+YYGUARD_ON_BCryptDeriveKeyPBKDF2
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptDestroyHash
+YYGUARD_ON_BCryptDestroyHash
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptDestroyKey
+YYGUARD_ON_BCryptDestroyKey
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptEncrypt
+YYGUARD_ON_BCryptEncrypt
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptExportKey
+YYGUARD_ON_BCryptExportKey
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptFinalizeKeyPair
+YYGUARD_ON_BCryptFinalizeKeyPair
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptFinishHash
+YYGUARD_ON_BCryptFinishHash
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptGenRandom
+YYGUARD_ON_BCryptGenRandom
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptGenerateKeyPair
+YYGUARD_ON_BCryptGenerateKeyPair
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptGenerateSymmetricKey
+YYGUARD_ON_BCryptGenerateSymmetricKey
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptGetProperty
+YYGUARD_ON_BCryptGetProperty
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptHashData
+YYGUARD_ON_BCryptHashData
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptImportKey
+YYGUARD_ON_BCryptImportKey
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptImportKeyPair
+YYGUARD_ON_BCryptImportKeyPair
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptOpenAlgorithmProvider
+YYGUARD_ON_BCryptOpenAlgorithmProvider
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptSetProperty
+YYGUARD_ON_BCryptSetProperty
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptSignHash
+YYGUARD_ON_BCryptSignHash
+#endif
+#if YY_THUNK_GUARD_try_get_BCryptVerifySignature
+YYGUARD_ON_BCryptVerifySignature
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTGetCharacteristicValue
+YYGUARD_ON_BluetoothGATTGetCharacteristicValue
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTGetCharacteristics
+YYGUARD_ON_BluetoothGATTGetCharacteristics
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTGetDescriptors
+YYGUARD_ON_BluetoothGATTGetDescriptors
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTGetServices
+YYGUARD_ON_BluetoothGATTGetServices
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTRegisterEvent
+YYGUARD_ON_BluetoothGATTRegisterEvent
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTSetCharacteristicValue
+YYGUARD_ON_BluetoothGATTSetCharacteristicValue
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTSetDescriptorValue
+YYGUARD_ON_BluetoothGATTSetDescriptorValue
+#endif
+#if YY_THUNK_GUARD_try_get_BluetoothGATTUnregisterEvent
+YYGUARD_ON_BluetoothGATTUnregisterEvent
+#endif
+#if YY_THUNK_GUARD_try_get_CM_Get_DevNode_PropertyW
+YYGUARD_ON_CM_Get_DevNode_PropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_CM_Get_DevNode_Property_ExW
+YYGUARD_ON_CM_Get_DevNode_Property_ExW
+#endif
+#if YY_THUNK_GUARD_try_get_CM_Set_DevNode_PropertyW
+YYGUARD_ON_CM_Set_DevNode_PropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_CM_Set_DevNode_Property_ExW
+YYGUARD_ON_CM_Set_DevNode_Property_ExW
+#endif
+#if YY_THUNK_GUARD_try_get_CallbackMayRunLong
+YYGUARD_ON_CallbackMayRunLong
+#endif
+#if YY_THUNK_GUARD_try_get_CancelIoEx
+YYGUARD_ON_CancelIoEx
+#endif
+#if YY_THUNK_GUARD_try_get_CancelMibChangeNotify2
+YYGUARD_ON_CancelMibChangeNotify2
+#endif
+#if YY_THUNK_GUARD_try_get_CancelSynchronousIo
+YYGUARD_ON_CancelSynchronousIo
+#endif
+#if YY_THUNK_GUARD_try_get_CancelThreadpoolIo
+YYGUARD_ON_CancelThreadpoolIo
+#endif
+#if YY_THUNK_GUARD_try_get_ChangeWindowMessageFilter
+YYGUARD_ON_ChangeWindowMessageFilter
+#endif
+#if YY_THUNK_GUARD_try_get_ChangeWindowMessageFilterEx
+YYGUARD_ON_ChangeWindowMessageFilterEx
+#endif
+#if YY_THUNK_GUARD_try_get_CloseGestureInfoHandle
+YYGUARD_ON_CloseGestureInfoHandle
+#endif
+#if YY_THUNK_GUARD_try_get_CloseHandle
+YYGUARD_ON_CloseHandle
+#endif
+#if YY_THUNK_GUARD_try_get_ClosePackageInfo
+YYGUARD_ON_ClosePackageInfo
+#endif
+#if YY_THUNK_GUARD_try_get_CloseThreadpool
+YYGUARD_ON_CloseThreadpool
+#endif
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolIo
+YYGUARD_ON_CloseThreadpoolIo
+#endif
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolTimer
+YYGUARD_ON_CloseThreadpoolTimer
+#endif
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolWait
+YYGUARD_ON_CloseThreadpoolWait
+#endif
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolWork
+YYGUARD_ON_CloseThreadpoolWork
+#endif
+#if YY_THUNK_GUARD_try_get_CloseTouchInputHandle
+YYGUARD_ON_CloseTouchInputHandle
+#endif
+#if YY_THUNK_GUARD_try_get_CoDecrementMTAUsage
+YYGUARD_ON_CoDecrementMTAUsage
+#endif
+#if YY_THUNK_GUARD_try_get_CoGetApartmentType
+YYGUARD_ON_CoGetApartmentType
+#endif
+#if YY_THUNK_GUARD_try_get_CoIncrementMTAUsage
+YYGUARD_ON_CoIncrementMTAUsage
+#endif
+#if YY_THUNK_GUARD_try_get_CompareObjectHandles
+YYGUARD_ON_CompareObjectHandles
+#endif
+#if YY_THUNK_GUARD_try_get_CompareStringA
+YYGUARD_ON_CompareStringA
+#endif
+#if YY_THUNK_GUARD_try_get_CompareStringEx
+YYGUARD_ON_CompareStringEx
+#endif
+#if YY_THUNK_GUARD_try_get_CompareStringOrdinal
+YYGUARD_ON_CompareStringOrdinal
+#endif
+#if YY_THUNK_GUARD_try_get_CompareStringW
+YYGUARD_ON_CompareStringW
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceIndexToLuid
+YYGUARD_ON_ConvertInterfaceIndexToLuid
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToGuid
+YYGUARD_ON_ConvertInterfaceLuidToGuid
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToIndex
+YYGUARD_ON_ConvertInterfaceLuidToIndex
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToNameA
+YYGUARD_ON_ConvertInterfaceLuidToNameA
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToNameW
+YYGUARD_ON_ConvertInterfaceLuidToNameW
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceNameToLuidA
+YYGUARD_ON_ConvertInterfaceNameToLuidA
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceNameToLuidW
+YYGUARD_ON_ConvertInterfaceNameToLuidW
+#endif
+#if YY_THUNK_GUARD_try_get_ConvertThreadToFiberEx
+YYGUARD_ON_ConvertThreadToFiberEx
+#endif
+#if YY_THUNK_GUARD_try_get_CopyContext
+YYGUARD_ON_CopyContext
+#endif
+#if YY_THUNK_GUARD_try_get_CopyFile2
+YYGUARD_ON_CopyFile2
+#endif
+#if YY_THUNK_GUARD_try_get_CreateAppContainerProfile
+YYGUARD_ON_CreateAppContainerProfile
+#endif
+#if YY_THUNK_GUARD_try_get_CreateDXGIFactory
+YYGUARD_ON_CreateDXGIFactory
+#endif
+#if YY_THUNK_GUARD_try_get_CreateDXGIFactory1
+YYGUARD_ON_CreateDXGIFactory1
+#endif
+#if YY_THUNK_GUARD_try_get_CreateDXGIFactory2
+YYGUARD_ON_CreateDXGIFactory2
+#endif
+#if YY_THUNK_GUARD_try_get_CreateEventExA
+YYGUARD_ON_CreateEventExA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateEventExW
+YYGUARD_ON_CreateEventExW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFile2
+YYGUARD_ON_CreateFile2
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFile3
+YYGUARD_ON_CreateFile3
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileA
+YYGUARD_ON_CreateFileA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileMapping2
+YYGUARD_ON_CreateFileMapping2
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileMappingFromApp
+YYGUARD_ON_CreateFileMappingFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileMappingNumaA
+YYGUARD_ON_CreateFileMappingNumaA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileMappingNumaW
+YYGUARD_ON_CreateFileMappingNumaW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileMappingW
+YYGUARD_ON_CreateFileMappingW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateFileW
+YYGUARD_ON_CreateFileW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateMutexExA
+YYGUARD_ON_CreateMutexExA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateMutexExW
+YYGUARD_ON_CreateMutexExW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateNamedPipeA
+YYGUARD_ON_CreateNamedPipeA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateNamedPipeW
+YYGUARD_ON_CreateNamedPipeW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateProcessWithTokenW
+YYGUARD_ON_CreateProcessWithTokenW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateRandomAccessStreamOnFile
+YYGUARD_ON_CreateRandomAccessStreamOnFile
+#endif
+#if YY_THUNK_GUARD_try_get_CreateRandomAccessStreamOverStream
+YYGUARD_ON_CreateRandomAccessStreamOverStream
+#endif
+#if YY_THUNK_GUARD_try_get_CreateRemoteThreadEx
+YYGUARD_ON_CreateRemoteThreadEx
+#endif
+#if YY_THUNK_GUARD_try_get_CreateSemaphoreExW
+YYGUARD_ON_CreateSemaphoreExW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateStreamOverRandomAccessStream
+YYGUARD_ON_CreateStreamOverRandomAccessStream
+#endif
+#if YY_THUNK_GUARD_try_get_CreateSymbolicLinkA
+YYGUARD_ON_CreateSymbolicLinkA
+#endif
+#if YY_THUNK_GUARD_try_get_CreateSymbolicLinkW
+YYGUARD_ON_CreateSymbolicLinkW
+#endif
+#if YY_THUNK_GUARD_try_get_CreateThreadpool
+YYGUARD_ON_CreateThreadpool
+#endif
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolIo
+YYGUARD_ON_CreateThreadpoolIo
+#endif
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolTimer
+YYGUARD_ON_CreateThreadpoolTimer
+#endif
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolWait
+YYGUARD_ON_CreateThreadpoolWait
+#endif
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolWork
+YYGUARD_ON_CreateThreadpoolWork
+#endif
+#if YY_THUNK_GUARD_try_get_CreateWaitableTimerExW
+YYGUARD_ON_CreateWaitableTimerExW
+#endif
+#if YY_THUNK_GUARD_try_get_CredPackAuthenticationBufferA
+YYGUARD_ON_CredPackAuthenticationBufferA
+#endif
+#if YY_THUNK_GUARD_try_get_CredPackAuthenticationBufferW
+YYGUARD_ON_CredPackAuthenticationBufferW
+#endif
+#if YY_THUNK_GUARD_try_get_CredUIPromptForWindowsCredentialsA
+YYGUARD_ON_CredUIPromptForWindowsCredentialsA
+#endif
+#if YY_THUNK_GUARD_try_get_CredUIPromptForWindowsCredentialsW
+YYGUARD_ON_CredUIPromptForWindowsCredentialsW
+#endif
+#if YY_THUNK_GUARD_try_get_CredUnPackAuthenticationBufferA
+YYGUARD_ON_CredUnPackAuthenticationBufferA
+#endif
+#if YY_THUNK_GUARD_try_get_CredUnPackAuthenticationBufferW
+YYGUARD_ON_CredUnPackAuthenticationBufferW
+#endif
+#if YY_THUNK_GUARD_try_get_CryptBinaryToStringA
+YYGUARD_ON_CryptBinaryToStringA
+#endif
+#if YY_THUNK_GUARD_try_get_CryptBinaryToStringW
+YYGUARD_ON_CryptBinaryToStringW
+#endif
+#if YY_THUNK_GUARD_try_get_CryptHashCertificate2
+YYGUARD_ON_CryptHashCertificate2
+#endif
+#if YY_THUNK_GUARD_try_get_CryptImportPublicKeyInfoEx2
+YYGUARD_ON_CryptImportPublicKeyInfoEx2
+#endif
+#if YY_THUNK_GUARD_try_get_CryptProtectMemory
+YYGUARD_ON_CryptProtectMemory
+#endif
+#if YY_THUNK_GUARD_try_get_CryptUnprotectMemory
+YYGUARD_ON_CryptUnprotectMemory
+#endif
+#if YY_THUNK_GUARD_try_get_D3D12CreateDevice
+YYGUARD_ON_D3D12CreateDevice
+#endif
+#if YY_THUNK_GUARD_try_get_D3D12GetDebugInterface
+YYGUARD_ON_D3D12GetDebugInterface
+#endif
+#if YY_THUNK_GUARD_try_get_D3D12SerializeVersionedRootSignature
+YYGUARD_ON_D3D12SerializeVersionedRootSignature
+#endif
+#if YY_THUNK_GUARD_try_get_DCompositionCreateDevice
+YYGUARD_ON_DCompositionCreateDevice
+#endif
+#if YY_THUNK_GUARD_try_get_DCompositionCreateDevice2
+YYGUARD_ON_DCompositionCreateDevice2
+#endif
+#if YY_THUNK_GUARD_try_get_DCompositionCreateDevice3
+YYGUARD_ON_DCompositionCreateDevice3
+#endif
+#if YY_THUNK_GUARD_try_get_DXVA2CreateDirect3DDeviceManager9
+YYGUARD_ON_DXVA2CreateDirect3DDeviceManager9
+#endif
+#if YY_THUNK_GUARD_try_get_DXVA2CreateVideoService
+YYGUARD_ON_DXVA2CreateVideoService
+#endif
+#if YY_THUNK_GUARD_try_get_DecodePointer
+YYGUARD_ON_DecodePointer
+#endif
+#if YY_THUNK_GUARD_try_get_DeleteAppContainerProfile
+YYGUARD_ON_DeleteAppContainerProfile
+#endif
+#if YY_THUNK_GUARD_try_get_DeleteProcThreadAttributeList
+YYGUARD_ON_DeleteProcThreadAttributeList
+#endif
+#if YY_THUNK_GUARD_try_get_DeleteSynchronizationBarrier
+YYGUARD_ON_DeleteSynchronizationBarrier
+#endif
+#if YY_THUNK_GUARD_try_get_DeriveAppContainerSidFromAppContainerName
+YYGUARD_ON_DeriveAppContainerSidFromAppContainerName
+#endif
+#if YY_THUNK_GUARD_try_get_Direct3DCreate9
+YYGUARD_ON_Direct3DCreate9
+#endif
+#if YY_THUNK_GUARD_try_get_Direct3DCreate9Ex
+YYGUARD_ON_Direct3DCreate9Ex
+#endif
+#if YY_THUNK_GUARD_try_get_DisableThreadLibraryCalls
+YYGUARD_ON_DisableThreadLibraryCalls
+#endif
+#if YY_THUNK_GUARD_try_get_DiscardVirtualMemory
+YYGUARD_ON_DiscardVirtualMemory
+#endif
+#if YY_THUNK_GUARD_try_get_DisplayConfigGetDeviceInfo
+YYGUARD_ON_DisplayConfigGetDeviceInfo
+#endif
+#if YY_THUNK_GUARD_try_get_DrawThemeTextEx
+YYGUARD_ON_DrawThemeTextEx
+#endif
+#if YY_THUNK_GUARD_try_get_DuplicateHandle
+YYGUARD_ON_DuplicateHandle
+#endif
+#if YY_THUNK_GUARD_try_get_DwmDefWindowProc
+YYGUARD_ON_DwmDefWindowProc
+#endif
+#if YY_THUNK_GUARD_try_get_DwmEnableBlurBehindWindow
+YYGUARD_ON_DwmEnableBlurBehindWindow
+#endif
+#if YY_THUNK_GUARD_try_get_DwmEnableComposition
+YYGUARD_ON_DwmEnableComposition
+#endif
+#if YY_THUNK_GUARD_try_get_DwmExtendFrameIntoClientArea
+YYGUARD_ON_DwmExtendFrameIntoClientArea
+#endif
+#if YY_THUNK_GUARD_try_get_DwmFlush
+YYGUARD_ON_DwmFlush
+#endif
+#if YY_THUNK_GUARD_try_get_DwmGetColorizationColor
+YYGUARD_ON_DwmGetColorizationColor
+#endif
+#if YY_THUNK_GUARD_try_get_DwmGetCompositionTimingInfo
+YYGUARD_ON_DwmGetCompositionTimingInfo
+#endif
+#if YY_THUNK_GUARD_try_get_DwmGetWindowAttribute
+YYGUARD_ON_DwmGetWindowAttribute
+#endif
+#if YY_THUNK_GUARD_try_get_DwmInvalidateIconicBitmaps
+YYGUARD_ON_DwmInvalidateIconicBitmaps
+#endif
+#if YY_THUNK_GUARD_try_get_DwmIsCompositionEnabled
+YYGUARD_ON_DwmIsCompositionEnabled
+#endif
+#if YY_THUNK_GUARD_try_get_DwmSetIconicLivePreviewBitmap
+YYGUARD_ON_DwmSetIconicLivePreviewBitmap
+#endif
+#if YY_THUNK_GUARD_try_get_DwmSetIconicThumbnail
+YYGUARD_ON_DwmSetIconicThumbnail
+#endif
+#if YY_THUNK_GUARD_try_get_DwmSetWindowAttribute
+YYGUARD_ON_DwmSetWindowAttribute
+#endif
+#if YY_THUNK_GUARD_try_get_EnableMouseInPointer
+YYGUARD_ON_EnableMouseInPointer
+#endif
+#if YY_THUNK_GUARD_try_get_EnableNonClientDpiScaling
+YYGUARD_ON_EnableNonClientDpiScaling
+#endif
+#if YY_THUNK_GUARD_try_get_EncodePointer
+YYGUARD_ON_EncodePointer
+#endif
+#if YY_THUNK_GUARD_try_get_EnterSynchronizationBarrier
+YYGUARD_ON_EnterSynchronizationBarrier
+#endif
+#if YY_THUNK_GUARD_try_get_EnumCalendarInfoExEx
+YYGUARD_ON_EnumCalendarInfoExEx
+#endif
+#if YY_THUNK_GUARD_try_get_EnumDateFormatsExEx
+YYGUARD_ON_EnumDateFormatsExEx
+#endif
+#if YY_THUNK_GUARD_try_get_EnumProcessModulesEx
+YYGUARD_ON_EnumProcessModulesEx
+#endif
+#if YY_THUNK_GUARD_try_get_EnumResourceLanguagesExA
+YYGUARD_ON_EnumResourceLanguagesExA
+#endif
+#if YY_THUNK_GUARD_try_get_EnumResourceLanguagesExW
+YYGUARD_ON_EnumResourceLanguagesExW
+#endif
+#if YY_THUNK_GUARD_try_get_EnumSystemLocalesEx
+YYGUARD_ON_EnumSystemLocalesEx
+#endif
+#if YY_THUNK_GUARD_try_get_EnumTimeFormatsEx
+YYGUARD_ON_EnumTimeFormatsEx
+#endif
+#if YY_THUNK_GUARD_try_get_EnumerateTraceGuidsEx
+YYGUARD_ON_EnumerateTraceGuidsEx
+#endif
+#if YY_THUNK_GUARD_try_get_EventActivityIdControl
+YYGUARD_ON_EventActivityIdControl
+#endif
+#if YY_THUNK_GUARD_try_get_EventEnabled
+YYGUARD_ON_EventEnabled
+#endif
+#if YY_THUNK_GUARD_try_get_EventRegister
+YYGUARD_ON_EventRegister
+#endif
+#if YY_THUNK_GUARD_try_get_EventSetInformation
+YYGUARD_ON_EventSetInformation
+#endif
+#if YY_THUNK_GUARD_try_get_EventUnregister
+YYGUARD_ON_EventUnregister
+#endif
+#if YY_THUNK_GUARD_try_get_EventWrite
+YYGUARD_ON_EventWrite
+#endif
+#if YY_THUNK_GUARD_try_get_EventWriteEx
+YYGUARD_ON_EventWriteEx
+#endif
+#if YY_THUNK_GUARD_try_get_EventWriteString
+YYGUARD_ON_EventWriteString
+#endif
+#if YY_THUNK_GUARD_try_get_EventWriteTransfer
+YYGUARD_ON_EventWriteTransfer
+#endif
+#if YY_THUNK_GUARD_try_get_EvtClose
+YYGUARD_ON_EvtClose
+#endif
+#if YY_THUNK_GUARD_try_get_EvtCreateRenderContext
+YYGUARD_ON_EvtCreateRenderContext
+#endif
+#if YY_THUNK_GUARD_try_get_EvtNext
+YYGUARD_ON_EvtNext
+#endif
+#if YY_THUNK_GUARD_try_get_EvtQuery
+YYGUARD_ON_EvtQuery
+#endif
+#if YY_THUNK_GUARD_try_get_EvtRender
+YYGUARD_ON_EvtRender
+#endif
+#if YY_THUNK_GUARD_try_get_FindFirstFileExA
+YYGUARD_ON_FindFirstFileExA
+#endif
+#if YY_THUNK_GUARD_try_get_FindFirstFileExW
+YYGUARD_ON_FindFirstFileExW
+#endif
+#if YY_THUNK_GUARD_try_get_FindNLSStringEx
+YYGUARD_ON_FindNLSStringEx
+#endif
+#if YY_THUNK_GUARD_try_get_FindPackagesByPackageFamily
+YYGUARD_ON_FindPackagesByPackageFamily
+#endif
+#if YY_THUNK_GUARD_try_get_FindStringOrdinal
+YYGUARD_ON_FindStringOrdinal
+#endif
+#if YY_THUNK_GUARD_try_get_FlsAlloc
+YYGUARD_ON_FlsAlloc
+#endif
+#if YY_THUNK_GUARD_try_get_FlsFree
+YYGUARD_ON_FlsFree
+#endif
+#if YY_THUNK_GUARD_try_get_FlsGetValue
+YYGUARD_ON_FlsGetValue
+#endif
+#if YY_THUNK_GUARD_try_get_FlsSetValue
+YYGUARD_ON_FlsSetValue
+#endif
+#if YY_THUNK_GUARD_try_get_FlushProcessWriteBuffers
+YYGUARD_ON_FlushProcessWriteBuffers
+#endif
+#if YY_THUNK_GUARD_try_get_FreeLibraryWhenCallbackReturns
+YYGUARD_ON_FreeLibraryWhenCallbackReturns
+#endif
+#if YY_THUNK_GUARD_try_get_FreeMibTable
+YYGUARD_ON_FreeMibTable
+#endif
+#if YY_THUNK_GUARD_try_get_GetActiveProcessorCount
+YYGUARD_ON_GetActiveProcessorCount
+#endif
+#if YY_THUNK_GUARD_try_get_GetActiveProcessorGroupCount
+YYGUARD_ON_GetActiveProcessorGroupCount
+#endif
+#if YY_THUNK_GUARD_try_get_GetAppContainerFolderPath
+YYGUARD_ON_GetAppContainerFolderPath
+#endif
+#if YY_THUNK_GUARD_try_get_GetAppContainerRegistryLocation
+YYGUARD_ON_GetAppContainerRegistryLocation
+#endif
+#if YY_THUNK_GUARD_try_get_GetAwarenessFromDpiAwarenessContext
+YYGUARD_ON_GetAwarenessFromDpiAwarenessContext
+#endif
+#if YY_THUNK_GUARD_try_get_GetCalendarInfoEx
+YYGUARD_ON_GetCalendarInfoEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetCurrencyFormatEx
+YYGUARD_ON_GetCurrencyFormatEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetCurrentPackageFullName
+YYGUARD_ON_GetCurrentPackageFullName
+#endif
+#if YY_THUNK_GUARD_try_get_GetCurrentProcessorNumber
+YYGUARD_ON_GetCurrentProcessorNumber
+#endif
+#if YY_THUNK_GUARD_try_get_GetCurrentProcessorNumberEx
+YYGUARD_ON_GetCurrentProcessorNumberEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetCurrentThreadStackLimits
+YYGUARD_ON_GetCurrentThreadStackLimits
+#endif
+#if YY_THUNK_GUARD_try_get_GetDateFormatEx
+YYGUARD_ON_GetDateFormatEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetDisplayAutoRotationPreferences
+YYGUARD_ON_GetDisplayAutoRotationPreferences
+#endif
+#if YY_THUNK_GUARD_try_get_GetDisplayConfigBufferSizes
+YYGUARD_ON_GetDisplayConfigBufferSizes
+#endif
+#if YY_THUNK_GUARD_try_get_GetDllDirectoryA
+YYGUARD_ON_GetDllDirectoryA
+#endif
+#if YY_THUNK_GUARD_try_get_GetDllDirectoryW
+YYGUARD_ON_GetDllDirectoryW
+#endif
+#if YY_THUNK_GUARD_try_get_GetDpiForMonitor
+YYGUARD_ON_GetDpiForMonitor
+#endif
+#if YY_THUNK_GUARD_try_get_GetDpiForSystem
+YYGUARD_ON_GetDpiForSystem
+#endif
+#if YY_THUNK_GUARD_try_get_GetDpiForWindow
+YYGUARD_ON_GetDpiForWindow
+#endif
+#if YY_THUNK_GUARD_try_get_GetDynamicTimeZoneInformation
+YYGUARD_ON_GetDynamicTimeZoneInformation
+#endif
+#if YY_THUNK_GUARD_try_get_GetDynamicTimeZoneInformationEffectiveYears
+YYGUARD_ON_GetDynamicTimeZoneInformationEffectiveYears
+#endif
+#if YY_THUNK_GUARD_try_get_GetEnabledXStateFeatures
+YYGUARD_ON_GetEnabledXStateFeatures
+#endif
+#if YY_THUNK_GUARD_try_get_GetErrorMode
+YYGUARD_ON_GetErrorMode
+#endif
+#if YY_THUNK_GUARD_try_get_GetFileInformationByHandleEx
+YYGUARD_ON_GetFileInformationByHandleEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoExA
+YYGUARD_ON_GetFileVersionInfoExA
+#endif
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoExW
+YYGUARD_ON_GetFileVersionInfoExW
+#endif
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoSizeExA
+YYGUARD_ON_GetFileVersionInfoSizeExA
+#endif
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoSizeExW
+YYGUARD_ON_GetFileVersionInfoSizeExW
+#endif
+#if YY_THUNK_GUARD_try_get_GetFinalPathNameByHandleA
+YYGUARD_ON_GetFinalPathNameByHandleA
+#endif
+#if YY_THUNK_GUARD_try_get_GetFinalPathNameByHandleW
+YYGUARD_ON_GetFinalPathNameByHandleW
+#endif
+#if YY_THUNK_GUARD_try_get_GetFirmwareType
+YYGUARD_ON_GetFirmwareType
+#endif
+#if YY_THUNK_GUARD_try_get_GetGestureInfo
+YYGUARD_ON_GetGestureInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetIfEntry2
+YYGUARD_ON_GetIfEntry2
+#endif
+#if YY_THUNK_GUARD_try_get_GetIfEntry2Ex
+YYGUARD_ON_GetIfEntry2Ex
+#endif
+#if YY_THUNK_GUARD_try_get_GetIfTable2
+YYGUARD_ON_GetIfTable2
+#endif
+#if YY_THUNK_GUARD_try_get_GetIfTable2Ex
+YYGUARD_ON_GetIfTable2Ex
+#endif
+#if YY_THUNK_GUARD_try_get_GetLargePageMinimum
+YYGUARD_ON_GetLargePageMinimum
+#endif
+#if YY_THUNK_GUARD_try_get_GetLocaleInfoEx
+YYGUARD_ON_GetLocaleInfoEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetLogicalProcessorInformation
+YYGUARD_ON_GetLogicalProcessorInformation
+#endif
+#if YY_THUNK_GUARD_try_get_GetLogicalProcessorInformationEx
+YYGUARD_ON_GetLogicalProcessorInformationEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetMaximumProcessorCount
+YYGUARD_ON_GetMaximumProcessorCount
+#endif
+#if YY_THUNK_GUARD_try_get_GetMaximumProcessorGroupCount
+YYGUARD_ON_GetMaximumProcessorGroupCount
+#endif
+#if YY_THUNK_GUARD_try_get_GetMemoryErrorHandlingCapabilities
+YYGUARD_ON_GetMemoryErrorHandlingCapabilities
+#endif
+#if YY_THUNK_GUARD_try_get_GetModuleHandleExA
+YYGUARD_ON_GetModuleHandleExA
+#endif
+#if YY_THUNK_GUARD_try_get_GetModuleHandleExW
+YYGUARD_ON_GetModuleHandleExW
+#endif
+#if YY_THUNK_GUARD_try_get_GetNLSVersionEx
+YYGUARD_ON_GetNLSVersionEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNamedPipeClientProcessId
+YYGUARD_ON_GetNamedPipeClientProcessId
+#endif
+#if YY_THUNK_GUARD_try_get_GetNamedPipeServerProcessId
+YYGUARD_ON_GetNamedPipeServerProcessId
+#endif
+#if YY_THUNK_GUARD_try_get_GetNativeSystemInfo
+YYGUARD_ON_GetNativeSystemInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaAvailableMemoryNode
+YYGUARD_ON_GetNumaAvailableMemoryNode
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaAvailableMemoryNodeEx
+YYGUARD_ON_GetNumaAvailableMemoryNodeEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaHighestNodeNumber
+YYGUARD_ON_GetNumaHighestNodeNumber
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaNodeNumberFromHandle
+YYGUARD_ON_GetNumaNodeNumberFromHandle
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaNodeProcessorMask
+YYGUARD_ON_GetNumaNodeProcessorMask
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaNodeProcessorMaskEx
+YYGUARD_ON_GetNumaNodeProcessorMaskEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaProcessorNode
+YYGUARD_ON_GetNumaProcessorNode
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaProcessorNodeEx
+YYGUARD_ON_GetNumaProcessorNodeEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaProximityNode
+YYGUARD_ON_GetNumaProximityNode
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumaProximityNodeEx
+YYGUARD_ON_GetNumaProximityNodeEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNumberFormatEx
+YYGUARD_ON_GetNumberFormatEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetOverlappedResultEx
+YYGUARD_ON_GetOverlappedResultEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetPackageFamilyName
+YYGUARD_ON_GetPackageFamilyName
+#endif
+#if YY_THUNK_GUARD_try_get_GetPackageFullName
+YYGUARD_ON_GetPackageFullName
+#endif
+#if YY_THUNK_GUARD_try_get_GetPackageInfo
+YYGUARD_ON_GetPackageInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetPackagePathByFullName
+YYGUARD_ON_GetPackagePathByFullName
+#endif
+#if YY_THUNK_GUARD_try_get_GetPackagesByPackageFamily
+YYGUARD_ON_GetPackagesByPackageFamily
+#endif
+#if YY_THUNK_GUARD_try_get_GetPhysicallyInstalledSystemMemory
+YYGUARD_ON_GetPhysicallyInstalledSystemMemory
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerDevice
+YYGUARD_ON_GetPointerDevice
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerDeviceRects
+YYGUARD_ON_GetPointerDeviceRects
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerDevices
+YYGUARD_ON_GetPointerDevices
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerFrameTouchInfo
+YYGUARD_ON_GetPointerFrameTouchInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerFrameTouchInfoHistory
+YYGUARD_ON_GetPointerFrameTouchInfoHistory
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerInfo
+YYGUARD_ON_GetPointerInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerInfoHistory
+YYGUARD_ON_GetPointerInfoHistory
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerPenInfo
+YYGUARD_ON_GetPointerPenInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerPenInfoHistory
+YYGUARD_ON_GetPointerPenInfoHistory
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerTouchInfo
+YYGUARD_ON_GetPointerTouchInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerTouchInfoHistory
+YYGUARD_ON_GetPointerTouchInfoHistory
+#endif
+#if YY_THUNK_GUARD_try_get_GetPointerType
+YYGUARD_ON_GetPointerType
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcAddress
+YYGUARD_ON_GetProcAddress
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessDpiAwareness
+YYGUARD_ON_GetProcessDpiAwareness
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessGroupAffinity
+YYGUARD_ON_GetProcessGroupAffinity
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessId
+YYGUARD_ON_GetProcessId
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessIdOfThread
+YYGUARD_ON_GetProcessIdOfThread
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessMitigationPolicy
+YYGUARD_ON_GetProcessMitigationPolicy
+#endif
+#if YY_THUNK_GUARD_try_get_GetProcessWorkingSetSizeEx
+YYGUARD_ON_GetProcessWorkingSetSizeEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetProductInfo
+YYGUARD_ON_GetProductInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetQueuedCompletionStatusEx
+YYGUARD_ON_GetQueuedCompletionStatusEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemDEPPolicy
+YYGUARD_ON_GetSystemDEPPolicy
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemDefaultLocaleName
+YYGUARD_ON_GetSystemDefaultLocaleName
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemDpiForProcess
+YYGUARD_ON_GetSystemDpiForProcess
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemFirmwareTable
+YYGUARD_ON_GetSystemFirmwareTable
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemMetricsForDpi
+YYGUARD_ON_GetSystemMetricsForDpi
+#endif
+#if YY_THUNK_GUARD_try_get_GetSystemTimePreciseAsFileTime
+YYGUARD_ON_GetSystemTimePreciseAsFileTime
+#endif
+#if YY_THUNK_GUARD_try_get_GetTcpTable2
+YYGUARD_ON_GetTcpTable2
+#endif
+#if YY_THUNK_GUARD_try_get_GetTempPath2A
+YYGUARD_ON_GetTempPath2A
+#endif
+#if YY_THUNK_GUARD_try_get_GetTempPath2W
+YYGUARD_ON_GetTempPath2W
+#endif
+#if YY_THUNK_GUARD_try_get_GetThemeTransitionDuration
+YYGUARD_ON_GetThemeTransitionDuration
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadDescription
+YYGUARD_ON_GetThreadDescription
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadDpiAwarenessContext
+YYGUARD_ON_GetThreadDpiAwarenessContext
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadErrorMode
+YYGUARD_ON_GetThreadErrorMode
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadGroupAffinity
+YYGUARD_ON_GetThreadGroupAffinity
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadId
+YYGUARD_ON_GetThreadId
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadIdealProcessorEx
+YYGUARD_ON_GetThreadIdealProcessorEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadInformation
+YYGUARD_ON_GetThreadInformation
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadPreferredUILanguages
+YYGUARD_ON_GetThreadPreferredUILanguages
+#endif
+#if YY_THUNK_GUARD_try_get_GetThreadUILanguage
+YYGUARD_ON_GetThreadUILanguage
+#endif
+#if YY_THUNK_GUARD_try_get_GetTickCount64
+YYGUARD_ON_GetTickCount64
+#endif
+#if YY_THUNK_GUARD_try_get_GetTimeFormatEx
+YYGUARD_ON_GetTimeFormatEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetTimeZoneInformationForYear
+YYGUARD_ON_GetTimeZoneInformationForYear
+#endif
+#if YY_THUNK_GUARD_try_get_GetTokenInformation
+YYGUARD_ON_GetTokenInformation
+#endif
+#if YY_THUNK_GUARD_try_get_GetTouchInputInfo
+YYGUARD_ON_GetTouchInputInfo
+#endif
+#if YY_THUNK_GUARD_try_get_GetUnicastIpAddressTable
+YYGUARD_ON_GetUnicastIpAddressTable
+#endif
+#if YY_THUNK_GUARD_try_get_GetUserDefaultLocaleName
+YYGUARD_ON_GetUserDefaultLocaleName
+#endif
+#if YY_THUNK_GUARD_try_get_GetUserPreferredUILanguages
+YYGUARD_ON_GetUserPreferredUILanguages
+#endif
+#if YY_THUNK_GUARD_try_get_GetWindowDisplayAffinity
+YYGUARD_ON_GetWindowDisplayAffinity
+#endif
+#if YY_THUNK_GUARD_try_get_GetWindowDpiAwarenessContext
+YYGUARD_ON_GetWindowDpiAwarenessContext
+#endif
+#if YY_THUNK_GUARD_try_get_GetWsChangesEx
+YYGUARD_ON_GetWsChangesEx
+#endif
+#if YY_THUNK_GUARD_try_get_InitOnceBeginInitialize
+YYGUARD_ON_InitOnceBeginInitialize
+#endif
+#if YY_THUNK_GUARD_try_get_InitOnceComplete
+YYGUARD_ON_InitOnceComplete
+#endif
+#if YY_THUNK_GUARD_try_get_InitOnceExecuteOnce
+YYGUARD_ON_InitOnceExecuteOnce
+#endif
+#if YY_THUNK_GUARD_try_get_InitOnceInitialize
+YYGUARD_ON_InitOnceInitialize
+#endif
+#if YY_THUNK_GUARD_try_get_InitPropVariantFromCLSID
+YYGUARD_ON_InitPropVariantFromCLSID
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeConditionVariable
+YYGUARD_ON_InitializeConditionVariable
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeContext
+YYGUARD_ON_InitializeContext
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeContext2
+YYGUARD_ON_InitializeContext2
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeCriticalSectionEx
+YYGUARD_ON_InitializeCriticalSectionEx
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeProcThreadAttributeList
+YYGUARD_ON_InitializeProcThreadAttributeList
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeSListHead
+YYGUARD_ON_InitializeSListHead
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeSRWLock
+YYGUARD_ON_InitializeSRWLock
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeSynchronizationBarrier
+YYGUARD_ON_InitializeSynchronizationBarrier
+#endif
+#if YY_THUNK_GUARD_try_get_InitializeTouchInjection
+YYGUARD_ON_InitializeTouchInjection
+#endif
+#if YY_THUNK_GUARD_try_get_InjectTouchInput
+YYGUARD_ON_InjectTouchInput
+#endif
+#if YY_THUNK_GUARD_try_get_InterlockedCompareExchange64
+YYGUARD_ON_InterlockedCompareExchange64
+#endif
+#if YY_THUNK_GUARD_try_get_InterlockedFlushSList
+YYGUARD_ON_InterlockedFlushSList
+#endif
+#if YY_THUNK_GUARD_try_get_InterlockedPopEntrySList
+YYGUARD_ON_InterlockedPopEntrySList
+#endif
+#if YY_THUNK_GUARD_try_get_InterlockedPushEntrySList
+YYGUARD_ON_InterlockedPushEntrySList
+#endif
+#if YY_THUNK_GUARD_try_get_IsMouseInPointerEnabled
+YYGUARD_ON_IsMouseInPointerEnabled
+#endif
+#if YY_THUNK_GUARD_try_get_IsNLSDefinedString
+YYGUARD_ON_IsNLSDefinedString
+#endif
+#if YY_THUNK_GUARD_try_get_IsNativeVhdBoot
+YYGUARD_ON_IsNativeVhdBoot
+#endif
+#if YY_THUNK_GUARD_try_get_IsProcessDPIAware
+YYGUARD_ON_IsProcessDPIAware
+#endif
+#if YY_THUNK_GUARD_try_get_IsThreadAFiber
+YYGUARD_ON_IsThreadAFiber
+#endif
+#if YY_THUNK_GUARD_try_get_IsTouchWindow
+YYGUARD_ON_IsTouchWindow
+#endif
+#if YY_THUNK_GUARD_try_get_IsValidDpiAwarenessContext
+YYGUARD_ON_IsValidDpiAwarenessContext
+#endif
+#if YY_THUNK_GUARD_try_get_IsWow64GuestMachineSupported
+YYGUARD_ON_IsWow64GuestMachineSupported
+#endif
+#if YY_THUNK_GUARD_try_get_IsWow64Message
+YYGUARD_ON_IsWow64Message
+#endif
+#if YY_THUNK_GUARD_try_get_IsWow64Process
+YYGUARD_ON_IsWow64Process
+#endif
+#if YY_THUNK_GUARD_try_get_IsWow64Process2
+YYGUARD_ON_IsWow64Process2
+#endif
+#if YY_THUNK_GUARD_try_get_JetAttachDatabase2W
+YYGUARD_ON_JetAttachDatabase2W
+#endif
+#if YY_THUNK_GUARD_try_get_JetBeginSessionW
+YYGUARD_ON_JetBeginSessionW
+#endif
+#if YY_THUNK_GUARD_try_get_JetCreateInstanceW
+YYGUARD_ON_JetCreateInstanceW
+#endif
+#if YY_THUNK_GUARD_try_get_JetGetSystemParameterW
+YYGUARD_ON_JetGetSystemParameterW
+#endif
+#if YY_THUNK_GUARD_try_get_JetGetTableColumnInfoW
+YYGUARD_ON_JetGetTableColumnInfoW
+#endif
+#if YY_THUNK_GUARD_try_get_JetOpenDatabaseW
+YYGUARD_ON_JetOpenDatabaseW
+#endif
+#if YY_THUNK_GUARD_try_get_JetOpenTableW
+YYGUARD_ON_JetOpenTableW
+#endif
+#if YY_THUNK_GUARD_try_get_JetSetSystemParameterW
+YYGUARD_ON_JetSetSystemParameterW
+#endif
+#if YY_THUNK_GUARD_try_get_LCIDToLocaleName
+YYGUARD_ON_LCIDToLocaleName
+#endif
+#if YY_THUNK_GUARD_try_get_LCMapStringEx
+YYGUARD_ON_LCMapStringEx
+#endif
+#if YY_THUNK_GUARD_try_get_LeaveCriticalSectionWhenCallbackReturns
+YYGUARD_ON_LeaveCriticalSectionWhenCallbackReturns
+#endif
+#if YY_THUNK_GUARD_try_get_LoadLibraryA
+YYGUARD_ON_LoadLibraryA
+#endif
+#if YY_THUNK_GUARD_try_get_LoadLibraryExA
+YYGUARD_ON_LoadLibraryExA
+#endif
+#if YY_THUNK_GUARD_try_get_LoadLibraryExW
+YYGUARD_ON_LoadLibraryExW
+#endif
+#if YY_THUNK_GUARD_try_get_LoadLibraryW
+YYGUARD_ON_LoadLibraryW
+#endif
+#if YY_THUNK_GUARD_try_get_LocaleNameToLCID
+YYGUARD_ON_LocaleNameToLCID
+#endif
+#if YY_THUNK_GUARD_try_get_LocateXStateFeature
+YYGUARD_ON_LocateXStateFeature
+#endif
+#if YY_THUNK_GUARD_try_get_LogicalToPhysicalPoint
+YYGUARD_ON_LogicalToPhysicalPoint
+#endif
+#if YY_THUNK_GUARD_try_get_LogicalToPhysicalPointForPerMonitorDPI
+YYGUARD_ON_LogicalToPhysicalPointForPerMonitorDPI
+#endif
+#if YY_THUNK_GUARD_try_get_MFCancelWorkItem
+YYGUARD_ON_MFCancelWorkItem
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateAlignedMemoryBuffer
+YYGUARD_ON_MFCreateAlignedMemoryBuffer
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateAsyncResult
+YYGUARD_ON_MFCreateAsyncResult
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateAttributes
+YYGUARD_ON_MFCreateAttributes
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateDXGIDeviceManager
+YYGUARD_ON_MFCreateDXGIDeviceManager
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateDXGISurfaceBuffer
+YYGUARD_ON_MFCreateDXGISurfaceBuffer
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateDeviceSource
+YYGUARD_ON_MFCreateDeviceSource
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateEventQueue
+YYGUARD_ON_MFCreateEventQueue
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateMediaBufferWrapper
+YYGUARD_ON_MFCreateMediaBufferWrapper
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateMediaEvent
+YYGUARD_ON_MFCreateMediaEvent
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateMediaType
+YYGUARD_ON_MFCreateMediaType
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateMemoryBuffer
+YYGUARD_ON_MFCreateMemoryBuffer
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreatePresentationDescriptor
+YYGUARD_ON_MFCreatePresentationDescriptor
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateSample
+YYGUARD_ON_MFCreateSample
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateSourceReaderFromMediaSource
+YYGUARD_ON_MFCreateSourceReaderFromMediaSource
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateStreamDescriptor
+YYGUARD_ON_MFCreateStreamDescriptor
+#endif
+#if YY_THUNK_GUARD_try_get_MFCreateWaveFormatExFromMFMediaType
+YYGUARD_ON_MFCreateWaveFormatExFromMFMediaType
+#endif
+#if YY_THUNK_GUARD_try_get_MFEnumDeviceSources
+YYGUARD_ON_MFEnumDeviceSources
+#endif
+#if YY_THUNK_GUARD_try_get_MFFrameRateToAverageTimePerFrame
+YYGUARD_ON_MFFrameRateToAverageTimePerFrame
+#endif
+#if YY_THUNK_GUARD_try_get_MFGetSystemTime
+YYGUARD_ON_MFGetSystemTime
+#endif
+#if YY_THUNK_GUARD_try_get_MFInitMediaTypeFromWaveFormatEx
+YYGUARD_ON_MFInitMediaTypeFromWaveFormatEx
+#endif
+#if YY_THUNK_GUARD_try_get_MFLockDXGIDeviceManager
+YYGUARD_ON_MFLockDXGIDeviceManager
+#endif
+#if YY_THUNK_GUARD_try_get_MFLockSharedWorkQueue
+YYGUARD_ON_MFLockSharedWorkQueue
+#endif
+#if YY_THUNK_GUARD_try_get_MFPutWaitingWorkItem
+YYGUARD_ON_MFPutWaitingWorkItem
+#endif
+#if YY_THUNK_GUARD_try_get_MFPutWorkItem
+YYGUARD_ON_MFPutWorkItem
+#endif
+#if YY_THUNK_GUARD_try_get_MFPutWorkItem2
+YYGUARD_ON_MFPutWorkItem2
+#endif
+#if YY_THUNK_GUARD_try_get_MFShutdown
+YYGUARD_ON_MFShutdown
+#endif
+#if YY_THUNK_GUARD_try_get_MFStartup
+YYGUARD_ON_MFStartup
+#endif
+#if YY_THUNK_GUARD_try_get_MFTEnumEx
+YYGUARD_ON_MFTEnumEx
+#endif
+#if YY_THUNK_GUARD_try_get_MFUnlockDXGIDeviceManager
+YYGUARD_ON_MFUnlockDXGIDeviceManager
+#endif
+#if YY_THUNK_GUARD_try_get_MFUnlockWorkQueue
+YYGUARD_ON_MFUnlockWorkQueue
+#endif
+#if YY_THUNK_GUARD_try_get_MapViewOfFileExNuma
+YYGUARD_ON_MapViewOfFileExNuma
+#endif
+#if YY_THUNK_GUARD_try_get_MapViewOfFileFromApp
+YYGUARD_ON_MapViewOfFileFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_NotifyIpInterfaceChange
+YYGUARD_ON_NotifyIpInterfaceChange
+#endif
+#if YY_THUNK_GUARD_try_get_NotifyStableUnicastIpAddressTable
+YYGUARD_ON_NotifyStableUnicastIpAddressTable
+#endif
+#if YY_THUNK_GUARD_try_get_NtCancelIoFileEx
+YYGUARD_ON_NtCancelIoFileEx
+#endif
+#if YY_THUNK_GUARD_try_get_NtOpenKeyEx
+YYGUARD_ON_NtOpenKeyEx
+#endif
+#if YY_THUNK_GUARD_try_get_OfferVirtualMemory
+YYGUARD_ON_OfferVirtualMemory
+#endif
+#if YY_THUNK_GUARD_try_get_OpenFileById
+YYGUARD_ON_OpenFileById
+#endif
+#if YY_THUNK_GUARD_try_get_OpenFileMappingFromApp
+YYGUARD_ON_OpenFileMappingFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_OpenPackageInfoByFullName
+YYGUARD_ON_OpenPackageInfoByFullName
+#endif
+#if YY_THUNK_GUARD_try_get_OpenProcess
+YYGUARD_ON_OpenProcess
+#endif
+#if YY_THUNK_GUARD_try_get_OpenThread
+YYGUARD_ON_OpenThread
+#endif
+#if YY_THUNK_GUARD_try_get_PSCreateMemoryPropertyStore
+YYGUARD_ON_PSCreateMemoryPropertyStore
+#endif
+#if YY_THUNK_GUARD_try_get_PSGetPropertyKeyFromName
+YYGUARD_ON_PSGetPropertyKeyFromName
+#endif
+#if YY_THUNK_GUARD_try_get_PathAllocCanonicalize
+YYGUARD_ON_PathAllocCanonicalize
+#endif
+#if YY_THUNK_GUARD_try_get_PathAllocCombine
+YYGUARD_ON_PathAllocCombine
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchAddBackslash
+YYGUARD_ON_PathCchAddBackslash
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchAddBackslashEx
+YYGUARD_ON_PathCchAddBackslashEx
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchAddExtension
+YYGUARD_ON_PathCchAddExtension
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchAppend
+YYGUARD_ON_PathCchAppend
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchAppendEx
+YYGUARD_ON_PathCchAppendEx
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchCanonicalize
+YYGUARD_ON_PathCchCanonicalize
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchCanonicalizeEx
+YYGUARD_ON_PathCchCanonicalizeEx
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchCombine
+YYGUARD_ON_PathCchCombine
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchCombineEx
+YYGUARD_ON_PathCchCombineEx
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchFindExtension
+YYGUARD_ON_PathCchFindExtension
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchIsRoot
+YYGUARD_ON_PathCchIsRoot
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchRemoveBackslash
+YYGUARD_ON_PathCchRemoveBackslash
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchRemoveBackslashEx
+YYGUARD_ON_PathCchRemoveBackslashEx
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchRemoveExtension
+YYGUARD_ON_PathCchRemoveExtension
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchRemoveFileSpec
+YYGUARD_ON_PathCchRemoveFileSpec
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchRenameExtension
+YYGUARD_ON_PathCchRenameExtension
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchSkipRoot
+YYGUARD_ON_PathCchSkipRoot
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchStripPrefix
+YYGUARD_ON_PathCchStripPrefix
+#endif
+#if YY_THUNK_GUARD_try_get_PathCchStripToRoot
+YYGUARD_ON_PathCchStripToRoot
+#endif
+#if YY_THUNK_GUARD_try_get_PathIsUNCEx
+YYGUARD_ON_PathIsUNCEx
+#endif
+#if YY_THUNK_GUARD_try_get_PdhAddEnglishCounterA
+YYGUARD_ON_PdhAddEnglishCounterA
+#endif
+#if YY_THUNK_GUARD_try_get_PdhAddEnglishCounterW
+YYGUARD_ON_PdhAddEnglishCounterW
+#endif
+#if YY_THUNK_GUARD_try_get_PhysicalToLogicalPoint
+YYGUARD_ON_PhysicalToLogicalPoint
+#endif
+#if YY_THUNK_GUARD_try_get_PhysicalToLogicalPointForPerMonitorDPI
+YYGUARD_ON_PhysicalToLogicalPointForPerMonitorDPI
+#endif
+#if YY_THUNK_GUARD_try_get_PowerClearRequest
+YYGUARD_ON_PowerClearRequest
+#endif
+#if YY_THUNK_GUARD_try_get_PowerCreateRequest
+YYGUARD_ON_PowerCreateRequest
+#endif
+#if YY_THUNK_GUARD_try_get_PowerDeterminePlatformRole
+YYGUARD_ON_PowerDeterminePlatformRole
+#endif
+#if YY_THUNK_GUARD_try_get_PowerDeterminePlatformRoleEx
+YYGUARD_ON_PowerDeterminePlatformRoleEx
+#endif
+#if YY_THUNK_GUARD_try_get_PowerGetActiveScheme
+YYGUARD_ON_PowerGetActiveScheme
+#endif
+#if YY_THUNK_GUARD_try_get_PowerReadACValue
+YYGUARD_ON_PowerReadACValue
+#endif
+#if YY_THUNK_GUARD_try_get_PowerReadDCValue
+YYGUARD_ON_PowerReadDCValue
+#endif
+#if YY_THUNK_GUARD_try_get_PowerRegisterSuspendResumeNotification
+YYGUARD_ON_PowerRegisterSuspendResumeNotification
+#endif
+#if YY_THUNK_GUARD_try_get_PowerSetRequest
+YYGUARD_ON_PowerSetRequest
+#endif
+#if YY_THUNK_GUARD_try_get_PowerUnregisterSuspendResumeNotification
+YYGUARD_ON_PowerUnregisterSuspendResumeNotification
+#endif
+#if YY_THUNK_GUARD_try_get_PrefetchVirtualMemory
+YYGUARD_ON_PrefetchVirtualMemory
+#endif
+#if YY_THUNK_GUARD_try_get_ProcessPrng
+YYGUARD_ON_ProcessPrng
+#endif
+#if YY_THUNK_GUARD_try_get_QueryDepthSList
+YYGUARD_ON_QueryDepthSList
+#endif
+#if YY_THUNK_GUARD_try_get_QueryDisplayConfig
+YYGUARD_ON_QueryDisplayConfig
+#endif
+#if YY_THUNK_GUARD_try_get_QueryFullProcessImageNameA
+YYGUARD_ON_QueryFullProcessImageNameA
+#endif
+#if YY_THUNK_GUARD_try_get_QueryFullProcessImageNameW
+YYGUARD_ON_QueryFullProcessImageNameW
+#endif
+#if YY_THUNK_GUARD_try_get_QueryIdleProcessorCycleTime
+YYGUARD_ON_QueryIdleProcessorCycleTime
+#endif
+#if YY_THUNK_GUARD_try_get_QueryIdleProcessorCycleTimeEx
+YYGUARD_ON_QueryIdleProcessorCycleTimeEx
+#endif
+#if YY_THUNK_GUARD_try_get_QueryInterruptTime
+YYGUARD_ON_QueryInterruptTime
+#endif
+#if YY_THUNK_GUARD_try_get_QueryInterruptTimePrecise
+YYGUARD_ON_QueryInterruptTimePrecise
+#endif
+#if YY_THUNK_GUARD_try_get_QueryProcessCycleTime
+YYGUARD_ON_QueryProcessCycleTime
+#endif
+#if YY_THUNK_GUARD_try_get_QueryThreadCycleTime
+YYGUARD_ON_QueryThreadCycleTime
+#endif
+#if YY_THUNK_GUARD_try_get_QueryUnbiasedInterruptTime
+YYGUARD_ON_QueryUnbiasedInterruptTime
+#endif
+#if YY_THUNK_GUARD_try_get_QueryUnbiasedInterruptTimePrecise
+YYGUARD_ON_QueryUnbiasedInterruptTimePrecise
+#endif
+#if YY_THUNK_GUARD_try_get_QueryWorkingSetEx
+YYGUARD_ON_QueryWorkingSetEx
+#endif
+#if YY_THUNK_GUARD_try_get_RaiseFailFastException
+YYGUARD_ON_RaiseFailFastException
+#endif
+#if YY_THUNK_GUARD_try_get_ReOpenFile
+YYGUARD_ON_ReOpenFile
+#endif
+#if YY_THUNK_GUARD_try_get_ReadFile
+YYGUARD_ON_ReadFile
+#endif
+#if YY_THUNK_GUARD_try_get_ReclaimVirtualMemory
+YYGUARD_ON_ReclaimVirtualMemory
+#endif
+#if YY_THUNK_GUARD_try_get_RegCloseKey
+YYGUARD_ON_RegCloseKey
+#endif
+#if YY_THUNK_GUARD_try_get_RegCopyTreeA
+YYGUARD_ON_RegCopyTreeA
+#endif
+#if YY_THUNK_GUARD_try_get_RegCopyTreeW
+YYGUARD_ON_RegCopyTreeW
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyExA
+YYGUARD_ON_RegDeleteKeyExA
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyExW
+YYGUARD_ON_RegDeleteKeyExW
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyValueA
+YYGUARD_ON_RegDeleteKeyValueA
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyValueW
+YYGUARD_ON_RegDeleteKeyValueW
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteTreeA
+YYGUARD_ON_RegDeleteTreeA
+#endif
+#if YY_THUNK_GUARD_try_get_RegDeleteTreeW
+YYGUARD_ON_RegDeleteTreeW
+#endif
+#if YY_THUNK_GUARD_try_get_RegGetValueA
+YYGUARD_ON_RegGetValueA
+#endif
+#if YY_THUNK_GUARD_try_get_RegGetValueW
+YYGUARD_ON_RegGetValueW
+#endif
+#if YY_THUNK_GUARD_try_get_RegSetKeyValueA
+YYGUARD_ON_RegSetKeyValueA
+#endif
+#if YY_THUNK_GUARD_try_get_RegSetKeyValueW
+YYGUARD_ON_RegSetKeyValueW
+#endif
+#if YY_THUNK_GUARD_try_get_RegisterPointerDeviceNotifications
+YYGUARD_ON_RegisterPointerDeviceNotifications
+#endif
+#if YY_THUNK_GUARD_try_get_RegisterPowerSettingNotification
+YYGUARD_ON_RegisterPowerSettingNotification
+#endif
+#if YY_THUNK_GUARD_try_get_RegisterSuspendResumeNotification
+YYGUARD_ON_RegisterSuspendResumeNotification
+#endif
+#if YY_THUNK_GUARD_try_get_RegisterTouchWindow
+YYGUARD_ON_RegisterTouchWindow
+#endif
+#if YY_THUNK_GUARD_try_get_ReleaseMutexWhenCallbackReturns
+YYGUARD_ON_ReleaseMutexWhenCallbackReturns
+#endif
+#if YY_THUNK_GUARD_try_get_ReleaseSRWLockExclusive
+YYGUARD_ON_ReleaseSRWLockExclusive
+#endif
+#if YY_THUNK_GUARD_try_get_ReleaseSRWLockShared
+YYGUARD_ON_ReleaseSRWLockShared
+#endif
+#if YY_THUNK_GUARD_try_get_ReleaseSemaphoreWhenCallbackReturns
+YYGUARD_ON_ReleaseSemaphoreWhenCallbackReturns
+#endif
+#if YY_THUNK_GUARD_try_get_RemoveClipboardFormatListener
+YYGUARD_ON_RemoveClipboardFormatListener
+#endif
+#if YY_THUNK_GUARD_try_get_RemoveDllDirectory
+YYGUARD_ON_RemoveDllDirectory
+#endif
+#if YY_THUNK_GUARD_try_get_ResolveLocaleName
+YYGUARD_ON_ResolveLocaleName
+#endif
+#if YY_THUNK_GUARD_try_get_RoGetAgileReference
+YYGUARD_ON_RoGetAgileReference
+#endif
+#if YY_THUNK_GUARD_try_get_RtlAddGrowableFunctionTable
+YYGUARD_ON_RtlAddGrowableFunctionTable
+#endif
+#if YY_THUNK_GUARD_try_get_RtlCaptureStackBackTrace
+YYGUARD_ON_RtlCaptureStackBackTrace
+#endif
+#if YY_THUNK_GUARD_try_get_RtlDeleteGrowableFunctionTable
+YYGUARD_ON_RtlDeleteGrowableFunctionTable
+#endif
+#if YY_THUNK_GUARD_try_get_SHBindToFolderIDListParent
+YYGUARD_ON_SHBindToFolderIDListParent
+#endif
+#if YY_THUNK_GUARD_try_get_SHBindToFolderIDListParentEx
+YYGUARD_ON_SHBindToFolderIDListParentEx
+#endif
+#if YY_THUNK_GUARD_try_get_SHBindToObject
+YYGUARD_ON_SHBindToObject
+#endif
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromIDList
+YYGUARD_ON_SHCreateItemFromIDList
+#endif
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromParsingName
+YYGUARD_ON_SHCreateItemFromParsingName
+#endif
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromRelativeName
+YYGUARD_ON_SHCreateItemFromRelativeName
+#endif
+#if YY_THUNK_GUARD_try_get_SHCreateItemWithParent
+YYGUARD_ON_SHCreateItemWithParent
+#endif
+#if YY_THUNK_GUARD_try_get_SHCreateShellItem
+YYGUARD_ON_SHCreateShellItem
+#endif
+#if YY_THUNK_GUARD_try_get_SHGetKnownFolderIDList
+YYGUARD_ON_SHGetKnownFolderIDList
+#endif
+#if YY_THUNK_GUARD_try_get_SHGetKnownFolderPath
+YYGUARD_ON_SHGetKnownFolderPath
+#endif
+#if YY_THUNK_GUARD_try_get_SHGetNameFromIDList
+YYGUARD_ON_SHGetNameFromIDList
+#endif
+#if YY_THUNK_GUARD_try_get_SHGetPropertyStoreForWindow
+YYGUARD_ON_SHGetPropertyStoreForWindow
+#endif
+#if YY_THUNK_GUARD_try_get_SHGetStockIconInfo
+YYGUARD_ON_SHGetStockIconInfo
+#endif
+#if YY_THUNK_GUARD_try_get_SHOpenWithDialog
+YYGUARD_ON_SHOpenWithDialog
+#endif
+#if YY_THUNK_GUARD_try_get_SHQueryUserNotificationState
+YYGUARD_ON_SHQueryUserNotificationState
+#endif
+#if YY_THUNK_GUARD_try_get_SHSetKnownFolderPath
+YYGUARD_ON_SHSetKnownFolderPath
+#endif
+#if YY_THUNK_GUARD_try_get_SetCoalescableTimer
+YYGUARD_ON_SetCoalescableTimer
+#endif
+#if YY_THUNK_GUARD_try_get_SetCurrentProcessExplicitAppUserModelID
+YYGUARD_ON_SetCurrentProcessExplicitAppUserModelID
+#endif
+#if YY_THUNK_GUARD_try_get_SetDefaultDllDirectories
+YYGUARD_ON_SetDefaultDllDirectories
+#endif
+#if YY_THUNK_GUARD_try_get_SetDisplayAutoRotationPreferences
+YYGUARD_ON_SetDisplayAutoRotationPreferences
+#endif
+#if YY_THUNK_GUARD_try_get_SetDllDirectoryA
+YYGUARD_ON_SetDllDirectoryA
+#endif
+#if YY_THUNK_GUARD_try_get_SetDllDirectoryW
+YYGUARD_ON_SetDllDirectoryW
+#endif
+#if YY_THUNK_GUARD_try_get_SetDynamicTimeZoneInformation
+YYGUARD_ON_SetDynamicTimeZoneInformation
+#endif
+#if YY_THUNK_GUARD_try_get_SetEventWhenCallbackReturns
+YYGUARD_ON_SetEventWhenCallbackReturns
+#endif
+#if YY_THUNK_GUARD_try_get_SetFileCompletionNotificationModes
+YYGUARD_ON_SetFileCompletionNotificationModes
+#endif
+#if YY_THUNK_GUARD_try_get_SetFileInformationByHandle
+YYGUARD_ON_SetFileInformationByHandle
+#endif
+#if YY_THUNK_GUARD_try_get_SetFilePointerEx
+YYGUARD_ON_SetFilePointerEx
+#endif
+#if YY_THUNK_GUARD_try_get_SetGestureConfig
+YYGUARD_ON_SetGestureConfig
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessDEPPolicy
+YYGUARD_ON_SetProcessDEPPolicy
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessDPIAware
+YYGUARD_ON_SetProcessDPIAware
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessDpiAwareness
+YYGUARD_ON_SetProcessDpiAwareness
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessDpiAwarenessContext
+YYGUARD_ON_SetProcessDpiAwarenessContext
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessInformation
+YYGUARD_ON_SetProcessInformation
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessMitigationPolicy
+YYGUARD_ON_SetProcessMitigationPolicy
+#endif
+#if YY_THUNK_GUARD_try_get_SetProcessWorkingSetSizeEx
+YYGUARD_ON_SetProcessWorkingSetSizeEx
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadDescription
+YYGUARD_ON_SetThreadDescription
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadErrorMode
+YYGUARD_ON_SetThreadErrorMode
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadGroupAffinity
+YYGUARD_ON_SetThreadGroupAffinity
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadIdealProcessorEx
+YYGUARD_ON_SetThreadIdealProcessorEx
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadInformation
+YYGUARD_ON_SetThreadInformation
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadStackGuarantee
+YYGUARD_ON_SetThreadStackGuarantee
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadpoolThreadMaximum
+YYGUARD_ON_SetThreadpoolThreadMaximum
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadpoolThreadMinimum
+YYGUARD_ON_SetThreadpoolThreadMinimum
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadpoolTimer
+YYGUARD_ON_SetThreadpoolTimer
+#endif
+#if YY_THUNK_GUARD_try_get_SetThreadpoolWait
+YYGUARD_ON_SetThreadpoolWait
+#endif
+#if YY_THUNK_GUARD_try_get_SetWaitableTimerEx
+YYGUARD_ON_SetWaitableTimerEx
+#endif
+#if YY_THUNK_GUARD_try_get_SetWindowDisplayAffinity
+YYGUARD_ON_SetWindowDisplayAffinity
+#endif
+#if YY_THUNK_GUARD_try_get_SetWindowThemeAttribute
+YYGUARD_ON_SetWindowThemeAttribute
+#endif
+#if YY_THUNK_GUARD_try_get_SetWindowsHookExA
+YYGUARD_ON_SetWindowsHookExA
+#endif
+#if YY_THUNK_GUARD_try_get_SetWindowsHookExW
+YYGUARD_ON_SetWindowsHookExW
+#endif
+#if YY_THUNK_GUARD_try_get_SetXStateFeaturesMask
+YYGUARD_ON_SetXStateFeaturesMask
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiGetClassPropertyExW
+YYGUARD_ON_SetupDiGetClassPropertyExW
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiGetClassPropertyW
+YYGUARD_ON_SetupDiGetClassPropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiGetDevicePropertyW
+YYGUARD_ON_SetupDiGetDevicePropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiSetClassPropertyExW
+YYGUARD_ON_SetupDiSetClassPropertyExW
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiSetClassPropertyW
+YYGUARD_ON_SetupDiSetClassPropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_SetupDiSetDevicePropertyW
+YYGUARD_ON_SetupDiSetDevicePropertyW
+#endif
+#if YY_THUNK_GUARD_try_get_Shell_NotifyIconGetRect
+YYGUARD_ON_Shell_NotifyIconGetRect
+#endif
+#if YY_THUNK_GUARD_try_get_SkipPointerFrameMessages
+YYGUARD_ON_SkipPointerFrameMessages
+#endif
+#if YY_THUNK_GUARD_try_get_SleepConditionVariableCS
+YYGUARD_ON_SleepConditionVariableCS
+#endif
+#if YY_THUNK_GUARD_try_get_SleepConditionVariableSRW
+YYGUARD_ON_SleepConditionVariableSRW
+#endif
+#if YY_THUNK_GUARD_try_get_StartThreadpoolIo
+YYGUARD_ON_StartThreadpoolIo
+#endif
+#if YY_THUNK_GUARD_try_get_StrToInt64ExA
+YYGUARD_ON_StrToInt64ExA
+#endif
+#if YY_THUNK_GUARD_try_get_StrToInt64ExW
+YYGUARD_ON_StrToInt64ExW
+#endif
+#if YY_THUNK_GUARD_try_get_SubmitThreadpoolWork
+YYGUARD_ON_SubmitThreadpoolWork
+#endif
+#if YY_THUNK_GUARD_try_get_SymGetSearchPathW
+YYGUARD_ON_SymGetSearchPathW
+#endif
+#if YY_THUNK_GUARD_try_get_SymSetSearchPathW
+YYGUARD_ON_SymSetSearchPathW
+#endif
+#if YY_THUNK_GUARD_try_get_SystemParametersInfoA
+YYGUARD_ON_SystemParametersInfoA
+#endif
+#if YY_THUNK_GUARD_try_get_SystemParametersInfoForDpi
+YYGUARD_ON_SystemParametersInfoForDpi
+#endif
+#if YY_THUNK_GUARD_try_get_SystemParametersInfoW
+YYGUARD_ON_SystemParametersInfoW
+#endif
+#if YY_THUNK_GUARD_try_get_SystemTimeToTzSpecificLocalTimeEx
+YYGUARD_ON_SystemTimeToTzSpecificLocalTimeEx
+#endif
+#if YY_THUNK_GUARD_try_get_TryAcquireSRWLockExclusive
+YYGUARD_ON_TryAcquireSRWLockExclusive
+#endif
+#if YY_THUNK_GUARD_try_get_TryAcquireSRWLockShared
+YYGUARD_ON_TryAcquireSRWLockShared
+#endif
+#if YY_THUNK_GUARD_try_get_TrySubmitThreadpoolCallback
+YYGUARD_ON_TrySubmitThreadpoolCallback
+#endif
+#if YY_THUNK_GUARD_try_get_TzSpecificLocalTimeToSystemTime
+YYGUARD_ON_TzSpecificLocalTimeToSystemTime
+#endif
+#if YY_THUNK_GUARD_try_get_TzSpecificLocalTimeToSystemTimeEx
+YYGUARD_ON_TzSpecificLocalTimeToSystemTimeEx
+#endif
+#if YY_THUNK_GUARD_try_get_UiaClientsAreListening
+YYGUARD_ON_UiaClientsAreListening
+#endif
+#if YY_THUNK_GUARD_try_get_UiaGetReservedMixedAttributeValue
+YYGUARD_ON_UiaGetReservedMixedAttributeValue
+#endif
+#if YY_THUNK_GUARD_try_get_UiaGetReservedNotSupportedValue
+YYGUARD_ON_UiaGetReservedNotSupportedValue
+#endif
+#if YY_THUNK_GUARD_try_get_UiaHostProviderFromHwnd
+YYGUARD_ON_UiaHostProviderFromHwnd
+#endif
+#if YY_THUNK_GUARD_try_get_UiaLookupId
+YYGUARD_ON_UiaLookupId
+#endif
+#if YY_THUNK_GUARD_try_get_UiaRaiseAutomationEvent
+YYGUARD_ON_UiaRaiseAutomationEvent
+#endif
+#if YY_THUNK_GUARD_try_get_UiaRaiseAutomationPropertyChangedEvent
+YYGUARD_ON_UiaRaiseAutomationPropertyChangedEvent
+#endif
+#if YY_THUNK_GUARD_try_get_UiaRaiseNotificationEvent
+YYGUARD_ON_UiaRaiseNotificationEvent
+#endif
+#if YY_THUNK_GUARD_try_get_UiaRaiseStructureChangedEvent
+YYGUARD_ON_UiaRaiseStructureChangedEvent
+#endif
+#if YY_THUNK_GUARD_try_get_UiaReturnRawElementProvider
+YYGUARD_ON_UiaReturnRawElementProvider
+#endif
+#if YY_THUNK_GUARD_try_get_UnmapViewOfFileEx
+YYGUARD_ON_UnmapViewOfFileEx
+#endif
+#if YY_THUNK_GUARD_try_get_UnregisterPowerSettingNotification
+YYGUARD_ON_UnregisterPowerSettingNotification
+#endif
+#if YY_THUNK_GUARD_try_get_UnregisterSuspendResumeNotification
+YYGUARD_ON_UnregisterSuspendResumeNotification
+#endif
+#if YY_THUNK_GUARD_try_get_UnregisterTouchWindow
+YYGUARD_ON_UnregisterTouchWindow
+#endif
+#if YY_THUNK_GUARD_try_get_UpdateLayeredWindowIndirect
+YYGUARD_ON_UpdateLayeredWindowIndirect
+#endif
+#if YY_THUNK_GUARD_try_get_UpdateProcThreadAttribute
+YYGUARD_ON_UpdateProcThreadAttribute
+#endif
+#if YY_THUNK_GUARD_try_get_VariantCompare
+YYGUARD_ON_VariantCompare
+#endif
+#if YY_THUNK_GUARD_try_get_VirtualAlloc2
+YYGUARD_ON_VirtualAlloc2
+#endif
+#if YY_THUNK_GUARD_try_get_VirtualAlloc2FromApp
+YYGUARD_ON_VirtualAlloc2FromApp
+#endif
+#if YY_THUNK_GUARD_try_get_VirtualAllocExNuma
+YYGUARD_ON_VirtualAllocExNuma
+#endif
+#if YY_THUNK_GUARD_try_get_VirtualAllocFromApp
+YYGUARD_ON_VirtualAllocFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_VirtualProtectFromApp
+YYGUARD_ON_VirtualProtectFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_WTSGetActiveConsoleSessionId
+YYGUARD_ON_WTSGetActiveConsoleSessionId
+#endif
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolIoCallbacks
+YYGUARD_ON_WaitForThreadpoolIoCallbacks
+#endif
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolTimerCallbacks
+YYGUARD_ON_WaitForThreadpoolTimerCallbacks
+#endif
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolWaitCallbacks
+YYGUARD_ON_WaitForThreadpoolWaitCallbacks
+#endif
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolWorkCallbacks
+YYGUARD_ON_WaitForThreadpoolWorkCallbacks
+#endif
+#if YY_THUNK_GUARD_try_get_WaitOnAddress
+YYGUARD_ON_WaitOnAddress
+#endif
+#if YY_THUNK_GUARD_try_get_WakeAllConditionVariable
+YYGUARD_ON_WakeAllConditionVariable
+#endif
+#if YY_THUNK_GUARD_try_get_WakeByAddressAll
+YYGUARD_ON_WakeByAddressAll
+#endif
+#if YY_THUNK_GUARD_try_get_WakeByAddressSingle
+YYGUARD_ON_WakeByAddressSingle
+#endif
+#if YY_THUNK_GUARD_try_get_WakeConditionVariable
+YYGUARD_ON_WakeConditionVariable
+#endif
+#if YY_THUNK_GUARD_try_get_WerRegisterRuntimeExceptionModule
+YYGUARD_ON_WerRegisterRuntimeExceptionModule
+#endif
+#if YY_THUNK_GUARD_try_get_WerUnregisterRuntimeExceptionModule
+YYGUARD_ON_WerUnregisterRuntimeExceptionModule
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpCloseHandle
+YYGUARD_ON_WinHttpCloseHandle
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpCreateProxyResolver
+YYGUARD_ON_WinHttpCreateProxyResolver
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpFreeProxyResult
+YYGUARD_ON_WinHttpFreeProxyResult
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpGetProxyForUrlEx
+YYGUARD_ON_WinHttpGetProxyForUrlEx
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpGetProxyResult
+YYGUARD_ON_WinHttpGetProxyResult
+#endif
+#if YY_THUNK_GUARD_try_get_WinHttpSetStatusCallback
+YYGUARD_ON_WinHttpSetStatusCallback
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_ControlTransfer
+YYGUARD_ON_WinUsb_ControlTransfer
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_Free
+YYGUARD_ON_WinUsb_Free
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_GetAssociatedInterface
+YYGUARD_ON_WinUsb_GetAssociatedInterface
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_GetOverlappedResult
+YYGUARD_ON_WinUsb_GetOverlappedResult
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_Initialize
+YYGUARD_ON_WinUsb_Initialize
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_ReadPipe
+YYGUARD_ON_WinUsb_ReadPipe
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_ResetPipe
+YYGUARD_ON_WinUsb_ResetPipe
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_SetCurrentAlternateSetting
+YYGUARD_ON_WinUsb_SetCurrentAlternateSetting
+#endif
+#if YY_THUNK_GUARD_try_get_WinUsb_WritePipe
+YYGUARD_ON_WinUsb_WritePipe
+#endif
+#if YY_THUNK_GUARD_try_get_WindowFromPhysicalPoint
+YYGUARD_ON_WindowFromPhysicalPoint
+#endif
+#if YY_THUNK_GUARD_try_get_Wow64DisableWow64FsRedirection
+YYGUARD_ON_Wow64DisableWow64FsRedirection
+#endif
+#if YY_THUNK_GUARD_try_get_Wow64EnableWow64FsRedirection
+YYGUARD_ON_Wow64EnableWow64FsRedirection
+#endif
+#if YY_THUNK_GUARD_try_get_Wow64GetThreadContext
+YYGUARD_ON_Wow64GetThreadContext
+#endif
+#if YY_THUNK_GUARD_try_get_Wow64RevertWow64FsRedirection
+YYGUARD_ON_Wow64RevertWow64FsRedirection
+#endif
+#if YY_THUNK_GUARD_try_get_WriteFile
+YYGUARD_ON_WriteFile
+#endif
+#if YY_THUNK_GUARD_try_get_if_indextoname
+YYGUARD_ON_if_indextoname
+#endif
+#if YY_THUNK_GUARD_try_get_if_nametoindex
+YYGUARD_ON_if_nametoindex
+#endif

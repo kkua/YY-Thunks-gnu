@@ -1,0 +1,42 @@
+# 默认：按内容判断文本/二进制，文本统一归一化到 LF 入库
+* text=auto
+
+# ---------------------------------------------------------------------------
+# 移植源码树：portgen 以 CRLF 写出（与上游 MSVC 工程保持一致）
+#
+# 若不固定 eol，跨平台克隆会让整棵树在 diff 里整体变红；更糟的是检出成 LF 后，
+# 与"重新生成"产出的 CRLF 内容不一致，误导人工比对。
+# ---------------------------------------------------------------------------
+src/port/**          text eol=crlf
+thunks-gnu/vendor/** text eol=crlf
+
+# ---------------------------------------------------------------------------
+# 脚本与工程文件：必须 LF
+# Python 尤其重要 —— shebang 与部分解析对 CRLF 敏感
+# ---------------------------------------------------------------------------
+*.py                 text eol=lf
+*.sh                 text eol=lf
+*.rs                 text eol=lf
+*.toml               text eol=lf
+*.cmake              text eol=lf
+CMakeLists.txt       text eol=lf
+CMakePresets.json    text eol=lf
+*.json               text eol=lf
+*.md                 text eol=lf
+*.yml                text eol=lf
+*.yaml               text eol=lf
+
+# 规则数据（模块清单 / 排除表）：LF，diff 更干净
+portrule/**          text eol=lf
+
+# 二进制：禁止任何换行或编码转换
+*.a    binary
+*.o    binary
+*.obj  binary
+*.lib  binary
+*.exe  binary
+*.dll  binary
+*.pdb  binary
+*.png  binary
+*.jpg  binary
+*.zip  binary

@@ -1,0 +1,33 @@
+[package]
+name = "thunks-gnu"
+version = "0.1.0"
+edition = "2024"
+# edition 2024 的编译器下限；声明后可让依赖解析给出明确报错，而不是晦涩的语法错误。
+rust-version = "1.85"
+authors = ["Kaay(kkua) <kaay_uni@outlook.com>"]
+description = "Build-time helper that compiles YY-Thunks (MinGW-w64/GCC port) into libyythunks.a and links it, letting Rust binaries use newer Win32 APIs on older Windows."
+license = "MIT"
+readme = "README.md"
+documentation = "https://docs.rs/thunks-gnu"
+repository = "https://github.com/kkua/YY-Thunks-gnu"
+# homepage = "https://github.com/<owner>/<repo>"
+keywords = ["windows", "thunks", "yy-thunks", "mingw", "compat"]
+categories = ["os::windows-apis", "development-tools::build-utils"]
+# 白名单：只把构建必需的内容打进包里（vendored 源码 + 本 crate 源码 + 随附文件）。
+# Cargo.toml 会被自动包含；target/ 由 .gitignore 排除。
+include = ["src/**", "vendor/**", "README.md", "README_EN.md", "LICENSE"]
+
+[dependencies]
+cc = "1.4"
+
+[features]
+default = ["win7"]
+vista = []
+win7 = []
+win8 = []
+win10_10240 = []
+win10_19041 = []
+# lib = []
+# subsystem_windows = []
+windows_vista = ["vista"]
+win10 = ["win10_10240"]

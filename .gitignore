@@ -1,0 +1,35 @@
+# 构建输出
+build/
+out/
+.cache/
+compile_commands.json
+
+# src/port/ **刻意不忽略**：自足模式（YY_THUNKS_SELF_CONTAINED，默认开）下
+# 它是一棵完整的源码树（含上游 Thunks/ 与 Shared/ 的副本），可随源码树分发 ——
+# 只带 src/ 即可用 cmake/ninja 构建，不需要上游、tools/、Python 中的任何一个
+# （戳记校验由纯 CMake 完成；依赖 Python 的步骤会自动跳过）。
+# 需要重新生成时才要上游 + tools/ + Python：
+#   cmake --build <dir> --target yythunks_regen
+
+generated/
+
+# 上游源码：它本身是一个独立的 git 仓库（约 32 MB），嵌套仓库的内容不会被主仓库
+# 提交，因此这里显式忽略，避免误以为"上游已随仓库分发"。
+#
+# 构建不需要它 —— src/port/ 是含完整副本的自足源码树。
+# 只有"升级上游 / 重新生成移植层"时才需要取回，方式见 README「关于 upstream/」。
+# upstream/
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器
+.vs/
+.vscode/
+.idea/
+*.user
+
+# 操作系统
+.DS_Store
+Thumbs.db

@@ -1,0 +1,3 @@
+[submodule "upstream/YY-Thunks"]
+	path = upstream/YY-Thunks
+	url = https://github.com/Chuyu-Team/YY-Thunks.git
