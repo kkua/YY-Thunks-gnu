@@ -1,6 +1,6 @@
 [package]
 name = "thunks-gnu"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 # edition 2024 的编译器下限；声明后可让依赖解析给出明确报错，而不是晦涩的语法错误。
 rust-version = "1.85"
@@ -10,7 +10,7 @@ license = "MIT"
 readme = "README.md"
 documentation = "https://docs.rs/thunks-gnu"
 repository = "https://github.com/kkua/YY-Thunks-gnu"
-# homepage = "https://github.com/<owner>/<repo>"
+homepage = "https://github.com/kkua/YY-Thunks-gnu/tree/main/thunks-gnu-rs"
 keywords = ["windows", "thunks", "yy-thunks", "mingw", "compat"]
 categories = ["os::windows-apis", "development-tools::build-utils"]
 # 白名单：只把构建必需的内容打进包里（vendored 源码 + 本 crate 源码 + 随附文件）。
@@ -21,12 +21,15 @@ include = ["src/**", "vendor/**", "README.md", "README_EN.md", "LICENSE"]
 cc = "1.4"
 
 [features]
-default = ["win7"]
+default = []
 vista = []
 win7 = []
 win8 = []
 win10_10240 = []
 win10_19041 = []
+# 调试用：开启后恢复 -Wall -Wextra 并把编译器告警转发到 Cargo（默认关闭，
+# 也可不改 feature、临时用环境变量 THUNKS_GNU_SHOW_WARNINGS=1 达到同样效果）。
+show_warnings = []
 # lib = []
 # subsystem_windows = []
 windows_vista = ["vista"]

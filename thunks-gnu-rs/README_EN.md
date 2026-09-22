@@ -1,3 +1,5 @@
+> 中文版见 [README.md](README.md)。
+
 # thunks-gnu
 
 Build-time helper that compiles [YY-Thunks](https://github.com/Chuyu-Team/YY-Thunks)
@@ -6,8 +8,6 @@ binary can call newer Win32 APIs while still running on older Windows.
 
 This crate exports no Rust symbols. Its only job is to be called from your
 `build.rs`.
-
-> 中文版见 [README.md](README.md)。
 
 ## Usage
 
@@ -26,8 +26,8 @@ fn main() {
 
 That's it: `build()` compiles the vendored YY-Thunks source into
 `$OUT_DIR/libyythunks.a` and emits the corresponding `cargo:rustc-link-*`
-instructions (static lib first, so YY-Thunks wins over the system import
-libraries).
+instructions (static lib first, so YY-Thunks overrides the same-named symbols
+in the system import libraries).
 
 ## Requirements
 
@@ -36,7 +36,7 @@ libraries).
 | Target | **`x86_64-pc-windows-gnu` only.** Any other target prints a `cargo::warning` and does nothing; `i686` and Clang fail fast with an explanatory message |
 | Compiler | MinGW-w64 `g++` on `PATH` (or via `CXX`). GCC-only: the port relies on `-fno-toplevel-reorder` |
 | Rust | 1.85+ (`edition = "2024"`) |
-| Build time | ~5–10 s for the single translation unit (once per profile/out-dir) |
+| Build time | ~5–10 s for the single translation unit (once per profile / out-dir) |
 
 ## Features → minimum supported Windows
 
@@ -50,6 +50,13 @@ The feature is the *lowest* system you want to support (upstream's
 | `win8` | `__WindowsNT6_2` | Windows 8 / Server 2012 |
 | `win10_10240` | `__WindowsNT10_10240` | Windows 10 1507 |
 | `win10_19041` | `__WindowsNT10_19041` | Windows 10 2004 / 20H1 |
+
+There is also one debugging-oriented feature, separate from the minimum-version
+selection:
+
+| Feature | Effect |
+| --- | --- |
+| `show_warnings` | Restores `-Wall -Wextra` and forwards compiler warnings to Cargo (off by default). You can also leave the feature off and set the `THUNKS_GNU_SHOW_WARNINGS=1` environment variable for the same effect. |
 
 If several are enabled, the highest wins. `windows_vista` and `win10` are
 aliases for `vista` and `win10_10240`.
@@ -99,7 +106,8 @@ GCC port; enabling them cannot be expressed through these features.
 - **Build output is silent by default.** The upstream code produces a lot of GCC
   warnings (including macro-redefinition ones, for which GCC has no `-Wno-`
   switch) plus its own `#pragma message` notes; none of them are printed. Set
-  `THUNKS_GNU_SHOW_WARNINGS=1` to bring them back. Compiler *errors* are always
+  `THUNKS_GNU_SHOW_WARNINGS=1` to bring them back (or enable the `show_warnings`
+  feature). Compiler *errors* are always
   printed, regardless of that switch.
 - Everything needed is vendored under `vendor/`, so the build works offline and
   does not depend on the upstream tree.
@@ -107,4 +115,4 @@ GCC port; enabling them cannot be expressed through these features.
 ## License
 
 MIT, same as upstream YY-Thunks. Vendored sources are derived from
-YY-Thunks — Copyright (c) 2018 Chuyu-Team. See [LICENSE](LICENSE).
+YY-Thunks — Chuyu-Team. See [LICENSE](LICENSE).

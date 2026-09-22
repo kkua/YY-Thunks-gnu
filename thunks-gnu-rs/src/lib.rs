@@ -6,7 +6,7 @@
 //! ```toml
 //! # Cargo.toml
 //! [build-dependencies]
-//! thunks-gnu = { path = "../thunks-gnu" }
+//! thunks-gnu = "*"
 //! ```
 //!
 //! ```rust,ignore
@@ -72,7 +72,9 @@ pub fn build() {
     let thunk_target = thunk_target();
 
     // 是否把编译器的消息转发给 Cargo（默认：不转发，见下方编译选项处的说明）。
-    let show_warnings = env::var_os("THUNKS_GNU_SHOW_WARNINGS").is_some();
+    // 由 feature = "show_warnings" 或环境变量 THUNKS_GNU_SHOW_WARNINGS=1 开启。
+    let show_warnings =
+        cfg!(feature = "show_warnings") || env::var_os("THUNKS_GNU_SHOW_WARNINGS").is_some();
 
     let mut build = cc::Build::new();
 
@@ -80,7 +82,7 @@ pub fn build() {
         // 纯 C++（上游无 STL 容器，但要 c++17 的 constexpr/decltype 语义）
         .cpp(true)
         .flag_if_supported("-std=c++17")
-        // 告警开关（THUNKS_GNU_SHOW_WARNINGS=1 打开）：
+        // 告警开关（feature = "show_warnings" 或 THUNKS_GNU_SHOW_WARNINGS=1 打开）：
         //   - 默认关闭：cc 默认会加 -Wall -Wextra，而 CMake 侧一个都不加 —— 这才是
         //     Rust 侧告警远多于 CMake 的原因（-Wswitch、-Wimplicit-fallthrough、
         //     -Wsubobject-linkage…）；两者都关掉时 cc 会改传 -w，连
@@ -167,7 +169,7 @@ pub fn build() {
     // 编译器告警已被 -w 抑制，但上游还有一批**故意留下**的提示：__WarningMessage__
     // 展开成 `#pragma message`，它不受 -w 影响，cc 仍会逐条转发成 cargo:warning。
     // 这里一并关掉；编译失败时 cc 依旧会打印完整命令与错误输出，不影响排错。
-    // 需要排查时设 THUNKS_GNU_SHOW_WARNINGS=1（同时恢复 -Wall -Wextra）。
+    // 需要排查时开启 feature = "show_warnings" 或设 THUNKS_GNU_SHOW_WARNINGS=1（同时恢复 -Wall -Wextra）。
     build.cargo_warnings(show_warnings);
 
     // 显式声明重跑条件：一旦打印了 rerun-if-changed，Cargo 就不再使用

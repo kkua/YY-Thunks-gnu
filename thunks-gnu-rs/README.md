@@ -1,3 +1,4 @@
+> English version: [README_EN.md](README_EN.md)。
 # thunks-gnu
 
 构建期辅助 crate：把 [YY-Thunks](https://github.com/Chuyu-Team/YY-Thunks)
@@ -5,8 +6,6 @@
 在旧版 Windows 上也能调用较新的 Win32 API。
 
 本 crate 不导出任何 Rust 符号，唯一作用就是被你的 `build.rs` 调用。
-
-> English version: [README_EN.md](README_EN.md)。
 
 ## 用法
 
@@ -49,6 +48,12 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
 | `win10_10240` | `__WindowsNT10_10240` | Windows 10 1507 |
 | `win10_19041` | `__WindowsNT10_19041` | Windows 10 2004 / 20H1 |
 
+除"最低支持系统"外，还有一个调试用 feature：
+
+| feature | 作用 |
+| --- | --- |
+| `show_warnings` | 开启后恢复 `-Wall -Wextra` 并把编译器告警转发到 Cargo（默认关闭）。也可不改 feature、临时用环境变量 `THUNKS_GNU_SHOW_WARNINGS=1` 达到同样效果。 |
+
 同时开启多个时取最高的那个。`windows_vista`、`win10` 分别是 `vista`、
 `win10_10240` 的别名。
 
@@ -83,11 +88,10 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
   `STATUS_ACCESS_VIOLATION`，port 是极薄的转发层，不优化无性能损失。
 - **构建输出默认静默**：上游代码在 GCC 下会产生大量告警（含 GCC 没有 `-Wno-` 开关的
   宏重定义告警）以及它自己用 `#pragma message` 留下的提示，这些都不再打印。
-  排查时设 `THUNKS_GNU_SHOW_WARNINGS=1` 即可恢复显示（编译失败时的错误信息不受
+  排查时开启 feature = "show_warnings" 或设 `THUNKS_GNU_SHOW_WARNINGS=1` 即可恢复显示（编译失败时的错误信息不受
   此开关影响，始终会打印）。
 - 编译所需的一切都在 `vendor/` 下，因此可离线构建，不依赖上游源码树。
 
 ## 许可
 
-MIT，与上游 YY-Thunks 相同。vendored 源码衍生自 YY-Thunks —— Copyright (c) 2018
-Chuyu-Team。详见 [LICENSE](LICENSE)。
+MIT，与上游 YY-Thunks 相同。vendored 源码衍生自 YY-Thunks —— Chuyu-Team。详见 [LICENSE](LICENSE)。
