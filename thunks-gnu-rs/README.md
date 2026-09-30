@@ -1,7 +1,7 @@
 > English version: [README_EN.md](README_EN.md)。
 # thunks-gnu
 
-构建期辅助 crate：把 [YY-Thunks](https://github.com/Chuyu-Team/YY-Thunks)
+构建期辅助 crate：把 [YY-Thunks-gnu](https://github.com/kkua/YY-Thunks-gnu)
 （MinGW-w64 / GCC 移植版）编译成 `libyythunks.a` 并交给链接器，让 Rust 程序
 在旧版 Windows 上也能调用较新的 Win32 API。
 
@@ -12,7 +12,7 @@
 ```toml
 # Cargo.toml
 [build-dependencies]
-thunks-gnu = "0.1"
+thunks-gnu = "0.2"
 ```
 
 ```rust
@@ -22,7 +22,7 @@ fn main() {
 }
 ```
 
-就这样：`build()` 会把 vendored 的 YY-Thunks 源码编译成 `$OUT_DIR/libyythunks.a`，
+就这样：`build()` 会把 YY-Thunks-gnu 源码编译成 `$OUT_DIR/libyythunks.a`，
 并输出相应的 `cargo:rustc-link-*` 指令（静态库排在最前，这样 YY-Thunks 会顶替
 系统导入库里的同名符号）。
 
@@ -30,10 +30,9 @@ fn main() {
 
 | 项目 | 说明 |
 | --- | --- |
-| 目标三元组 | **仅 `x86_64-pc-windows-gnu`**。其他目标只打印一条 `cargo::warning` 后直接返回；`i686` 与 Clang 工具链会给出明确说明后失败 |
+| 目标三元组 | **仅 `x86_64-pc-windows-gnu`**。 |
 | 编译器 | `PATH` 上要有 MinGW-w64 的 `g++`（或用 `CXX` 指定）。只支持 GCC：移植依赖 `-fno-toplevel-reorder` |
 | Rust | 1.85 及以上（`edition = "2024"`） |
-| 构建耗时 | 单个翻译单元约 5~10 秒（每个 profile / out-dir 只编译一次） |
 
 ## feature 与最低支持系统
 
@@ -86,6 +85,13 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
   `libyythunks.a` 与 `build/x64` 下的 CMake 产物同尺寸（差异仅在 ar 头部的几十字节）。
   同时强制 `-O0`（同样对齐 CMake）：实测 `-O3` 会在静态注册阶段触发
   `STATUS_ACCESS_VIOLATION`，port 是极薄的转发层，不优化无性能损失。
+- **构建产物缓存（跳过重复编译）**：每次编译成功后，本 crate 会把「自身版本 +
+  `YY_Thunks_Target`」写入 `$OUT_DIR/thunks-gnu-build-info.txt`。下次构建时若指纹一致
+  且 `libyythunks.a` 存在，就复用旧产物、跳过整个编译流程（省掉约 5~10 秒），链接指令
+  照常输出。以下情况会重新编译：本 crate 版本变化、feature 变化导致目标版本变化、
+  `libyythunks.a` 缺失（如清理了 `OUT_DIR`）。注意指纹**不包含** vendored 源码的内容，
+  因此在同版本、同目标下修改了 `vendor/` 里的源码时，需要 `cargo clean` 或删除 `$OUT_DIR`
+  才会重新编译。
 - **构建输出默认静默**：上游代码在 GCC 下会产生大量告警（含 GCC 没有 `-Wno-` 开关的
   宏重定义告警）以及它自己用 `#pragma message` 留下的提示，这些都不再打印。
   排查时开启 feature = "show_warnings" 或设 `THUNKS_GNU_SHOW_WARNINGS=1` 即可恢复显示（编译失败时的错误信息不受
@@ -94,4 +100,4 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
 
 ## 许可
 
-MIT，与上游 YY-Thunks 相同。vendored 源码衍生自 YY-Thunks —— Chuyu-Team。详见 [LICENSE](LICENSE)。
+MIT，详见 [LICENSE](LICENSE)。vendor 下的源码从本仓库（https://github.com/kkua/YY-Thunks-gnu）根目录复制（衍生自 YY-Thunks —— Chuyu-Team）。

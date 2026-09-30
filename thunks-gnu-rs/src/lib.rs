@@ -22,7 +22,8 @@
 //! 对应上游的 `YY_Thunks_Target`，含义是**希望支持的最低系统**。
 
 use std::env;
-use std::path::PathBuf;
+use std::fs;
+use std::path::{Path, PathBuf};
 
 /// vendored 的移植层源码树（`vendor/YY-Thunks-gnu/src`，自包含：
 /// `compat/` 是手写垫片，`port/` 是 portgen 产物 + 上游头文件），相对 crate 根目录。
@@ -31,30 +32,90 @@ const SOURCE_ROOT: &[&str] = &["vendor", "YY-Thunks-gnu", "src"];
 const ENTRY_SOURCE: &[&str] = &["port", "Thunks", "YY_Thunks.cpp"];
 /// 产出的静态库名（最终文件为 libyythunks.a）。
 const LIB_NAME: &str = "yythunks";
+/// 记录上一次成功编译所用配置的文件名（落在 $OUT_DIR 下，随 `cargo clean` 自动清除）。
+const FINGERPRINT_FILE: &str = "thunks-gnu-build-info.txt";
 
 /// 编译 vendored 的 YY-Thunks 并把链接指令回传给 Cargo。
 ///
 /// 由消费方的 `build.rs` 调用；非 windows-gnu 目标只打印一条提示后返回。
 pub fn build() {
-    let target_os = env::var("CARGO_CFG_TARGET_OS").unwrap();
-    let target_env = env::var("CARGO_CFG_TARGET_ENV").unwrap();
-
-    if target_os != "windows" || target_env != "gnu" {
-        println!("cargo::warning=Skipped! Only Windows(GNU) is supported!");
+    if cfg!(feature = "disable") {
         return;
     }
+    let build_target = env::var("TARGET").unwrap();
+    let target_os = env::var("CARGO_CFG_TARGET_OS").unwrap();
+    // let target_env = env::var("CARGO_CFG_TARGET_ENV").unwrap();
 
-    // 32 位不支持的原因：上游用 MSVC 的 __identifier 定义 stdcall 修饰的 IAT 符号
-    // （_imp__Api@N），GCC 无法用 ## 拼出含 '@' 的记号（实测 1000+ 编译错误）。
-    // 与其让它一路走到编译阶段才炸 1000+ 错误，不如在这里说清楚。
-    let target_arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
-    if target_arch != "x86_64" {
-        panic!(
-            "thunks-gnu: 仅支持 x86_64-windows-gnu，当前目标是 {target_arch}-windows-gnu。\n\
-             i686 需要先用汇编 .set 或 -Wl,--defsym 生成等价的 IAT 符号。"
-        );
+    let seg: Vec<&str> = build_target.split('-').collect();
+    let target_arch = seg[0];
+    // let target_os = seg.get(2).unwrap_or(&"");
+    let target_env = seg.get(3).unwrap_or(&"");
+    // if build_target != "x86_64-pc-windows-gnu" {
+    // if target_arch != "x86_64" || target_os != "windows" || !target_env.starts_with("gnu") {
+        // x86_64-pc-windows-gnullvm未测试，不确定是否支持
+    if target_arch != "x86_64" || target_os != "windows" || *target_env != "gnu" {
+
+        // 32 位不支持的原因：上游用 MSVC 的 __identifier 定义 stdcall 修饰的 IAT 符号
+        // （_imp__Api@N），GCC 无法用 ## 拼出含 '@' 的记号（实测 1000+ 编译错误）。
+        // 与其让它一路走到编译阶段才炸 1000+ 错误，不如在这里说清楚。
+        panic!("仅支持 x86_64-pc-windows-gnu 目标三元组，当前目标是 {build_target}。");
     }
 
+    // 上一次的产物 libyythunks.a 和它的指纹文件同在 $OUT_DIR，天然同生同灭（都随
+    // cargo clean 清除），所以"指纹一致"必须配上"产物还在"才有意义。
+    let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+    let info_file = out_dir.join(FINGERPRINT_FILE);
+    let archive = out_dir.join(format!("lib{LIB_NAME}.a"));
+    // thunk_target 与 show_warnings 在下面的判定和 build_yythunks 里都要用到，这里只
+    // 求值一次再通过参数传进去 —— 后者还会读一遍环境变量，重复求值没必要。
+    let thunk_target = thunk_target();
+    let show_warnings = show_warnings();
+    let footprint = build_footprint(thunk_target);
+
+    // 指纹只记录「本 crate 版本 + YY_Thunks_Target」两项：它们（连同 build_yythunks
+    // 里写死的编译旗标）唯一决定了产物的内容。一致且静态库还在 → 跳过整个编译流程，省掉编译开销；
+    // 指纹缺失/读失败、产物缺失、版本或目标变更会重新编译。
+    let need_compile = show_warnings
+        || read_footprint(&info_file).as_deref() != Some(footprint.as_str())
+        || !archive.is_file();
+
+    if need_compile {
+        build_yythunks(thunk_target, show_warnings);
+        // 只在编译成功后落盘，避免失败的构建留下"看似已编译"的标记。
+        write_footprint(&info_file, &footprint);
+    }
+
+    // 兜底再给一次搜索路径（cc 的输出目录策略若变化也不会失效）：
+    // `-L` 指向不存在的目录是无害的。
+    println!("cargo:rustc-link-search=native={}", out_dir.display());
+    // 链接顺序是关键：yythunks 必须排在系统导入库之前，链接器才会优先取 YY-Thunks
+    // 的符号；下面的清单按这个要求依次输出（顺序颠倒会报 multiple definition，
+    // 不会静默失去覆盖）。
+    println!("cargo:rustc-link-lib=static=yythunks");
+    
+    println!("cargo:rustc-link-lib=kernel32"); //
+    println!("cargo:rustc-link-lib=user32"); //
+    println!("cargo:rustc-link-lib=ole32"); //
+    println!("cargo:rustc-link-lib=shcore"); // win10
+    println!("cargo:rustc-link-lib=advapi32"); //
+    println!("cargo:rustc-link-lib=gdi32"); //
+    println!("cargo:rustc-link-lib=uuid"); //
+    println!("cargo:rustc-link-lib=ntdll"); //
+    println!("cargo:rustc-link-lib=iphlpapi"); //
+    println!("cargo:rustc-link-lib=bcrypt"); //
+    println!("cargo:rustc-link-lib=powrprof"); //
+    println!("cargo:rustc-link-lib=winhttp"); //
+    println!("cargo:rustc-link-lib=dxgi"); //
+    println!("cargo:rustc-link-lib=cfgmgr32"); //
+    
+    // 上面这份清单是 CMake 汇总"上游全部 #pragma comment(lib, ...)"的结果：
+    // GCC 会忽略该指令，所以系统导入库必须由链接方提供。Rust 目标自带
+}
+
+
+/// 编译 vendored 的 YY-Thunks-gnu。`thunk_target` 与 `show_warnings` 由调用方传入，复用
+/// `build()` 里已经求值过的结果。
+fn build_yythunks(thunk_target: &str, show_warnings: bool) {
     // CARGO_MANIFEST_DIR 在**编译本 crate** 时展开，因此这里拿到的一定是 thunks-gnu
     // 自己的目录，与调用方 build.rs 的工作目录无关。
     let crate_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
@@ -68,13 +129,6 @@ pub fn build() {
             entry_source.display()
         );
     }
-
-    let thunk_target = thunk_target();
-
-    // 是否把编译器的消息转发给 Cargo（默认：不转发，见下方编译选项处的说明）。
-    // 由 feature = "show_warnings" 或环境变量 THUNKS_GNU_SHOW_WARNINGS=1 开启。
-    let show_warnings =
-        cfg!(feature = "show_warnings") || env::var_os("THUNKS_GNU_SHOW_WARNINGS").is_some();
 
     let mut build = cc::Build::new();
 
@@ -121,6 +175,7 @@ pub fn build() {
 
     // 与 CMake target_compile_options 逐项对齐：
     build
+        // .compile("x86_64-w64-mingw32-gcc");
         // 强制前置垫片：把 MSVC 专有扩展映射到 GCC 语义（src/compat/yy_thunks_prelude.h）
         .flag("-include")
         .flag("yy_thunks_prelude.h")
@@ -156,10 +211,9 @@ pub fn build() {
         .flag("-fno-data-sections");
 
     let compiler = build.get_compiler();
-    if !compiler.is_like_gnu() {
+    if compiler.is_like_clang() || !compiler.is_like_gnu() {
         panic!(
-            "thunks-gnu: 检测到非 GNU 工具链（{}），不支持该工具链。\n\
-             移植依赖 GCC 专有的 -fno-toplevel-reorder：上游靠“节内首元素是边界哨兵”",
+            "thunks-gnu: 检测到非 GNU 工具链（{}），不支持该工具链。",
             compiler.path().display()
         );
     }
@@ -175,7 +229,7 @@ pub fn build() {
     // 显式声明重跑条件：一旦打印了 rerun-if-changed，Cargo 就不再使用
     // "包内任何文件变动都重跑"的默认行为，所以要把整棵 vendor 源码树列上
     // （Cargo 对目录是递归监听的）。
-    println!("cargo:rerun-if-changed={}", source_root.display());
+    // println!("cargo:rerun-if-changed={}", source_root.display());
     println!("cargo:rerun-if-env-changed=CXX");
     println!("cargo:rerun-if-env-changed=THUNKS_GNU_SHOW_WARNINGS");
 
@@ -188,34 +242,6 @@ pub fn build() {
     // 产出 $OUT_DIR/libyythunks.a，并由 cc 自动打印
     // cargo:rustc-link-search=native=<OUT_DIR> 与 cargo:rustc-link-lib=static=yythunks。
     build.compile(LIB_NAME);
-
-    // 兜底再给一次搜索路径（cc 的输出目录策略若变化也不会失效）：
-    // `-L` 指向不存在的目录是无害的。
-    let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-    println!("cargo:rustc-link-search=native={}", out_dir.display());
-    // 链接顺序是关键：yythunks 必须排在系统导入库之前，链接器才会优先取 YY-Thunks
-    // 的符号；下面的清单按这个要求依次输出（顺序颠倒会报 multiple definition，
-    // 不会静默失去覆盖）。
-    println!("cargo:rustc-link-lib=static=yythunks");
-    
-    println!("cargo:rustc-link-lib=static=yythunks");
-    println!("cargo:rustc-link-lib=kernel32"); //
-    println!("cargo:rustc-link-lib=user32"); //
-    println!("cargo:rustc-link-lib=ole32"); //
-    println!("cargo:rustc-link-lib=shcore"); // win10
-    println!("cargo:rustc-link-lib=advapi32"); //
-    println!("cargo:rustc-link-lib=gdi32"); //
-    println!("cargo:rustc-link-lib=uuid"); //
-    println!("cargo:rustc-link-lib=ntdll"); //
-    println!("cargo:rustc-link-lib=iphlpapi"); //
-    println!("cargo:rustc-link-lib=bcrypt"); //
-    println!("cargo:rustc-link-lib=powrprof"); //
-    println!("cargo:rustc-link-lib=winhttp"); //
-    println!("cargo:rustc-link-lib=dxgi"); //
-    println!("cargo:rustc-link-lib=cfgmgr32"); //
-    
-    // 上面这份清单是 CMake 汇总"上游全部 #pragma comment(lib, ...)"的结果：
-    // GCC 会忽略该指令，所以系统导入库必须由链接方提供。Rust 目标自带
 }
 
 /// 由 Cargo feature 决定上游的 `YY_Thunks_Target`，即**希望支持的最低系统**。
@@ -232,6 +258,34 @@ fn thunk_target() -> &'static str {
         "__WindowsNT6_1"
     } else {
         "__WindowsNT6" // vista，默认
+    }
+}
+
+/// 是否把编译器的消息转发给 Cargo（默认：不转发）。
+///
+/// 由 feature = "show_warnings" 或环境变量 THUNKS_GNU_SHOW_WARNINGS=1 开启。
+fn show_warnings() -> bool {
+    cfg!(feature = "show_warnings") || env::var_os("THUNKS_GNU_SHOW_WARNINGS").is_some()
+}
+
+/// 当前编译配置的指纹：本 crate 版本 + YY_Thunks_Target。
+///
+/// 这两项（外加 `build_yythunks` 里写死的编译旗标）唯一决定了产物的内容。
+fn build_footprint(thunk_target: &str) -> String {
+    format!("{}\n{}", env!("CARGO_PKG_VERSION"), thunk_target)
+}
+
+/// 上一次成功编译留下的指纹；文件缺失或读失败一律返回 None（按最保守方式触发重编）。
+fn read_footprint(path: &Path) -> Option<String> {
+    fs::read_to_string(path).ok()
+}
+
+/// 编译成功后把指纹落盘。写失败不 panic —— 指纹只是缓存，至多让下次重新编译一遍。
+fn write_footprint(path: &Path, footprint: &str) {
+    if let Err(err) = fs::write(path, footprint) {
+        if show_warnings() {
+            println!("cargo::warning=thunks-gnu: 写入构建指纹失败（下次将重新编译）：{err}");
+        }
     }
 }
 

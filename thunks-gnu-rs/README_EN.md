@@ -2,7 +2,7 @@
 
 # thunks-gnu
 
-Build-time helper that compiles [YY-Thunks](https://github.com/Chuyu-Team/YY-Thunks)
+Build-time helper that compiles [YY-Thunks-gnu](https://github.com/kkua/YY-Thunks-gnu)
 (MinGW-w64 / GCC port) into `libyythunks.a` and hands it to the linker, so a Rust
 binary can call newer Win32 APIs while still running on older Windows.
 
@@ -14,7 +14,7 @@ This crate exports no Rust symbols. Its only job is to be called from your
 ```toml
 # Cargo.toml
 [build-dependencies]
-thunks-gnu = "0.1"
+thunks-gnu = "0.2"
 ```
 
 ```rust
@@ -33,10 +33,9 @@ in the system import libraries).
 
 | Requirement | Notes |
 | --- | --- |
-| Target | **`x86_64-pc-windows-gnu` only.** Any other target prints a `cargo::warning` and does nothing; `i686` and Clang fail fast with an explanatory message |
+| Target | **`x86_64-pc-windows-gnu` only.** |
 | Compiler | MinGW-w64 `g++` on `PATH` (or via `CXX`). GCC-only: the port relies on `-fno-toplevel-reorder` |
 | Rust | 1.85+ (`edition = "2024"`) |
-| Build time | ~5–10 s for the single translation unit (once per profile / out-dir) |
 
 ## Features → minimum supported Windows
 
@@ -103,6 +102,16 @@ GCC port; enabling them cannot be expressed through these features.
   few bytes in the ar header). Optimization is forced to `-O0` as well: `-O3` was
   observed to crash with `STATUS_ACCESS_VIOLATION` during YY-Thunks' static
   registration, and the port is a thin shim where skipping optimization costs nothing.
+- **The build artifact is cached (repeat compiles are skipped).** After every
+  successful compile this crate writes its own version plus the `YY_Thunks_Target`
+  into `$OUT_DIR/thunks-gnu-build-info.txt`. On the next build, if that fingerprint
+  matches and `libyythunks.a` exists, the existing artifact is reused and the whole
+  compile step is skipped (saving the ~5–10 s single-translation-unit build); the link
+  instructions are still emitted. A recompile happens when: this crate's version
+  changes, the features change the target version, or `libyythunks.a` is missing (e.g.
+  after cleaning `OUT_DIR`). Note that the fingerprint does **not** cover the vendored
+  sources, so editing anything under `vendor/` at the same version and target requires
+  `cargo clean` (or deleting `$OUT_DIR`) to be picked up.
 - **Build output is silent by default.** The upstream code produces a lot of GCC
   warnings (including macro-redefinition ones, for which GCC has no `-Wno-`
   switch) plus its own `#pragma message` notes; none of them are printed. Set
@@ -114,5 +123,5 @@ GCC port; enabling them cannot be expressed through these features.
 
 ## License
 
-MIT, same as upstream YY-Thunks. Vendored sources are derived from
-YY-Thunks — Chuyu-Team. See [LICENSE](LICENSE).
+MIT, See [LICENSE](LICENSE). Vendored sources are copied from this repository's (https://github.com/kkua/YY-Thunks-gnu) root directory (which derived from
+YY-Thunks — Chuyu-Team).

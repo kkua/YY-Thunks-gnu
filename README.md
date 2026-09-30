@@ -126,8 +126,7 @@ cmake -S . -B build/win10  -G Ninja -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=
 
 ## 关于 `upstream/`
 
-主仓库**不包含**上游源码（它是独立的 git 仓库，约 32 MB）。构建不需要它 ——
-`src/port/` 已含完整副本。
+主仓库**不包含**上游源码（它是独立的 git 仓库，约 32 MB）。构建静态链接库也不需要它。
 
 只有"升级上游 / 重新生成移植层"时才需要取回：
 
@@ -152,5 +151,4 @@ cmake --build build/x64 --target yythunks_regen
 
 MIT，见 [LICENSE](LICENSE)。
 
-移植层沿用上游 YY-Thunks 的 MIT 许可。`src/port/` 与 `thunks-gnu/vendor/` 中含
-上游源码的派生副本，其版权归 **Chuyu-Team** 所有。
+移植层沿用上游 YY-Thunks 的 MIT 许可。
