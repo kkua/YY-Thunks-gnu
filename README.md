@@ -91,7 +91,7 @@ cmake -S . -B build/win10  -G Ninja -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=
 
 > `gcc` 运行时（`__chkstk_ms`/`__popcountdi2` 等）始终需要：g++ 驱动自动加；非 g++ 驱动须在链接命令显式加 `-lgcc`，不计入上表。
 >
-> 规律：目标越新，参与编译的兜底分支越少，所需库越少（Vista 12 → Win10 19041+/Win11 4）。值得注意的是 **Win10 10240 反而比 19041+ 多 3 个库**（`gdi32`/`iphlpapi`/`shcore`）——10240 仍在编译一批后来版本不再需要的 thunk。`shcore` 仅在 Win8.1~10240 出现、`dxgi`/`dcomp` 仅在 Win7~Win8.1 出现，正是上游 `#pragma comment(lib, "Shcore.lib")` 等随目标变化、被 probe 正确捕获的体现。`__WindowsNT10_14393`/`15063`/`16299`/`17134` 未逐一实测，按 10240（7 个）处理（降级发生在 19041）；`__WindowsNT10_22000`/`22621` 上游未定义，会报非法。
+> 规律：目标越新，参与编译的兜底分支越少，所需库越少（Vista 12 → Win10 19041+/Win11 4）。值得注意的是 **Win10 10240 反而比 19041+ 多 3 个库**（`gdi32`/`iphlpapi`/`shcore`）——10240 仍在编译一批后来版本不再需要的 thunk。`shcore` 仅在 Win8.1\~10240 出现、`dxgi`/`dcomp` 仅在 Win7\~Win8.1 出现，正是上游 `#pragma comment(lib, "Shcore.lib")` 等随目标变化、被 probe 正确捕获的体现。`__WindowsNT10_14393`/`15063`/`16299`/`17134` 未逐一实测，按 10240（7 个）处理（降级发生在 19041）；`__WindowsNT10_22000`/`22621` 上游未定义，会报非法。
 
 ## 特性
 

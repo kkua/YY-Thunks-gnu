@@ -1,5 +1,13 @@
 > 中文版见 [README.md](README.md)。
 
+> ⚠️ **Substantial limitations — verify on your own before relying on it.** This repo
+> is only verified up to "it compiles and links"; **it has not been verified to
+> actually run on any real old Windows system**. One recorded test: a tool written with
+> windui, built for the `win7` / `win8` targets, failed to start on the corresponding
+> Windows 7 / Windows 8 machines. In other words, "it builds" does **not** mean "it
+> runs on the old system". Please test on the systems you actually need to support
+> before depending on this crate.
+
 # thunks-gnu
 
 Build-time helper that compiles [YY-Thunks-gnu](https://github.com/kkua/YY-Thunks-gnu)
@@ -65,6 +73,16 @@ GCC port; enabling them cannot be expressed through these features.
 
 ## Notes and limitations
 
+- **Whether it actually runs is up to you to verify.** This crate is only verified up
+  to "it compiles and links"; **it has not passed any real old-system run test**. One
+  recorded test: a tool written with windui, built for the `win7` / `win8` targets,
+  failed to start on the corresponding Windows 7 / 8 machines. Possible directions
+  include: the MinGW runtime / CRT itself pulling in newer system interfaces (outside
+  YY-Thunks' coverage), the program or its dependencies still importing APIs that
+  YY-Thunks does not cover, and the Rust standard library's own OS requirements — none
+  of which have been **narrowed down**; they are only hints for where to look. So keep
+  "it builds" and "it runs" separate, and always test on the systems you really need to
+  support.
 - **`x86_64-pc-windows-gnu` only.** This is a hard requirement, enforced at build
   time:
   - non-GNU Windows targets (e.g. `x86_64-pc-windows-msvc`) — the build script
