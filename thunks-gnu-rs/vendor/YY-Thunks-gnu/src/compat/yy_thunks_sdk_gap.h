@@ -19,6 +19,7 @@
 #include <iphlpapi.h>
 #include <lm.h>
 #include <lmjoin.h>
+#include <windns.h>
 
 /* ------------------------------------------------------------------------ *
  * winnt.h：UFIELD_OFFSET
@@ -31,11 +32,40 @@
 
 /* ------------------------------------------------------------------------ *
  * ws2tcpip.h：GetAddrInfoExCancel（Windows 8+ 的异步解析取消）
+ *
+ * 必须用 EXTERN_C：上游 Thunks/WS2_32.hpp 的 thunk 以 extern "C" 定义，
+ * 这里若用 C++ 链接声明，二者是不同的函数，`__imp_*` 初始化会指向
+ * mangled 符号并在链接期报 undefined reference。
  * ------------------------------------------------------------------------ */
 #include <ws2tcpip.h>
 #if !defined(__YY_SDKGAP_GetAddrInfoExCancel)
 #define __YY_SDKGAP_GetAddrInfoExCancel
-INT WSAAPI GetAddrInfoExCancel(_In_ HANDLE* lpHandle);
+EXTERN_C INT WSAAPI GetAddrInfoExCancel(_In_ HANDLE* lpHandle);
+#endif
+
+/* ------------------------------------------------------------------------ *
+ * winstring.h：E_STRING_NOT_NULL_TERMINATED（WinRT 字符串错误码）
+ *
+ * MinGW 的 winstring.h 只声明函数，没有这个 HRESULT 常量
+ * （SDK 中定义在 winstring.h，值 0x80000017）。
+ * 上游 api-ms-win-core-winrt-string.hpp 的 WindowsCreateStringReference
+ * 兜底会返回它。
+ * ------------------------------------------------------------------------ */
+#ifndef E_STRING_NOT_NULL_TERMINATED
+#define E_STRING_NOT_NULL_TERMINATED ((HRESULT)0x80000017L)
+#endif
+
+/* ------------------------------------------------------------------------ *
+ * ws2tcpip.h：GetAddrInfoExOverlappedResult（Windows 8+ 的异步解析结果查询）
+ *
+ * MinGW 的 ws2tcpip.h 只声明到 GetAddrInfoExCancel，没有这一个；
+ * 上游 Thunks/WS2_32.hpp 直接把它当作已声明使用（__DEFINE_THUNK 的参数表
+ * 依赖这里的原型），缺失时报 "was not declared in this scope"。
+ * 签名与上游 __DEFINE_THUNK 的实参一致，并用 EXTERN_C 匹配 thunk 的链接。
+ * ------------------------------------------------------------------------ */
+#if !defined(__YY_SDKGAP_GetAddrInfoExOverlappedResult)
+#define __YY_SDKGAP_GetAddrInfoExOverlappedResult
+EXTERN_C INT WSAAPI GetAddrInfoExOverlappedResult(_In_ LPOVERLAPPED lpOverlapped);
 #endif
 
 /* ------------------------------------------------------------------------ *
@@ -106,6 +136,107 @@ typedef struct _DSREG_JOIN_INFO* PDSREG_JOIN_INFO;
 #endif
 
 /* 函数原型同上：这里只补 PDSREG_JOIN_INFO 类型。 */
+
+/* ------------------------------------------------------------------------ *
+ * windns.h：DnsQueryEx / DnsCancelQuery（Windows 8+ 的异步 DNS 查询）
+ *
+ * MinGW 的 windns.h 有 DNS_QUERY_RESULT / DNS_QUERY_COMPLETION_ROUTINE /
+ * DNS_ADDR，但缺 DNS_QUERY_REQUEST、DNS_QUERY_CANCEL、DNS_ADDR_ARRAY
+ * 以及这两个函数。
+ *
+ * 结构体布局必须与 Windows SDK 逐字一致：调用方按 SDK 布局填充，
+ * 新系统上 thunk 会原样交给真实的 DnsQueryEx。这里以上游的实际用法
+ * 交叉校验过：
+ *   - pQueryCompletionCallback / QueryName / QueryType / QueryOptions /
+ *     pDnsServerList / Version —— 对应 _DNS_QUERY_REQUEST 的字段序；
+ *   - sizeof(_DnsAddrArray) + (AddrCount - 1) * sizeof(DNS_ADDR)
+ *     —— 与 AddrArray[ANYSIZE_ARRAY]（SDK 中 ANYSIZE_ARRAY == 1）自洽；
+ *   - DnsQueryCancel 联合体只要求 >= sizeof(LSTATUS)，SDK 的 32 字节满足。
+ * ------------------------------------------------------------------------ */
+#ifndef __YY_SDKGAP_DNS_ADDR
+#define __YY_SDKGAP_DNS_ADDR
+/* SDK: MaxSa 在最前且必须容纳最大的 SOCKADDR（sockaddr_in6 为 28 字节），
+ * 上游直接 reinterpret_cast<SOCKADDR_IN*>(AddrArray[i].MaxSa)。 */
+#define DNS_ADDR_MAX_SOCKADDR_LENGTH 32
+typedef struct _DNS_ADDR
+{
+    CHAR MaxSa[DNS_ADDR_MAX_SOCKADDR_LENGTH];
+    DWORD DnsAddrUserDword;
+} DNS_ADDR;
+#endif
+
+#ifndef __YY_SDKGAP_DNS_ADDR_ARRAY
+#define __YY_SDKGAP_DNS_ADDR_ARRAY
+typedef struct _DnsAddrArray
+{
+    DWORD MaxCount;
+    DWORD AddrCount;
+    DWORD Tag;
+    USHORT Family;
+    USHORT Reserved;
+    DWORD Flags;
+    DWORD MatchFlag;
+    DWORD Reserved1;
+    DWORD Reserved2;
+    DNS_ADDR AddrArray[ANYSIZE_ARRAY];
+} DNS_ADDR_ARRAY, *PDNS_ADDR_ARRAY;
+#endif
+
+#ifndef __YY_SDKGAP_DNS_QUERY_REQUEST
+#define __YY_SDKGAP_DNS_QUERY_REQUEST
+typedef struct _DNS_QUERY_REQUEST
+{
+    ULONG Version;
+    PCWSTR QueryName;
+    USHORT QueryType;
+    ULONG64 QueryOptions;
+    PDNS_ADDR_ARRAY pDnsServerList;
+    ULONG InterfaceIndex;
+    PDNS_QUERY_COMPLETION_ROUTINE pQueryCompletionCallback;
+    PVOID pQueryContext;
+} DNS_QUERY_REQUEST, *PDNS_QUERY_REQUEST;
+#endif
+
+#ifndef __YY_SDKGAP_DNS_QUERY_CANCEL
+#define __YY_SDKGAP_DNS_QUERY_CANCEL
+typedef struct _DNS_QUERY_CANCEL
+{
+    CHAR Reserved[32];
+} DNS_QUERY_CANCEL, *PDNS_QUERY_CANCEL;
+#endif
+
+#if !defined(__YY_SDKGAP_DnsQueryEx)
+#define __YY_SDKGAP_DnsQueryEx
+EXTERN_C DNS_STATUS WINAPI DnsQueryEx(
+    _In_ PDNS_QUERY_REQUEST pQueryRequest,
+    _Inout_ PDNS_QUERY_RESULT pQueryResults,
+    _Inout_opt_ PDNS_QUERY_CANCEL pCancelHandle);
+#endif
+
+#if !defined(__YY_SDKGAP_DnsCancelQuery)
+#define __YY_SDKGAP_DnsCancelQuery
+EXTERN_C DNS_STATUS WINAPI DnsCancelQuery(
+    _In_ PDNS_QUERY_CANCEL pCancelHandle);
+#endif
+
+/* ------------------------------------------------------------------------ *
+ * lmjoin.h：NetGetAadJoinInformation / NetFreeAadJoinInformation（Windows 10+）
+ *
+ * MinGW 的 lmjoin.h 只到 NetGetJoinableOUs；PDSREG_JOIN_INFO 已由本文件
+ * 前面的 dsreg/lmjoin 一节补齐。
+ * ------------------------------------------------------------------------ */
+#if !defined(__YY_SDKGAP_NetGetAadJoinInformation)
+#define __YY_SDKGAP_NetGetAadJoinInformation
+EXTERN_C HRESULT WINAPI NetGetAadJoinInformation(
+    _In_opt_ LPCWSTR szTenantId,
+    _Outptr_result_maybenull_ PDSREG_JOIN_INFO* ppJoinInfo);
+#endif
+
+#if !defined(__YY_SDKGAP_NetFreeAadJoinInformation)
+#define __YY_SDKGAP_NetFreeAadJoinInformation
+EXTERN_C VOID WINAPI NetFreeAadJoinInformation(
+    _In_opt_ PDSREG_JOIN_INFO pJoinInfo);
+#endif
 
 /* ------------------------------------------------------------------------ *
  * fileapi.h：CreateFile3（Windows 11 24H2+）

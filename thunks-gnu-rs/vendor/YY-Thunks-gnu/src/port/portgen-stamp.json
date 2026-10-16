@@ -2,12 +2,12 @@
   "generator": "tools/portgen.py",
   "cxx_flags": "-DWINVER=0x0A00 -DYY_Thunks_Port=1 -DYY_Thunks_Target=__WindowsNT6 -D_WIN32_WINNT=0x0A00",
   "target": "__WindowsNT6",
-  "modules": 81,
+  "modules": 87,
   "self_contained": true,
   "inputs": [
-    "portrule/exclude.txt:1bf8060d76c2f25eecc33212d4d8b7a3881119f16a4da730ea09c15a6e05047f",
+    "portrule/exclude.txt:70e351d88d216bf2f81aa17e68e59ebc9cdd68650bd455b58dce6bc9fd3148ef",
     "portrule/thunks.manifest:06e73feb5f08f76884dc36ecc009708d2f4384fd1a70a2bcc9b1e2be5a812155",
     "tools/portgen.py:136c0883452ec2864d8e07d69628b54a70eee086a9123d573f1e4df2a31e20c2",
-    "tools/transforms.py:ad4f1faf4138a9c98c9ba4a13d4cca673884302eb8d90dc6dc25f975732525ff"
+    "tools/transforms.py:80cee80ca0c8c49915228a4823134d97f59019b060314e4321d4967090e5ffa5"
   ]
 }

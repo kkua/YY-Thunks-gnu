@@ -204,9 +204,10 @@ namespace YY::Thunks
                 _pTmp->ai_canonname = nullptr;
                 if (_pItem->ai_canonname)
                 {
-                    _pTmp->ai_canonname = (wchar_t*)_pBuffer;
-                    const auto _cchCanonNameUTF16 = MultiByteToWideChar(CP_ACP, 0, _pItem->ai_canonname, _cchCanonName, _pTmp->ai_canonname, _cchCanonName);
-                    _pTmp->ai_canonname[_cchCanonNameUTF16] = '\0';
+                    auto _szCanonName = (wchar_t*)_pBuffer;
+                    _pTmp->ai_canonname = _szCanonName;
+                    const auto _cchCanonNameUTF16 = MultiByteToWideChar(CP_ACP, 0, _pItem->ai_canonname, _cchCanonName, _szCanonName, _cchCanonName);
+                    _szCanonName[_cchCanonNameUTF16] = '\0';
                     _pBuffer += (_cchCanonNameUTF16 + 1) * sizeof(wchar_t);
                 }
                 _pTmp->ai_addr = nullptr;
@@ -261,9 +262,10 @@ namespace YY::Thunks
                 _pTmp->ai_canonname = nullptr;
                 if (_pItem->ai_canonname)
                 {
-                    _pTmp->ai_canonname = (wchar_t*)_pBuffer;
-                    const auto _cchCanonNameUTF16 = MultiByteToWideChar(CP_ACP, 0, _pItem->ai_canonname, _cchCanonName, _pTmp->ai_canonname, _cchCanonName);
-                    _pTmp->ai_canonname[_cchCanonNameUTF16] = '\0';
+                    auto _szCanonName = (wchar_t*)_pBuffer;
+                    _pTmp->ai_canonname = _szCanonName;
+                    const auto _cchCanonNameUTF16 = MultiByteToWideChar(CP_ACP, 0, _pItem->ai_canonname, _cchCanonName, _szCanonName, _cchCanonName);
+                    _szCanonName[_cchCanonNameUTF16] = '\0';
                     _pBuffer += (_cchCanonNameUTF16 + 1) * sizeof(wchar_t);
                 }
                 _pTmp->ai_addr = nullptr;

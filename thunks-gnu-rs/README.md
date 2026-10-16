@@ -1,10 +1,11 @@
 > English version: [README_EN.md](README_EN.md)。
 
-> ⚠️ **局限性较大，能否有用请自行实测**：本仓库目前只验证到"能编译、能链接"这一层，
-> **尚未通过任何真实旧系统上的运行验证**。已记录的一次实测：用 windui 写的工具以
-> `win7` / `win8` 目标编译后，放到对应的 Windows 7 / Windows 8 上运行，均报错、
-> 无法启动。换句话说，"编译通过"≠"能在旧系统上跑起来"。使用前请在你要支持的目标
-> 系统上自行实测，不要默认它可用。
+> ⚠️ **存在一定的局限性，能否有用请自行实测**：本仓库只验证到"能编译、能链接"这一层，
+> 真实旧系统上的运行验证仍然有限。已记录的一次实测：用 windui 写的工具以 `win8`
+> 目标编译后，在 **Windows 8 上可正常运行**；但以 `win7` 目标编译后放到
+> **Windows 7 上仍然失败，报缺 `combase.dll`**。也就是说，"编译通过"≠"能在旧系统上跑起来"；本次实测中
+> Win7 未能启动，但这只是因为该测试项目的依赖库用到了 YY-Thunks 未覆盖的 API，并非 Win7 一概跑不了。
+> 使用前请在你真正要支持的目标系统上自行实测，不要默认它可用。
 
 # thunks-gnu
 
@@ -68,13 +69,14 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
 
 ## 注意事项与限制
 
-- **能否真的跑起来请自行实测**：本 crate 目前只做到了"能编译、能链接"的验证，
-  **没有通过任何真实旧系统的运行验证**。已记录的一次实测：用 windui 写的工具以
-  `win7` / `win8` 目标编译，产物放到对应的 Windows 7 / 8 上运行，均报错、无法启动。
-  可能的方向包括：MinGW 运行时 / CRT 自身依赖较新的系统接口（这部分不在 YY-Thunks
-  的覆盖范围内）、程序或其依赖仍在导入 YY-Thunks 未覆盖的 API、以及 Rust 标准库
-  自身的系统要求——以上**都未做定位排查**，仅作为排查方向的提示。因此请把"能编译"
-  与"能运行"分开看待，务必在你真正要支持的目标系统上实测。
+- **能否真的跑起来请自行实测**：本 crate 只做到了"能编译、能链接"的验证，
+  真实旧系统的运行验证仍然有限。已记录的实测：用 windui 写的工具以 `win8` 目标
+  编译后，在 **Windows 8 上可正常运行**；以 `win7` 目标编译后放到 **Windows 7 上
+  仍失败，报缺 `combase.dll`**。原因已定位：**该测试项目的依赖库用到了 YY-Thunks
+  未覆盖的 API**（运行期依赖了 Win7 没有的系统 DLL，属于 YY-Thunks 覆盖范围之外）。
+  这属于"能编译 ≠ 能在旧系统跑"的典型情形，但只是该测试项目的具体情况，并不代表
+  Win7 一概跑不了。因此请把"能编译"与"能运行"分开看待，务必在你真正要支持的目标
+  系统上实测。
 - **仅支持 `x86_64-pc-windows-gnu` 工具链**：这是硬性限制。构建脚本会在编译期检查并强制：
   - 非 windows-gnu 目标（如 `x86_64-pc-windows-msvc`）——只打印一条 `cargo::warning` 后直接返回（不产出 `.a`、也不输出任何 `-l`）；
   - `i686-pc-windows-gnu`——上游依赖 MSVC 的 `__identifier` 拼出含 `@` 的 stdcall IAT 符号（`_imp__Api@N`），GCC 无法拼出该记号，构建脚本直接 `panic`；
@@ -87,8 +89,11 @@ feature 的含义是**你希望支持的最低系统**（即上游的 `YY_Thunks
   Rust 的 `windows-gnu` 目标已经链接了常用的那几个；若遇到
   `undefined reference`，按需自己补 `-l`（完整清单以注释形式保留在
   `src/lib.rs` 末尾，CMake 构建也会生成 `yythunks-link-requirements.txt`）。
-- **不需要 C++ 运行时**：本库用 `-fno-exceptions -fno-unwind-tables` 编译，不会
-  引用 `__gxx_personality_seh0` / `_Unwind_Resume`。但若链接器不是 `g++` 驱动，
+- **基本不需要 C++ 运行时**：本库用 `-fno-exceptions -fno-rtti -fno-unwind-tables`
+  编译，不会引用 `__gxx_personality_seh0` / `_Unwind_Resume`，也不产生 RTTI。
+  但 WinRT / DNS 等模块内部有 `new`/`delete`，C++14 起 `delete` 会发成 sized 版本
+  （`_ZdlPvy`），因此本 crate 会**静态**链接 `libstdc++` 只为拿这一个
+  `operator delete` —— 产物不会依赖 `libstdc++-6.dll`。若链接器不是 `g++` 驱动，
   仍可能需要 `-lgcc`（`__chkstk_ms`、`__popcountdi2`）。
 - **SEH 被降级**：GCC 没有 `__try` / `__except`，移植层会原样执行 `__try` 体、
   让 `__except` 体成为死代码。正常路径行为与上游一致，但畸形 PE、探测性内存读取

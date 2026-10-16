@@ -1,12 +1,13 @@
 > 中文版见 [README.md](README.md)。
 
-> ⚠️ **Substantial limitations — verify on your own before relying on it.** This repo
-> is only verified up to "it compiles and links"; **it has not been verified to
-> actually run on any real old Windows system**. One recorded test: a tool written with
-> windui, built for the `win7` / `win8` targets, failed to start on the corresponding
-> Windows 7 / Windows 8 machines. In other words, "it builds" does **not** mean "it
-> runs on the old system". Please test on the systems you actually need to support
-> before depending on this crate.
+> ⚠️ **Certain limitations apply — verify on your own before relying on it.** This repo
+> is only verified up to "it compiles and links", and **real old-system run tests are
+> still limited**. One recorded test: a tool written with windui, built for the `win8`
+> target, **runs fine on Windows 8**; built for the `win7` target, however, it **still
+> fails on Windows 7 with a missing `combase.dll`. In other words, "it builds" does **not** mean "it runs on the old system";
+> in this test Windows 7 did not start, but only because that test project's dependency
+> library used APIs not covered by YY-Thunks — it is not proof that Windows 7 can never
+> work. Please test on the systems you actually need to support before depending on this crate.
 
 # thunks-gnu
 
@@ -74,15 +75,15 @@ GCC port; enabling them cannot be expressed through these features.
 ## Notes and limitations
 
 - **Whether it actually runs is up to you to verify.** This crate is only verified up
-  to "it compiles and links"; **it has not passed any real old-system run test**. One
-  recorded test: a tool written with windui, built for the `win7` / `win8` targets,
-  failed to start on the corresponding Windows 7 / 8 machines. Possible directions
-  include: the MinGW runtime / CRT itself pulling in newer system interfaces (outside
-  YY-Thunks' coverage), the program or its dependencies still importing APIs that
-  YY-Thunks does not cover, and the Rust standard library's own OS requirements — none
-  of which have been **narrowed down**; they are only hints for where to look. So keep
-  "it builds" and "it runs" separate, and always test on the systems you really need to
-  support.
+  to "it compiles and links"; real old-system run tests are still limited. One recorded
+  test: a tool written with windui, built for the `win8` target, **runs fine on Windows
+  8**; built for the `win7` target, it **still fails on Windows 7 with a missing
+  `combase.dll`**. The cause is now identified: **that test project's dependency library
+  used APIs not covered by YY-Thunks** — a runtime dependency on a system DLL that
+  Windows 7 lacks, outside YY-Thunks' coverage. This is a typical "it builds ≠ it runs"
+  case, but it is specific to that test project, not proof that Windows 7 can never work.
+  So keep "it builds" and "it runs" separate, and always test on the systems you really
+  need to support.
 - **`x86_64-pc-windows-gnu` only.** This is a hard requirement, enforced at build
   time:
   - non-GNU Windows targets (e.g. `x86_64-pc-windows-msvc`) — the build script
@@ -105,9 +106,13 @@ GCC port; enabling them cannot be expressed through these features.
   missing `-l` yourself (the full list is kept, commented out, at the end of
   `src/lib.rs`, and the CMake build generates it as
   `yythunks-link-requirements.txt`).
-- **No C++ runtime needed.** The library is built with `-fno-exceptions
-  -fno-unwind-tables`, so it never references `__gxx_personality_seh0` or
-  `_Unwind_Resume`. You may still need `-lgcc` (`__chkstk_ms`,
+- **Essentially no C++ runtime.** The library is built with `-fno-exceptions
+  -fno-rtti -fno-unwind-tables`, so it never references `__gxx_personality_seh0`
+  or `_Unwind_Resume`, and emits no RTTI. However, the WinRT / DNS modules use
+  `new`/`delete` internally, and since C++14 `delete` resolves to the sized
+  version (`_ZdlPvy`), so this crate links `libstdc++` **statically** purely for
+  that one `operator delete` — the artifact does not depend on
+  `libstdc++-6.dll`. You may still need `-lgcc` (`__chkstk_ms`,
   `__popcountdi2`) if your linker is not the `g++` driver.
 - **SEH is degraded.** GCC has no `__try`/`__except`; the port executes the
   `__try` body and leaves the `__except` body unreachable. Normal paths behave

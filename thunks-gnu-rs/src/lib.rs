@@ -91,7 +91,13 @@ pub fn build() {
     // 链接顺序是关键：yythunks 必须排在系统导入库之前，链接器才会优先取 YY-Thunks
     // 的符号；下面的清单按这个要求依次输出（顺序颠倒会报 multiple definition，
     // 不会静默失去覆盖）。
-    println!("cargo:rustc-link-lib=static=yythunks");
+    //
+    // 这一行必须在 need_compile 判断**之外**无条件输出：cc 只在真正执行编译时才会
+    // 打印它自己的 cargo:rustc-link-lib，而上面指纹命中跳过编译时 cc 根本不会跑，
+    // 那时若没人输出这条指令，链接行里就没有 libyythunks.a 了（实测报
+    // undefined reference to `__YY_Thunks_Installed`）。修饰符的原因见
+    // build_yythunks() 里 link_lib_modifier 处的说明。
+    println!("cargo:rustc-link-lib=static:+whole-archive=yythunks");
     
     println!("cargo:rustc-link-lib=kernel32"); //
     println!("cargo:rustc-link-lib=user32"); //
@@ -107,6 +113,26 @@ pub fn build() {
     println!("cargo:rustc-link-lib=winhttp"); //
     println!("cargo:rustc-link-lib=dxgi"); //
     println!("cargo:rustc-link-lib=cfgmgr32"); //
+    println!("cargo:rustc-link-lib=dcomp"); //
+    // ws2_32：WS2_32 模块的若干兜底会直接调用 Vista 起就原生的 ws2_32 API
+    // （FreeAddrInfoW 守卫 < XP SP1、FreeAddrInfoEx(W) < Vista、gethostname /
+    // WSASetLastError 无守卫），因此 libyythunks.a 对它们有未定义引用，
+    // 必须由链接方提供。导入的这些都是 Vista+ 原生函数，不影响最低支持系统。
+    println!("cargo:rustc-link-lib=ws2_32"); //
+    // crypt32 / dnsapi：ncrypy 与 dnsapi 模块的兜底会直接调用这两个库里的
+    // 远古 API（CryptProtectData / CryptUnprotectData 自 Windows 2000，
+    // DnsQuery_W 更早），在支持范围（Vista+）内原生具备，静态导入无风险。
+    println!("cargo:rustc-link-lib=crypt32"); //
+    println!("cargo:rustc-link-lib=dnsapi"); //
+    // runtimeobject：win8 目标下 RoOriginateError 等 WinRT 错误 API 的守卫是
+    // `< Win8.1`，Win8 命中但未被 thunk，.a 对它有无可避免的未定义引用。
+    // runtimeobject.dll 自 Windows 8 起存在，而只有 win8 目标才会真正拉入它
+    // （其他目标下没有未定义引用，导入库成员不会被拉出来）。
+    println!("cargo:rustc-link-lib=runtimeobject"); //
+    // 新启用的 WinRT / DNS 模块里有 new/delete，C++14 起 delete 会发成 sized 版本
+    // （_ZdlPvy），需要 libstdc++ 的 operator delete。这里**静态**链接，
+    // 避免产物依赖 libstdc++-6.dll（CMake 侧由 g++ 驱动自动处理，同样不带 DLL 依赖）。
+    println!("cargo:rustc-link-lib=static=stdc++"); //
     
     // 上面这份清单是 CMake 汇总"上游全部 #pragma comment(lib, ...)"的结果：
     // GCC 会忽略该指令，所以系统导入库必须由链接方提供。Rust 目标自带
@@ -204,6 +230,10 @@ fn build_yythunks(thunk_target: &str, show_warnings: bool) {
         .flag("-fno-exceptions")
         .flag("-fno-unwind-tables")
         .flag("-fno-asynchronous-unwind-tables")
+        // WinRT / COM 相关的 thunk 模块（api-ms-win-core-winrt-string 等）带有虚函数，
+        // 开 RTTI 会让 .a 引用 __cxxabiv1 的 type_info vtable，把 libstdc++ 拖进
+        // 链接。上游全仓库没有 dynamic_cast / typeid（已核实），关掉不改变行为。
+        .flag("-fno-rtti")
         // cc 会无条件加 -ffunction-sections -fdata-sections（再涨约 240KB）。对
         // "--gc-sections" 才有意义，而本库是单个目标文件整包参与链接，拿不到那点收益。
         // 用户旗标排在 cc 默认旗标之后，可以正常覆盖掉。
@@ -239,8 +269,33 @@ fn build_yythunks(thunk_target: &str, show_warnings: bool) {
         );
     }
 
-    // 产出 $OUT_DIR/libyythunks.a，并由 cc 自动打印
-    // cargo:rustc-link-search=native=<OUT_DIR> 与 cargo:rustc-link-lib=static=yythunks。
+    // 让 cc 输出带 +whole-archive 修饰符的链接指令，把 libyythunks.a 整个链进来。
+    //
+    // 为什么需要它：上游在 YY_Thunks.cpp 里用 `.rdata$__imp_WaitOnAddress` 之类的段
+    // **静态定义**了 __imp_* 指针，本意正是让"经 IAT 引用这些函数的调用方"也能落到
+    // thunk 上。但 rustc 的链接行上 libyythunks.a 排在 std 的 rlib **之前**，ld 扫描
+    // 它时 std 的 __imp_WaitOnAddress 还没成为未定义符号，YY_Thunks.o 不会被拉进来；
+    // 等 std 的引用出现，只有排在更后面的导入库能满足它，于是 exe 静态导入
+    // api-ms-win-core-synch-l1-2-0.dll —— 该 API set 自 Windows 10 起才有，
+    // Win7/8 的加载器找不到它，进程在启动阶段就失败（连 main 都进不去）。
+    // +whole-archive 让 ld 无条件纳入全部成员，__imp_* 定义提前就位，std 的 IAT
+    // 引用便落在 thunk 上，导入表里不再出现该 DLL。
+    //
+    // 代价：.a 内所有 thunk 都会被链进最终二进制（Vista 目标的 .a 约 530 KB），
+    // 且不能用 --gc-sections 裁剪（cc 侧未开 -ffunction-sections）。
+    build.link_lib_modifier("+whole-archive");
+
+    // 关掉 cc 自己的 cargo 元数据输出，由 build() 统一、无条件地输出链接指令。两个原因：
+    //   1. cc 的 `static=yythunks` 与我们要的 `static:+whole-archive=yythunks` 同名不同
+    //      修饰符，rustc 直接报 "overriding linking modifiers from command line"；
+    //   2. 更关键：cc 只在**真正执行编译**时才打印链接指令，而上面指纹命中跳过编译时
+    //      它不会跑，链接行就会丢掉 libyythunks.a（实测 undefined reference）。
+    // 附带影响都不受影响：link-search 由 build() 自己兜底输出；`-lstdc++` 不再输出
+    // —— 本库用 -fno-exceptions -fno-rtti 编译，nm 核实 .a 不引用任何 libstdc++ 符号；
+    // rerun-if-changed 本就按设计不输出（源码变更不触发重跑，见 README）。
+    build.cargo_metadata(false);
+
+    // 产出 $OUT_DIR/libyythunks.a。链接指令由 build() 输出（见那边的注释）。
     build.compile(LIB_NAME);
 }
 

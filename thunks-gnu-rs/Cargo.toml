@@ -1,6 +1,6 @@
 [package]
 name = "thunks-gnu"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 rust-version = "1.85"
 authors = ["Kaay(kkua) <kaay_me@outlook.com>"]
@@ -17,7 +17,7 @@ categories = ["os::windows-apis", "development-tools::build-utils"]
 include = ["src/**", "vendor/**", "README.md", "README_EN.md", "LICENSE"]
 
 [dependencies]
-cc = "1.5"
+cc = "1.8"
 
 [features]
 default = []

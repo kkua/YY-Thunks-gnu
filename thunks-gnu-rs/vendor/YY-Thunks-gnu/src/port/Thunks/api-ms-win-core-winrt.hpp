@@ -34,11 +34,11 @@ namespace YY::Thunks::Fallback
 #if defined(_M_IX86)
 #define __DEFINE_RoGetActivationFactoryMapEntry(_CLASS_ID, _FUNCTION)                                                                                                   \
     __pragma(warning(suppress:4483))                                                                                                                                    \
-    extern "C" YY_THUNKS_ALLOCATE(".RoGetActivationFactory$AAB") const YY::Thunks::Fallback::RoGetActivationFactoryMapEntry __identifier(_CRT_STRINGIZE_(RoGetActivationFactory ## @ ## _CLASS_ID)) = {  _CRT_WIDE_(# _CLASS_ID), &_FUNCTION }
+    extern "C" YY_THUNKS_ALLOCATE(".RoGetActivationFactory$AAB") const YY::Thunks::Fallback::RoGetActivationFactoryMapEntry __identifier(_CRT_STRINGIZE_(RoGetActivationFactory _CLASS_ID)) = {  _CRT_WIDE_(# _CLASS_ID), &_FUNCTION }
 #else
 #define __DEFINE_RoGetActivationFactoryMapEntry(_CLASS_ID, _FUNCTION)                                                                                                   \
     __pragma(warning(suppress:4483))                                                                                                                                    \
-    extern "C" YY_THUNKS_ALLOCATE(".RoGetActivationFactory$AAB") const YY::Thunks::Fallback::RoGetActivationFactoryMapEntry __identifier(_CRT_STRINGIZE_(_RoGetActivationFactory ## @ ## _CLASS_ID)) = {  _CRT_WIDE_(# _CLASS_ID), &_FUNCTION }
+    extern "C" YY_THUNKS_ALLOCATE(".RoGetActivationFactory$AAB") const YY::Thunks::Fallback::RoGetActivationFactoryMapEntry __identifier(_CRT_STRINGIZE_(_RoGetActivationFactory _CLASS_ID)) = {  _CRT_WIDE_(# _CLASS_ID), &_FUNCTION }
 
 #endif
 

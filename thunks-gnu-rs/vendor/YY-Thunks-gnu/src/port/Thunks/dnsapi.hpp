@@ -203,7 +203,7 @@ namespace YY::Thunks
                 }
             }
 
-            _pQueryResults->QueryStatus = DnsQuery_W(_pQueryRequest->QueryName, _pQueryRequest->QueryType, _pQueryRequest->QueryOptions, _pExtra, &_pQueryResults->pQueryRecords, nullptr);
+            _pQueryResults->QueryStatus = DnsQuery_W(_pQueryRequest->QueryName, _pQueryRequest->QueryType, _pQueryRequest->QueryOptions, (PIP4_ARRAY)_pExtra, &_pQueryResults->pQueryRecords, nullptr);
 
             if (_pExtra != _DnsServerListStaticBuffer)
             {
@@ -301,7 +301,7 @@ namespace YY::Thunks
                         }
                     }
 
-                    auto _QueryStatus = DnsQuery_W(_pSharedData->szQueryName, _pSharedData->QueryType, _pSharedData->QueryOptions, _pSharedData->pExtra, &_pQueryResults->pQueryRecords, nullptr);
+                    auto _QueryStatus = DnsQuery_W(_pSharedData->szQueryName, _pSharedData->QueryType, _pSharedData->QueryOptions, (PIP4_ARRAY)_pSharedData->pExtra, &_pQueryResults->pQueryRecords, nullptr);
                     if (_pSharedData->pCancelHandle)
                     {
                         InterlockedExchange(&_pSharedData->pCancelHandle->lStatus, _QueryStatus);
