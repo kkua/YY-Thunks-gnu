@@ -497,7 +497,12 @@ set(YY_THUNKS_COMPILE_OPTIONS
     # 那些工程不会自动带上 GCC 的 C++ 运行时。
     -fno-exceptions
     -fno-unwind-tables
-    -fno-asynchronous-unwind-tables)
+    -fno-asynchronous-unwind-tables
+    # 同 Rust crate：WinRT / COM 相关 thunk 模块带虚函数，开 RTTI 会引用
+    # __cxxabiv1 的 type_info vtable，把 libstdc++ 拖进链接。上游全仓库没有
+    # dynamic_cast / typeid，关掉不改变行为（g++ 驱动虽会自动带 libstdc++，
+    # 但少一份依赖总是好的，也与 cc/Rust 侧的产物保持一致）。
+    -fno-rtti)
 
 target_compile_options(yythunks PRIVATE ${YY_THUNKS_COMPILE_OPTIONS})
 

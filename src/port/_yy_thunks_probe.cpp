@@ -448,6 +448,12 @@ YYGUARD_ON_DiscardVirtualMemory
 #if YY_THUNK_GUARD_try_get_DisplayConfigGetDeviceInfo
 YYGUARD_ON_DisplayConfigGetDeviceInfo
 #endif
+#if YY_THUNK_GUARD_try_get_DnsCancelQuery
+YYGUARD_ON_DnsCancelQuery
+#endif
+#if YY_THUNK_GUARD_try_get_DnsQueryEx
+YYGUARD_ON_DnsQueryEx
+#endif
 #if YY_THUNK_GUARD_try_get_DrawThemeTextEx
 YYGUARD_ON_DrawThemeTextEx
 #endif
@@ -601,6 +607,15 @@ YYGUARD_ON_FlsSetValue
 #if YY_THUNK_GUARD_try_get_FlushProcessWriteBuffers
 YYGUARD_ON_FlushProcessWriteBuffers
 #endif
+#if YY_THUNK_GUARD_try_get_FreeAddrInfoEx
+YYGUARD_ON_FreeAddrInfoEx
+#endif
+#if YY_THUNK_GUARD_try_get_FreeAddrInfoExW
+YYGUARD_ON_FreeAddrInfoExW
+#endif
+#if YY_THUNK_GUARD_try_get_FreeAddrInfoW
+YYGUARD_ON_FreeAddrInfoW
+#endif
 #if YY_THUNK_GUARD_try_get_FreeLibraryWhenCallbackReturns
 YYGUARD_ON_FreeLibraryWhenCallbackReturns
 #endif
@@ -612,6 +627,21 @@ YYGUARD_ON_GetActiveProcessorCount
 #endif
 #if YY_THUNK_GUARD_try_get_GetActiveProcessorGroupCount
 YYGUARD_ON_GetActiveProcessorGroupCount
+#endif
+#if YY_THUNK_GUARD_try_get_GetAddrInfoExA
+YYGUARD_ON_GetAddrInfoExA
+#endif
+#if YY_THUNK_GUARD_try_get_GetAddrInfoExCancel
+YYGUARD_ON_GetAddrInfoExCancel
+#endif
+#if YY_THUNK_GUARD_try_get_GetAddrInfoExOverlappedResult
+YYGUARD_ON_GetAddrInfoExOverlappedResult
+#endif
+#if YY_THUNK_GUARD_try_get_GetAddrInfoExW
+YYGUARD_ON_GetAddrInfoExW
+#endif
+#if YY_THUNK_GUARD_try_get_GetAddrInfoW
+YYGUARD_ON_GetAddrInfoW
 #endif
 #if YY_THUNK_GUARD_try_get_GetAppContainerFolderPath
 YYGUARD_ON_GetAppContainerFolderPath
@@ -703,6 +733,9 @@ YYGUARD_ON_GetFirmwareType
 #if YY_THUNK_GUARD_try_get_GetGestureInfo
 YYGUARD_ON_GetGestureInfo
 #endif
+#if YY_THUNK_GUARD_try_get_GetHostNameW
+YYGUARD_ON_GetHostNameW
+#endif
 #if YY_THUNK_GUARD_try_get_GetIfEntry2
 YYGUARD_ON_GetIfEntry2
 #endif
@@ -744,6 +777,9 @@ YYGUARD_ON_GetModuleHandleExW
 #endif
 #if YY_THUNK_GUARD_try_get_GetNLSVersionEx
 YYGUARD_ON_GetNLSVersionEx
+#endif
+#if YY_THUNK_GUARD_try_get_GetNameInfoW
+YYGUARD_ON_GetNameInfoW
 #endif
 #if YY_THUNK_GUARD_try_get_GetNamedPipeClientProcessId
 YYGUARD_ON_GetNamedPipeClientProcessId
@@ -871,6 +907,9 @@ YYGUARD_ON_GetProductInfo
 #if YY_THUNK_GUARD_try_get_GetQueuedCompletionStatusEx
 YYGUARD_ON_GetQueuedCompletionStatusEx
 #endif
+#if YY_THUNK_GUARD_try_get_GetRestrictedErrorInfo
+YYGUARD_ON_GetRestrictedErrorInfo
+#endif
 #if YY_THUNK_GUARD_try_get_GetSystemDEPPolicy
 YYGUARD_ON_GetSystemDEPPolicy
 #endif
@@ -960,6 +999,12 @@ YYGUARD_ON_GetWindowDpiAwarenessContext
 #endif
 #if YY_THUNK_GUARD_try_get_GetWsChangesEx
 YYGUARD_ON_GetWsChangesEx
+#endif
+#if YY_THUNK_GUARD_try_get_InetNtopW
+YYGUARD_ON_InetNtopW
+#endif
+#if YY_THUNK_GUARD_try_get_InetPtonW
+YYGUARD_ON_InetPtonW
 #endif
 #if YY_THUNK_GUARD_try_get_InitOnceBeginInitialize
 YYGUARD_ON_InitOnceBeginInitialize
@@ -1206,6 +1251,78 @@ YYGUARD_ON_MapViewOfFileExNuma
 #endif
 #if YY_THUNK_GUARD_try_get_MapViewOfFileFromApp
 YYGUARD_ON_MapViewOfFileFromApp
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptCloseProtectionDescriptor
+YYGUARD_ON_NCryptCloseProtectionDescriptor
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptCreatePersistedKey
+YYGUARD_ON_NCryptCreatePersistedKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptCreateProtectionDescriptor
+YYGUARD_ON_NCryptCreateProtectionDescriptor
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptDecrypt
+YYGUARD_ON_NCryptDecrypt
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptDeleteKey
+YYGUARD_ON_NCryptDeleteKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptDeriveKey
+YYGUARD_ON_NCryptDeriveKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptEncrypt
+YYGUARD_ON_NCryptEncrypt
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptExportKey
+YYGUARD_ON_NCryptExportKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptFinalizeKey
+YYGUARD_ON_NCryptFinalizeKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptFreeObject
+YYGUARD_ON_NCryptFreeObject
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptGetProperty
+YYGUARD_ON_NCryptGetProperty
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptGetProtectionDescriptorInfo
+YYGUARD_ON_NCryptGetProtectionDescriptorInfo
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptImportKey
+YYGUARD_ON_NCryptImportKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptIsAlgSupported
+YYGUARD_ON_NCryptIsAlgSupported
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptOpenKey
+YYGUARD_ON_NCryptOpenKey
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptOpenStorageProvider
+YYGUARD_ON_NCryptOpenStorageProvider
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptProtectSecret
+YYGUARD_ON_NCryptProtectSecret
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptSecretAgreement
+YYGUARD_ON_NCryptSecretAgreement
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptSetProperty
+YYGUARD_ON_NCryptSetProperty
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptSignHash
+YYGUARD_ON_NCryptSignHash
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptUnprotectSecret
+YYGUARD_ON_NCryptUnprotectSecret
+#endif
+#if YY_THUNK_GUARD_try_get_NCryptVerifySignature
+YYGUARD_ON_NCryptVerifySignature
+#endif
+#if YY_THUNK_GUARD_try_get_NetFreeAadJoinInformation
+YYGUARD_ON_NetFreeAadJoinInformation
+#endif
+#if YY_THUNK_GUARD_try_get_NetGetAadJoinInformation
+YYGUARD_ON_NetGetAadJoinInformation
 #endif
 #if YY_THUNK_GUARD_try_get_NotifyIpInterfaceChange
 YYGUARD_ON_NotifyIpInterfaceChange
@@ -1480,8 +1597,26 @@ YYGUARD_ON_RemoveDllDirectory
 #if YY_THUNK_GUARD_try_get_ResolveLocaleName
 YYGUARD_ON_ResolveLocaleName
 #endif
+#if YY_THUNK_GUARD_try_get_RoFailFastWithErrorContext
+YYGUARD_ON_RoFailFastWithErrorContext
+#endif
 #if YY_THUNK_GUARD_try_get_RoGetAgileReference
 YYGUARD_ON_RoGetAgileReference
+#endif
+#if YY_THUNK_GUARD_try_get_RoOriginateError
+YYGUARD_ON_RoOriginateError
+#endif
+#if YY_THUNK_GUARD_try_get_RoOriginateErrorW
+YYGUARD_ON_RoOriginateErrorW
+#endif
+#if YY_THUNK_GUARD_try_get_RoOriginateLanguageException
+YYGUARD_ON_RoOriginateLanguageException
+#endif
+#if YY_THUNK_GUARD_try_get_RoTransformError
+YYGUARD_ON_RoTransformError
+#endif
+#if YY_THUNK_GUARD_try_get_RoTransformErrorW
+YYGUARD_ON_RoTransformErrorW
 #endif
 #if YY_THUNK_GUARD_try_get_RtlAddGrowableFunctionTable
 YYGUARD_ON_RtlAddGrowableFunctionTable
@@ -1786,6 +1921,18 @@ YYGUARD_ON_VirtualAllocFromApp
 #if YY_THUNK_GUARD_try_get_VirtualProtectFromApp
 YYGUARD_ON_VirtualProtectFromApp
 #endif
+#if YY_THUNK_GUARD_try_get_WSAIoctl
+YYGUARD_ON_WSAIoctl
+#endif
+#if YY_THUNK_GUARD_try_get_WSAPoll
+YYGUARD_ON_WSAPoll
+#endif
+#if YY_THUNK_GUARD_try_get_WSASocketA
+YYGUARD_ON_WSASocketA
+#endif
+#if YY_THUNK_GUARD_try_get_WSASocketW
+YYGUARD_ON_WSASocketW
+#endif
 #if YY_THUNK_GUARD_try_get_WTSGetActiveConsoleSessionId
 YYGUARD_ON_WTSGetActiveConsoleSessionId
 #endif
@@ -1870,6 +2017,33 @@ YYGUARD_ON_WinUsb_WritePipe
 #if YY_THUNK_GUARD_try_get_WindowFromPhysicalPoint
 YYGUARD_ON_WindowFromPhysicalPoint
 #endif
+#if YY_THUNK_GUARD_try_get_WindowsCompareStringOrdinal
+YYGUARD_ON_WindowsCompareStringOrdinal
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsCreateString
+YYGUARD_ON_WindowsCreateString
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsCreateStringReference
+YYGUARD_ON_WindowsCreateStringReference
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsDeleteString
+YYGUARD_ON_WindowsDeleteString
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsDuplicateString
+YYGUARD_ON_WindowsDuplicateString
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsGetStringLen
+YYGUARD_ON_WindowsGetStringLen
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsGetStringRawBuffer
+YYGUARD_ON_WindowsGetStringRawBuffer
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsIsStringEmpty
+YYGUARD_ON_WindowsIsStringEmpty
+#endif
+#if YY_THUNK_GUARD_try_get_WindowsStringHasEmbeddedNull
+YYGUARD_ON_WindowsStringHasEmbeddedNull
+#endif
 #if YY_THUNK_GUARD_try_get_Wow64DisableWow64FsRedirection
 YYGUARD_ON_Wow64DisableWow64FsRedirection
 #endif
@@ -1890,4 +2064,10 @@ YYGUARD_ON_if_indextoname
 #endif
 #if YY_THUNK_GUARD_try_get_if_nametoindex
 YYGUARD_ON_if_nametoindex
+#endif
+#if YY_THUNK_GUARD_try_get_inet_ntop
+YYGUARD_ON_inet_ntop
+#endif
+#if YY_THUNK_GUARD_try_get_inet_pton
+YYGUARD_ON_inet_pton
 #endif

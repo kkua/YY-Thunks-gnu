@@ -97,6 +97,88 @@ TRANSFORMS = [
     # 因此保留该静态导入，由 check_static_imports.py 归入"低风险"级别。
 
     # ------------------------------------------------------------------ #
+    # 0d. Thunks/WS2_32.hpp：MinGW 的 addrinfoexW::ai_canonname 是 LPCWSTR
+    #
+    #     MSVC 的 addrinfoexW::ai_canonname 是 PWSTR（可写），上游 Convert()
+    #     把 MultiByteToWideChar 的输出缓冲区指给它、并直接向它写入结尾 '\0'。
+    #     MinGW 的 ws2tcpip.h 把该成员声明成 LPCWSTR，于是：
+    #       - 把它当 MultiByteToWideChar 的 lpWideCharStr 传参 →
+    #         invalid conversion from 'LPCWSTR' to 'LPWSTR'
+    #       - 向它写入 → assignment of read-only location
+    #
+    #     成员限定来自系统头文件，垫片改不了，只能把上游代码改成"先用本地可写
+    #     指针中转，再赋给 const 成员"——语义与上游逐字一致（缓冲区仍由调用方
+    #     按 ai_canonname 读回）。
+    #
+    #     文件里有两个 Convert() 重载（A→W、A→WEX）含同一段代码，正则一次全覆盖。
+    #     上游若改动这段代码，规则会未匹配并按 required 上报 drift。
+    # ------------------------------------------------------------------ #
+    dict(
+        files=["Thunks/WS2_32.hpp"],
+        kind="regex",
+        pattern=(
+            r"(?P<i>[ ]*)_pTmp->ai_canonname = \(wchar_t\*\)_pBuffer;\n"
+            r"[ ]*const auto _cchCanonNameUTF16 = MultiByteToWideChar\(CP_ACP, 0, "
+            r"_pItem->ai_canonname, _cchCanonName, _pTmp->ai_canonname, _cchCanonName\);\n"
+            r"[ ]*_pTmp->ai_canonname\[_cchCanonNameUTF16\] = '\\0';"
+        ),
+        repl=(
+            r"\g<i>auto _szCanonName = (wchar_t*)_pBuffer;\n"
+            r"\g<i>_pTmp->ai_canonname = _szCanonName;\n"
+            r"\g<i>const auto _cchCanonNameUTF16 = MultiByteToWideChar(CP_ACP, 0, "
+            r"_pItem->ai_canonname, _cchCanonName, _szCanonName, _cchCanonName);\n"
+            r"\g<i>_szCanonName[_cchCanonNameUTF16] = '\\0';"
+        ),
+        note="addrinfoexW::ai_canonname 在 MinGW 下是 LPCWSTR，改用本地可写指针中转",
+    ),
+
+    # ------------------------------------------------------------------ #
+    # 0e. Thunks/api-ms-win-core-winrt.hpp：MSVC 的 __identifier + stdcall 装饰名
+    #
+    #     上游用 `__identifier(_CRT_STRINGIZE_(A ## @ ## B))` 拼出含 '@' 的
+    #     stdcall 装饰符号名（x86 专属技巧）。问题有两层：
+    #       - GCC 没有 __identifier；
+    #       - `A ## @ ## B` 的粘贴结果不是合法 token，GCC 在预处理阶段直接报错
+    #         （pasting ... and '@' does not give a valid preprocessing token）。
+    #
+    #     该宏（__DEFINE_RoGetActivationFactoryMapEntry）在整个源码树里**只有定义、
+    #     没有调用点**，是上游遗留的死代码。x64 上 stdcall 本就没有名字装饰，
+    #     这个 '@' 拼接没有意义。把粘贴改成空格后宏体仍是合法token序列，
+    #     且永不展开，行为不变。
+    # ------------------------------------------------------------------ #
+    dict(
+        files=["Thunks/api-ms-win-core-winrt.hpp"],
+        kind="literal",
+        pattern=" ## @ ## ",
+        repl=" ",
+        note="去掉 MSVC __identifier 的 stdcall '@' 装饰拼接（死代码宏，x64 无意义）",
+    ),
+
+    # ------------------------------------------------------------------ #
+    # 0f. Thunks/dnsapi.hpp：void* 隐式转 PIP4_ARRAY
+    #
+    #     上游 DnsQueryEx 的同步兜底把 DnsExtraInfo 缓冲区（void*）直接传给
+    #     DnsQuery_W 的 pExtra 参数（PIP4_ARRAY）。MSVC 允许 void* 隐式转
+    #     具体指针类型，GCC 视为错误（invalid conversion from 'void*'）。
+    #     缓冲区里确实是一个 IP4_ARRAY（由 DNS_ADDR_ARRAY_To_IP4_ARRAY 填的），
+    #     补一个显式转换，语义与上游一致。
+    # ------------------------------------------------------------------ #
+    dict(
+        files=["Thunks/dnsapi.hpp"],
+        kind="literal",
+        pattern="QueryOptions, _pExtra, &_pQueryResults->pQueryRecords, nullptr);",
+        repl="QueryOptions, (PIP4_ARRAY)_pExtra, &_pQueryResults->pQueryRecords, nullptr);",
+        note="void* -> PIP4_ARRAY 显式转换（同步兜底路径）",
+    ),
+    dict(
+        files=["Thunks/dnsapi.hpp"],
+        kind="literal",
+        pattern="QueryOptions, _pSharedData->pExtra, &_pQueryResults->pQueryRecords, nullptr);",
+        repl="QueryOptions, (PIP4_ARRAY)_pSharedData->pExtra, &_pQueryResults->pQueryRecords, nullptr);",
+        note="void* -> PIP4_ARRAY 显式转换（异步工作线程路径）",
+    ),
+
+    # ------------------------------------------------------------------ #
     # 0b. Shared/km.h：MSVC 版本号门控在 GCC 下恒为真，需要补齐 _MSC_VER 判断
     # ------------------------------------------------------------------ #
     dict(

@@ -7,35 +7,62 @@
 #
 # 每一行一个模块名（相对 upstream/YY-Thunks/src/Thunks）。
 # 移除某行即可让该模块重新参与编译。
+#
+# ---------------------------------------------------------------------------
+# 已打通（历史记录，防止重复排查）
+# ---------------------------------------------------------------------------
+# WS2_32.hpp        —— 原先因 MinGW ws2tcpip.h 缺 GetAddrInfoExOverlappedResult、
+#                      addrinfoexW::ai_canonname 带 const 被排除；
+#                      现由 compat 补声明 + transforms 的 ai_canonname 改写解决。
+# ncrypy.hpp        —— MinGW 无 ncryptprotect.h；现由 compat/ncryptprotect.h
+#                      （1 个句柄类型 + 5 个函数 + 3 个常量）提供。
+# netapi32.hpp      —— MinGW lmjoin.h 缺 NetGetAadJoinInformation/
+#                      NetFreeAadJoinInformation；现由 compat 补齐。
+# api-ms-win-core-winrt-error.hpp   —— MinGW 无 roerrorapi.h；
+#                      现由 compat/roerrorapi.h 提供（7 个函数 + HSTRING 转接）。
+# api-ms-win-core-winrt-string.hpp  —— MinGW 有 winstring.h（9 个函数齐全），
+#                      只需补 E_STRING_NOT_NULL_TERMINATED 常量。
+#                      当初是被同组的 roerrorapi.h 缺失"连坐"排除的。
+# dnsapi.hpp        —— MinGW windns.h 缺 DNS_ADDR / DNS_ADDR_ARRAY /
+#                      DNS_QUERY_REQUEST / DNS_QUERY_CANCEL 与 DnsQueryEx /
+#                      DnsCancelQuery；现由 compat 补齐（布局以上游用法交叉校验），
+#                      另有 2 处 void* -> PIP4_ARRAY 显式转换（transforms）。
 
-# WinRT 相关：MinGW 缺少 roerrorapi.h 与 windows.graphics.directx.direct3d11.interop.h
-api-ms-win-core-winrt.hpp
-api-ms-win-core-winrt-error.hpp
-api-ms-win-core-winrt-string.hpp
+# ---------------------------------------------------------------------------
+# 仍未打通
+# ---------------------------------------------------------------------------
+
+# MinGW-w64 没有 windows.graphics.directx.direct3d11.interop.h。
+# 该模块里 D3D11CreateDevice 用 MinGW 已有的 d3d11.h，本身没问题；
+# 卡住的是 CreateDirect3D11DeviceFromDXGIDevice —— 它需要 interop 头里的
+# IDirect3DDxgiInterfaceAccess，且返回类型还要 IInspectable（inspectable.h）。
+# 打通方式：在 compat 里提供一个 interop 头（1 个 COM 接口 + 1 个函数），
+# 但因牵连 WinRT 类型体系，留待后续。
 d3d11.hpp
 
-# CNG 的 ncryptprotect.h 未被 MinGW-w64 提供
-ncrypy.hpp
-
-# MinGW-w64 的 ndfapi.h / ndattrib.h 自身存在缺陷
-# （NDFHANDLE 未声明、DIAG_SOCKADDR 不完整、LIFE_TYPE 缺失），非移植层可修
-ndfapi.hpp
-
-# MinGW-w64 的 windns.h 缺少 DnsQueryEx/DnsCancelQuery 及其参数类型别名
-dnsapi.hpp
-
-# MinGW-w64 的 dwrite.h 版本落后：IDWriteFactory1/2/3 的 using 声明重复、
-# IDWriteFactory3::CreateFontFaceReference 签名不同，Fallback 工厂无法编译
+# MinGW-w64 的 dwrite.h / dwrite_3.h 版本落后，且缺陷在**它自己身上**，
+# 移植层无法绕过：
+#   - IDWriteFactory1/2/3 的 using 声明重复；
+#   - IDWriteFactory3::CreateFontFaceReference_ 签名与上游实现的不同，
+#     导致上游的 Fallback 工厂类（class DWriteFactory : IDWriteFactory3）
+#     仍是抽象类，编译直接报 "invalid new-expression of abstract class type"。
 dwrite.hpp
 
-# MinGW-w64 的 lmjoin.h 缺少 NetGetAadJoinInformation/NetFreeAadJoinInformation
-netapi32.hpp
+# 双重原因，都不值得投入：
+#   1. 上游守卫是 `YY_Thunks_Target < __WindowsNT6`，即低于 Vista 才生效，
+#      而本移植的最低受支持目标就是 Vista —— 启用它不产生任何 thunk；
+#   2. MinGW-w64 的 ndfapi.h / ndattrib.h 自身有缺陷（NDFHANDLE 未声明、
+#      DIAG_SOCKADDR 不完整、LIFE_TYPE 缺失），要用得先替它补类型。
+ndfapi.hpp
 
-# MinGW-w64 的 ws2tcpip.h 缺少 GetAddrInfoExOverlappedResult，
-# 且 addrinfoexW::ai_canonname 的 cv 限定导致上游赋值报错
-WS2_32.hpp
+# MinGW-w64 **有** roapi.h / activation.h / inspectable.h，缺的只是
+# roerrorapi.h（已由 compat 提供）。真正的拦路虎是 MinGW 的
+# windows.foundation.h：它对 IReference<T> 的模板特化重复定义，
+# 被本模块的 include 链带进来后报 "redefinition of struct IReference<...>"。
+# 那是 MinGW 自身头文件的 bug，移植层修不动。
+api-ms-win-core-winrt.hpp
 
-# DllMainCRTStartup.hpp 依赖 MSVC 的 /alternatename 弱别名（YY_ThunksOriginal
-# DllMainCRTStartup -> _DllMainCRTStartup），且其全部逻辑只在 YY_Thunks_Target
-# < Vista 时才生效。本移植的最低受支持目标就是 Vista，排除它不损失任何功能。
+# 依赖 MSVC 的 /alternatename 弱别名（YY_ThunksOriginal DllMainCRTStartup
+# -> _DllMainCRTStartup），且其全部逻辑只在 YY_Thunks_Target < Vista 时才生效。
+# 本移植的最低受支持目标就是 Vista，排除它不损失任何功能。
 DllMainCRTStartup.hpp
