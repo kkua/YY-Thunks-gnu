@@ -1,8 +1,8 @@
 {
   "repository": "https://github.com/Chuyu-Team/YY-Thunks.git",
-  "commit": "bb5ea67de93c323fd3c77d04946dd83497f06ea8",
-  "commit_date": "2026-09-20 12:21:16 +0800",
-  "commit_subject": "Fea锛屾坊鍔燝etNamedPipeClientProcessId銆丟etNamedPipeServerProcessId",
+  "commit": "8edd5233383f1e46b1530777d8f5456c7ec7b247",
+  "commit_date": "2026-10-13 14:10:26 +0800",
+  "commit_subject": "Bug，解决YY-Thunks.nuspec里的releaseNotes可能出现转义问题",
   "file_count": 169,
   "files": {
     "src/APISet.txt": "b2915c3278046b572d1650fd5bfcb9cc49e3c52b280093b288f5f9f50a562468",

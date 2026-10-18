@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(YYThunkGnu
-    VERSION 1.0.0
+    VERSION 1.0.1
     DESCRIPTION "YY-Thunks 的 MinGW-w64 (GCC) 移植版本"
     LANGUAGES CXX)
 
@@ -25,8 +25,8 @@ set(YY_TOOLS_DIR        "${YY_REPO_ROOT}/tools")
 # 注意：这是 CACHE 变量，**改这里的默认值不会覆盖已缓存的旧值**。改名后必须
 # 清理构建目录（或显式传 -DYY_THUNKS_GNU_DIST_DIR=...），否则仍会同步到旧路径、
 # 把已被移走的目录重新创建出来。
-set(YY_THUNKS_GNU_DIST_DIR "${YY_REPO_ROOT}/thunks-gnu/vendor/YY-Thunks-gnu" CACHE PATH
-    "移植后源码的发布目录（Rust crate：thunks-gnu/vendor/YY-Thunks-gnu）")
+set(YY_THUNKS_GNU_DIST_DIR "${YY_REPO_ROOT}/thunks-gnu-rs/vendor/YY-Thunks-gnu" CACHE PATH
+    "移植后源码的发布目录（Rust crate：thunks-gnu-rs/vendor/YY-Thunks-gnu）")
 
 # 生成物放在源码树里，与手写的 src/compat 并列。
 #

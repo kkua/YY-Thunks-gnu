@@ -49,7 +49,8 @@ def sha256_of(path: Path) -> str:
 def git(upstream: Path, *args: str) -> "str | None":
     try:
         out = subprocess.run(("git", "-C", str(upstream)) + args,
-                             capture_output=True, text=True, errors="replace")
+                             capture_output=True, text=True, encoding="utf-8",
+                             errors="replace")
     except OSError:
         return None
     if out.returncode != 0:
