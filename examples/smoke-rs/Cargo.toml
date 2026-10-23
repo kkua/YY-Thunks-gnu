@@ -1,0 +1,9 @@
+[package]
+name = "smoke-rs"
+version = "0.1.0"
+edition = "2024"
+
+[build-dependencies]
+# thunks-gnu 是构建期辅助 crate，由 build.rs 调用。
+# thunks-gnu = {version = "0.3.1", features = ["vista"]}
+thunks-gnu = {path = "../../thunks-gnu-rs", features = ["vista"]}
