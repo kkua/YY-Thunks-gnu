@@ -1,9 +1,9 @@
 {
   "generator": "tools/portgen.py",
-  "cxx_flags": "-DWINVER=0x0A00 -DYY_Thunks_Port=1 -DYY_Thunks_Target=__WindowsNT6 -D_WIN32_WINNT=0x0A00",
-  "target": "__WindowsNT6",
+  "cxx_flags": "",
+  "target": null,
   "modules": 87,
-  "self_contained": true,
+  "self_contained": false,
   "inputs": [
     "portrule/exclude.txt:298c16d4b0b3e5dcf345ae1e9be2269925ee1635e8ad924d413956ad0017e8eb",
     "portrule/thunks.manifest:06e73feb5f08f76884dc36ecc009708d2f4384fd1a70a2bcc9b1e2be5a812155",

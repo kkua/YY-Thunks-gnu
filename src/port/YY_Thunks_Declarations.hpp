@@ -202,8 +202,40 @@ __APPLY_UNIT_TEST_BOOL(CopyContext); typedef BOOL(__attribute__((__stdcall__))* 
 __APPLY_UNIT_TEST_BOOL(EventSetInformation); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventSetInformation)( REGHANDLE _hRegHandle, EVENT_INFO_CLASS _eInformationClass, PVOID _pEventInformation, ULONG _cbInformationLength); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventSetInformation( REGHANDLE _hRegHandle, EVENT_INFO_CLASS _eInformationClass, PVOID _pEventInformation, ULONG _cbInformationLength); static YY_THUNK_FNTYPE_EventSetInformation __attribute__((__cdecl__)) try_get_EventSetInformation() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_EventActivityIdControl
+__APPLY_UNIT_TEST_BOOL(EventActivityIdControl); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventActivityIdControl)( ULONG _uControlCode, LPGUID _pActivityId); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventActivityIdControl( ULONG _uControlCode, LPGUID _pActivityId); static YY_THUNK_FNTYPE_EventActivityIdControl __attribute__((__cdecl__)) try_get_EventActivityIdControl() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventRegister
+__APPLY_UNIT_TEST_BOOL(EventRegister); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventRegister)( LPCGUID _pProviderId, PENABLECALLBACK _pfnEnableCallback, PVOID _pCallbackContext, PREGHANDLE _phRegHandle); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventRegister( LPCGUID _pProviderId, PENABLECALLBACK _pfnEnableCallback, PVOID _pCallbackContext, PREGHANDLE _phRegHandle); static YY_THUNK_FNTYPE_EventRegister __attribute__((__cdecl__)) try_get_EventRegister() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventUnregister
+__APPLY_UNIT_TEST_BOOL(EventUnregister); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventUnregister)( REGHANDLE _hRegHandle); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventUnregister( REGHANDLE _hRegHandle); static YY_THUNK_FNTYPE_EventUnregister __attribute__((__cdecl__)) try_get_EventUnregister() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumerateTraceGuidsEx
+__APPLY_UNIT_TEST_BOOL(EnumerateTraceGuidsEx); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumerateTraceGuidsEx)( TRACE_QUERY_INFO_CLASS TraceQueryInfoClass, PVOID InBuffer, ULONG InBufferSize, PVOID OutBuffer, ULONG OutBufferSize, PULONG ReturnLength); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumerateTraceGuidsEx( TRACE_QUERY_INFO_CLASS TraceQueryInfoClass, PVOID InBuffer, ULONG InBufferSize, PVOID OutBuffer, ULONG OutBufferSize, PULONG ReturnLength); static YY_THUNK_FNTYPE_EnumerateTraceGuidsEx __attribute__((__cdecl__)) try_get_EnumerateTraceGuidsEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventWriteTransfer
+__APPLY_UNIT_TEST_BOOL(EventWriteTransfer); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventWriteTransfer)( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, LPCGUID ActivityId, LPCGUID RelatedActivityId, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventWriteTransfer( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, LPCGUID ActivityId, LPCGUID RelatedActivityId, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); static YY_THUNK_FNTYPE_EventWriteTransfer __attribute__((__cdecl__)) try_get_EventWriteTransfer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventEnabled
+__APPLY_UNIT_TEST_BOOL(EventEnabled); typedef BOOLEAN(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventEnabled)( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor); extern "C" BOOLEAN __attribute__((__stdcall__)) __FALLBACK_PREFIXEventEnabled( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor); static YY_THUNK_FNTYPE_EventEnabled __attribute__((__cdecl__)) try_get_EventEnabled() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventWrite
+__APPLY_UNIT_TEST_BOOL(EventWrite); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventWrite)( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventWrite( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); static YY_THUNK_FNTYPE_EventWrite __attribute__((__cdecl__)) try_get_EventWrite() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_EventWriteEx
 __APPLY_UNIT_TEST_BOOL(EventWriteEx); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventWriteEx)( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, ULONG64 Filter, ULONG Flags, LPCGUID ActivityId, LPCGUID RelatedActivityId, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventWriteEx( REGHANDLE RegHandle, PCEVENT_DESCRIPTOR EventDescriptor, ULONG64 Filter, ULONG Flags, LPCGUID ActivityId, LPCGUID RelatedActivityId, ULONG UserDataCount, PEVENT_DATA_DESCRIPTOR UserData); static YY_THUNK_FNTYPE_EventWriteEx __attribute__((__cdecl__)) try_get_EventWriteEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EventWriteString
+__APPLY_UNIT_TEST_BOOL(EventWriteString); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EventWriteString)( REGHANDLE RegHandle, UCHAR Level, ULONGLONG Keyword, PCWSTR String); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXEventWriteString( REGHANDLE RegHandle, UCHAR Level, ULONGLONG Keyword, PCWSTR String); static YY_THUNK_FNTYPE_EventWriteString __attribute__((__cdecl__)) try_get_EventWriteString() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_PowerDeterminePlatformRoleEx
@@ -218,12 +250,104 @@ __APPLY_UNIT_TEST_BOOL(PowerRegisterSuspendResumeNotification); typedef DWORD(__
 __APPLY_UNIT_TEST_BOOL(PowerUnregisterSuspendResumeNotification); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PowerUnregisterSuspendResumeNotification)( HPOWERNOTIFY _hRegistrationHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXPowerUnregisterSuspendResumeNotification( HPOWERNOTIFY _hRegistrationHandle); static YY_THUNK_FNTYPE_PowerUnregisterSuspendResumeNotification __attribute__((__cdecl__)) try_get_PowerUnregisterSuspendResumeNotification() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_AddMandatoryAce
+__APPLY_UNIT_TEST_BOOL(AddMandatoryAce); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_AddMandatoryAce)( PACL _pAcl, DWORD _uAceRevision, DWORD _fAceFlags, DWORD _uMandatoryPolicy, SID* _pLabelSid); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXAddMandatoryAce( PACL _pAcl, DWORD _uAceRevision, DWORD _fAceFlags, DWORD _uMandatoryPolicy, SID* _pLabelSid); static YY_THUNK_FNTYPE_AddMandatoryAce __attribute__((__cdecl__)) try_get_AddMandatoryAce() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetTokenInformation
+__APPLY_UNIT_TEST_BOOL(GetTokenInformation); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetTokenInformation)( HANDLE _hTokenHandle, TOKEN_INFORMATION_CLASS _eTokenInformationClass, LPVOID _pTokenInformation, DWORD _cbTokenInformationLength, PDWORD _puReturnLength); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetTokenInformation( HANDLE _hTokenHandle, TOKEN_INFORMATION_CLASS _eTokenInformationClass, LPVOID _pTokenInformation, DWORD _cbTokenInformationLength, PDWORD _puReturnLength); static YY_THUNK_FNTYPE_GetTokenInformation __attribute__((__cdecl__)) try_get_GetTokenInformation() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptOpenAlgorithmProvider
+__APPLY_UNIT_TEST_BOOL(BCryptOpenAlgorithmProvider); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptOpenAlgorithmProvider)( BCRYPT_ALG_HANDLE* _phAlgorithm, LPCWSTR _szAlgId, LPCWSTR _szImplementation, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptOpenAlgorithmProvider( BCRYPT_ALG_HANDLE* _phAlgorithm, LPCWSTR _szAlgId, LPCWSTR _szImplementation, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptOpenAlgorithmProvider __attribute__((__cdecl__)) try_get_BCryptOpenAlgorithmProvider() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptCloseAlgorithmProvider
+__APPLY_UNIT_TEST_BOOL(BCryptCloseAlgorithmProvider); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptCloseAlgorithmProvider)( BCRYPT_ALG_HANDLE _hAlgorithm, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptCloseAlgorithmProvider( BCRYPT_ALG_HANDLE _hAlgorithm, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptCloseAlgorithmProvider __attribute__((__cdecl__)) try_get_BCryptCloseAlgorithmProvider() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptGenRandom
+__APPLY_UNIT_TEST_BOOL(BCryptGenRandom); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptGenRandom)( BCRYPT_ALG_HANDLE _hAlgorithm, PUCHAR _pbBuffer, ULONG _cbBuffer, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptGenRandom( BCRYPT_ALG_HANDLE _hAlgorithm, PUCHAR _pbBuffer, ULONG _cbBuffer, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptGenRandom __attribute__((__cdecl__)) try_get_BCryptGenRandom() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptGetProperty
+__APPLY_UNIT_TEST_BOOL(BCryptGetProperty); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptGetProperty)( BCRYPT_HANDLE hObject, LPCWSTR pszProperty, PUCHAR pbOutput, ULONG cbOutput, ULONG *pcbResult, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptGetProperty( BCRYPT_HANDLE hObject, LPCWSTR pszProperty, PUCHAR pbOutput, ULONG cbOutput, ULONG *pcbResult, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptGetProperty __attribute__((__cdecl__)) try_get_BCryptGetProperty() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptSetProperty
+__APPLY_UNIT_TEST_BOOL(BCryptSetProperty); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptSetProperty)( BCRYPT_HANDLE _hObject, LPCWSTR _szProperty, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptSetProperty( BCRYPT_HANDLE _hObject, LPCWSTR _szProperty, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptSetProperty __attribute__((__cdecl__)) try_get_BCryptSetProperty() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptCreateHash
+__APPLY_UNIT_TEST_BOOL(BCryptCreateHash); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptCreateHash)( BCRYPT_ALG_HANDLE hAlgorithm, BCRYPT_HASH_HANDLE *phHash, PUCHAR pbHashObject, ULONG cbHashObject, PUCHAR pbSecret, ULONG cbSecret, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptCreateHash( BCRYPT_ALG_HANDLE hAlgorithm, BCRYPT_HASH_HANDLE *phHash, PUCHAR pbHashObject, ULONG cbHashObject, PUCHAR pbSecret, ULONG cbSecret, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptCreateHash __attribute__((__cdecl__)) try_get_BCryptCreateHash() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptHashData
+__APPLY_UNIT_TEST_BOOL(BCryptHashData); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptHashData)( BCRYPT_HASH_HANDLE hHash, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptHashData( BCRYPT_HASH_HANDLE hHash, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptHashData __attribute__((__cdecl__)) try_get_BCryptHashData() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptFinishHash
+__APPLY_UNIT_TEST_BOOL(BCryptFinishHash); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptFinishHash)( BCRYPT_HASH_HANDLE hHash, PUCHAR pbOutput, ULONG cbOutput, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptFinishHash( BCRYPT_HASH_HANDLE hHash, PUCHAR pbOutput, ULONG cbOutput, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptFinishHash __attribute__((__cdecl__)) try_get_BCryptFinishHash() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptDestroyHash
+__APPLY_UNIT_TEST_BOOL(BCryptDestroyHash); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptDestroyHash)( BCRYPT_HASH_HANDLE hHash); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptDestroyHash( BCRYPT_HASH_HANDLE hHash); static YY_THUNK_FNTYPE_BCryptDestroyHash __attribute__((__cdecl__)) try_get_BCryptDestroyHash() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_BCryptDeriveKeyPBKDF2
 __APPLY_UNIT_TEST_BOOL(BCryptDeriveKeyPBKDF2); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptDeriveKeyPBKDF2)( BCRYPT_ALG_HANDLE hPrf, PUCHAR pbPassword, ULONG cbPassword, PUCHAR pbSalt, ULONG cbSalt, ULONGLONG cIterations, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptDeriveKeyPBKDF2( BCRYPT_ALG_HANDLE hPrf, PUCHAR pbPassword, ULONG cbPassword, PUCHAR pbSalt, ULONG cbSalt, ULONGLONG cIterations, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptDeriveKeyPBKDF2 __attribute__((__cdecl__)) try_get_BCryptDeriveKeyPBKDF2() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_BCryptDeriveKeyCapi
 __APPLY_UNIT_TEST_BOOL(BCryptDeriveKeyCapi); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptDeriveKeyCapi)( BCRYPT_HASH_HANDLE hHash, BCRYPT_ALG_HANDLE hTargetAlg, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptDeriveKeyCapi( BCRYPT_HASH_HANDLE hHash, BCRYPT_ALG_HANDLE hTargetAlg, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptDeriveKeyCapi __attribute__((__cdecl__)) try_get_BCryptDeriveKeyCapi() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptEncrypt
+__APPLY_UNIT_TEST_BOOL(BCryptEncrypt); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptEncrypt)( BCRYPT_KEY_HANDLE _hKey, PUCHAR _pInput, ULONG _cbInput, void *_pPaddingInfo, PUCHAR _pIV, ULONG _cbIV, PUCHAR _pOutput, ULONG _cbOutput, ULONG *_pcbResult, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptEncrypt( BCRYPT_KEY_HANDLE _hKey, PUCHAR _pInput, ULONG _cbInput, void *_pPaddingInfo, PUCHAR _pIV, ULONG _cbIV, PUCHAR _pOutput, ULONG _cbOutput, ULONG *_pcbResult, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptEncrypt __attribute__((__cdecl__)) try_get_BCryptEncrypt() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptDecrypt
+__APPLY_UNIT_TEST_BOOL(BCryptDecrypt); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptDecrypt)( BCRYPT_KEY_HANDLE _hKey, PUCHAR _pInput, ULONG _cbInput, void* _pPaddingInfo, PUCHAR _pIV, ULONG _cbIV, PUCHAR _pOutput, ULONG _cbOutput, ULONG* _pcbResult, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptDecrypt( BCRYPT_KEY_HANDLE _hKey, PUCHAR _pInput, ULONG _cbInput, void* _pPaddingInfo, PUCHAR _pIV, ULONG _cbIV, PUCHAR _pOutput, ULONG _cbOutput, ULONG* _pcbResult, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptDecrypt __attribute__((__cdecl__)) try_get_BCryptDecrypt() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptGenerateSymmetricKey
+__APPLY_UNIT_TEST_BOOL(BCryptGenerateSymmetricKey); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptGenerateSymmetricKey)( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE * _phKey, PUCHAR _pKeyObject, ULONG _cbKeyObject, PUCHAR _pSecret, ULONG _cbSecret, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptGenerateSymmetricKey( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE * _phKey, PUCHAR _pKeyObject, ULONG _cbKeyObject, PUCHAR _pSecret, ULONG _cbSecret, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptGenerateSymmetricKey __attribute__((__cdecl__)) try_get_BCryptGenerateSymmetricKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptDestroyKey
+__APPLY_UNIT_TEST_BOOL(BCryptDestroyKey); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptDestroyKey)( BCRYPT_KEY_HANDLE _hKey); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptDestroyKey( BCRYPT_KEY_HANDLE _hKey); static YY_THUNK_FNTYPE_BCryptDestroyKey __attribute__((__cdecl__)) try_get_BCryptDestroyKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptExportKey
+__APPLY_UNIT_TEST_BOOL(BCryptExportKey); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptExportKey)( BCRYPT_KEY_HANDLE _hKey, BCRYPT_KEY_HANDLE _hExportKey, LPCWSTR _szBlobType, PUCHAR _pOutput, ULONG _cbOutput, ULONG* _pcbResult, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptExportKey( BCRYPT_KEY_HANDLE _hKey, BCRYPT_KEY_HANDLE _hExportKey, LPCWSTR _szBlobType, PUCHAR _pOutput, ULONG _cbOutput, ULONG* _pcbResult, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptExportKey __attribute__((__cdecl__)) try_get_BCryptExportKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptImportKey
+__APPLY_UNIT_TEST_BOOL(BCryptImportKey); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptImportKey)( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, BCRYPT_KEY_HANDLE* _phKey, PUCHAR _pKeyObject, ULONG _cbKeyObject, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptImportKey( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, BCRYPT_KEY_HANDLE* _phKey, PUCHAR _pKeyObject, ULONG _cbKeyObject, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptImportKey __attribute__((__cdecl__)) try_get_BCryptImportKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptGenerateKeyPair
+__APPLY_UNIT_TEST_BOOL(BCryptGenerateKeyPair); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptGenerateKeyPair)( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE * _phKey, ULONG _uBitLength, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptGenerateKeyPair( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE * _phKey, ULONG _uBitLength, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptGenerateKeyPair __attribute__((__cdecl__)) try_get_BCryptGenerateKeyPair() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptFinalizeKeyPair
+__APPLY_UNIT_TEST_BOOL(BCryptFinalizeKeyPair); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptFinalizeKeyPair)( BCRYPT_KEY_HANDLE _hKey, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptFinalizeKeyPair( BCRYPT_KEY_HANDLE _hKey, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptFinalizeKeyPair __attribute__((__cdecl__)) try_get_BCryptFinalizeKeyPair() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptImportKeyPair
+__APPLY_UNIT_TEST_BOOL(BCryptImportKeyPair); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptImportKeyPair)( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, BCRYPT_KEY_HANDLE* _phKey, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptImportKeyPair( BCRYPT_ALG_HANDLE _hAlgorithm, BCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, BCRYPT_KEY_HANDLE* _phKey, PUCHAR _pInput, ULONG _cbInput, ULONG _fFlags); static YY_THUNK_FNTYPE_BCryptImportKeyPair __attribute__((__cdecl__)) try_get_BCryptImportKeyPair() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptSignHash
+__APPLY_UNIT_TEST_BOOL(BCryptSignHash); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptSignHash)( BCRYPT_KEY_HANDLE hKey, void *pPaddingInfo, PUCHAR pbInput, ULONG cbInput, PUCHAR pbOutput, ULONG cbOutput, ULONG *pcbResult, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptSignHash( BCRYPT_KEY_HANDLE hKey, void *pPaddingInfo, PUCHAR pbInput, ULONG cbInput, PUCHAR pbOutput, ULONG cbOutput, ULONG *pcbResult, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptSignHash __attribute__((__cdecl__)) try_get_BCryptSignHash() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_BCryptVerifySignature
+__APPLY_UNIT_TEST_BOOL(BCryptVerifySignature); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_BCryptVerifySignature)( BCRYPT_KEY_HANDLE hKey, void *pPaddingInfo, PUCHAR pbHash, ULONG cbHash, PUCHAR pbSignature, ULONG cbSignature, ULONG dwFlags); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXBCryptVerifySignature( BCRYPT_KEY_HANDLE hKey, void *pPaddingInfo, PUCHAR pbHash, ULONG cbHash, PUCHAR pbSignature, ULONG cbSignature, ULONG dwFlags); static YY_THUNK_FNTYPE_BCryptVerifySignature __attribute__((__cdecl__)) try_get_BCryptVerifySignature() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptImportPublicKeyInfoEx2
+__APPLY_UNIT_TEST_BOOL(CryptImportPublicKeyInfoEx2); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptImportPublicKeyInfoEx2)( DWORD dwCertEncodingType, PCERT_PUBLIC_KEY_INFO pInfo, DWORD dwFlags, void* pvAuxInfo, BCRYPT_KEY_HANDLE* phKey); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptImportPublicKeyInfoEx2( DWORD dwCertEncodingType, PCERT_PUBLIC_KEY_INFO pInfo, DWORD dwFlags, void* pvAuxInfo, BCRYPT_KEY_HANDLE* phKey); static YY_THUNK_FNTYPE_CryptImportPublicKeyInfoEx2 __attribute__((__cdecl__)) try_get_CryptImportPublicKeyInfoEx2() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_ProcessPrng
@@ -278,6 +402,50 @@ __APPLY_UNIT_TEST_BOOL(CM_Get_DevNode_PropertyW); typedef CONFIGRET(__attribute_
 __APPLY_UNIT_TEST_BOOL(CM_Set_DevNode_PropertyW); typedef CONFIGRET(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CM_Set_DevNode_PropertyW)( DEVINST dnDevInst, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, ULONG PropertyBufferSize, ULONG ulFlags); extern "C" CONFIGRET __attribute__((__stdcall__)) __FALLBACK_PREFIXCM_Set_DevNode_PropertyW( DEVINST dnDevInst, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, ULONG PropertyBufferSize, ULONG ulFlags); static YY_THUNK_FNTYPE_CM_Set_DevNode_PropertyW __attribute__((__cdecl__)) try_get_CM_Set_DevNode_PropertyW() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_CredPackAuthenticationBufferW
+__APPLY_UNIT_TEST_BOOL(CredPackAuthenticationBufferW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredPackAuthenticationBufferW)( DWORD dwFlags, LPWSTR pszUserName, LPWSTR pszPassword, PBYTE pPackedCredentials, DWORD* pcbPackedCredentials); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCredPackAuthenticationBufferW( DWORD dwFlags, LPWSTR pszUserName, LPWSTR pszPassword, PBYTE pPackedCredentials, DWORD* pcbPackedCredentials); static YY_THUNK_FNTYPE_CredPackAuthenticationBufferW __attribute__((__cdecl__)) try_get_CredPackAuthenticationBufferW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CredPackAuthenticationBufferA
+__APPLY_UNIT_TEST_BOOL(CredPackAuthenticationBufferA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredPackAuthenticationBufferA)( DWORD dwFlags, LPSTR pszUserName, LPSTR pszPassword, PBYTE pPackedCredentials, DWORD* pcbPackedCredentials); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCredPackAuthenticationBufferA( DWORD dwFlags, LPSTR pszUserName, LPSTR pszPassword, PBYTE pPackedCredentials, DWORD* pcbPackedCredentials); static YY_THUNK_FNTYPE_CredPackAuthenticationBufferA __attribute__((__cdecl__)) try_get_CredPackAuthenticationBufferA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CredUnPackAuthenticationBufferW
+__APPLY_UNIT_TEST_BOOL(CredUnPackAuthenticationBufferW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredUnPackAuthenticationBufferW)( DWORD dwFlags, PVOID pAuthBuffer, DWORD cbAuthBuffer, LPWSTR pszUserName, DWORD* pcchMaxUserName, LPWSTR pszDomainName, DWORD* pcchMaxDomainName, LPWSTR pszPassword, DWORD* pcchMaxPassword); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCredUnPackAuthenticationBufferW( DWORD dwFlags, PVOID pAuthBuffer, DWORD cbAuthBuffer, LPWSTR pszUserName, DWORD* pcchMaxUserName, LPWSTR pszDomainName, DWORD* pcchMaxDomainName, LPWSTR pszPassword, DWORD* pcchMaxPassword); static YY_THUNK_FNTYPE_CredUnPackAuthenticationBufferW __attribute__((__cdecl__)) try_get_CredUnPackAuthenticationBufferW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CredUnPackAuthenticationBufferA
+__APPLY_UNIT_TEST_BOOL(CredUnPackAuthenticationBufferA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredUnPackAuthenticationBufferA)( DWORD dwFlags, PVOID pAuthBuffer, DWORD cbAuthBuffer, LPSTR pszUserName, DWORD* pcchMaxUserName, LPSTR pszDomainName, DWORD* pcchMaxDomainName, LPSTR pszPassword, DWORD* pcchMaxPassword); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCredUnPackAuthenticationBufferA( DWORD dwFlags, PVOID pAuthBuffer, DWORD cbAuthBuffer, LPSTR pszUserName, DWORD* pcchMaxUserName, LPSTR pszDomainName, DWORD* pcchMaxDomainName, LPSTR pszPassword, DWORD* pcchMaxPassword); static YY_THUNK_FNTYPE_CredUnPackAuthenticationBufferA __attribute__((__cdecl__)) try_get_CredUnPackAuthenticationBufferA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CredUIPromptForWindowsCredentialsW
+__APPLY_UNIT_TEST_BOOL(CredUIPromptForWindowsCredentialsW); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredUIPromptForWindowsCredentialsW)( PCREDUI_INFOW pUiInfo, DWORD dwAuthError, ULONG* pulAuthPackage, LPCVOID pvInAuthBuffer, ULONG ulInAuthBufferSize, LPVOID* ppvOutAuthBuffer, ULONG* pulOutAuthBufferSize, BOOL* pfSave, DWORD dwFlags); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXCredUIPromptForWindowsCredentialsW( PCREDUI_INFOW pUiInfo, DWORD dwAuthError, ULONG* pulAuthPackage, LPCVOID pvInAuthBuffer, ULONG ulInAuthBufferSize, LPVOID* ppvOutAuthBuffer, ULONG* pulOutAuthBufferSize, BOOL* pfSave, DWORD dwFlags); static YY_THUNK_FNTYPE_CredUIPromptForWindowsCredentialsW __attribute__((__cdecl__)) try_get_CredUIPromptForWindowsCredentialsW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CredUIPromptForWindowsCredentialsA
+__APPLY_UNIT_TEST_BOOL(CredUIPromptForWindowsCredentialsA); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CredUIPromptForWindowsCredentialsA)( PCREDUI_INFOA pUiInfo, DWORD dwAuthError, ULONG* pulAuthPackage, LPCVOID pvInAuthBuffer, ULONG ulInAuthBufferSize, LPVOID* ppvOutAuthBuffer, ULONG* pulOutAuthBufferSize, BOOL* pfSave, DWORD dwFlags); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXCredUIPromptForWindowsCredentialsA( PCREDUI_INFOA pUiInfo, DWORD dwAuthError, ULONG* pulAuthPackage, LPCVOID pvInAuthBuffer, ULONG ulInAuthBufferSize, LPVOID* ppvOutAuthBuffer, ULONG* pulOutAuthBufferSize, BOOL* pfSave, DWORD dwFlags); static YY_THUNK_FNTYPE_CredUIPromptForWindowsCredentialsA __attribute__((__cdecl__)) try_get_CredUIPromptForWindowsCredentialsA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptHashCertificate2
+__APPLY_UNIT_TEST_BOOL(CryptHashCertificate2); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptHashCertificate2)( LPCWSTR _szCNGHashAlgId, DWORD _fFlags, void* pvReserved, const BYTE* pbEncoded, DWORD cbEncoded, BYTE* pbComputedHash, DWORD* pcbComputedHash); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptHashCertificate2( LPCWSTR _szCNGHashAlgId, DWORD _fFlags, void* pvReserved, const BYTE* pbEncoded, DWORD cbEncoded, BYTE* pbComputedHash, DWORD* pcbComputedHash); static YY_THUNK_FNTYPE_CryptHashCertificate2 __attribute__((__cdecl__)) try_get_CryptHashCertificate2() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptProtectMemory
+__APPLY_UNIT_TEST_BOOL(CryptProtectMemory); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptProtectMemory)( LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptProtectMemory( LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags); static YY_THUNK_FNTYPE_CryptProtectMemory __attribute__((__cdecl__)) try_get_CryptProtectMemory() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptUnprotectMemory
+__APPLY_UNIT_TEST_BOOL(CryptUnprotectMemory); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptUnprotectMemory)( LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptUnprotectMemory( LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags); static YY_THUNK_FNTYPE_CryptUnprotectMemory __attribute__((__cdecl__)) try_get_CryptUnprotectMemory() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptBinaryToStringW
+__APPLY_UNIT_TEST_BOOL(CryptBinaryToStringW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptBinaryToStringW)( const BYTE* _pBinary, DWORD _cbBinary, DWORD _fFlags, LPWSTR _szString, DWORD* _pcString); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptBinaryToStringW( const BYTE* _pBinary, DWORD _cbBinary, DWORD _fFlags, LPWSTR _szString, DWORD* _pcString); static YY_THUNK_FNTYPE_CryptBinaryToStringW __attribute__((__cdecl__)) try_get_CryptBinaryToStringW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CryptBinaryToStringA
+__APPLY_UNIT_TEST_BOOL(CryptBinaryToStringA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CryptBinaryToStringA)( const BYTE* _pBinary, DWORD _cbBinary, DWORD _fFlags, LPSTR _szString, DWORD* _pcString); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCryptBinaryToStringA( const BYTE* _pBinary, DWORD _cbBinary, DWORD _fFlags, LPSTR _szString, DWORD* _pcString); static YY_THUNK_FNTYPE_CryptBinaryToStringA __attribute__((__cdecl__)) try_get_CryptBinaryToStringA() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_D3D12CreateDevice
 __APPLY_UNIT_TEST_BOOL(D3D12CreateDevice); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_D3D12CreateDevice)( IUnknown* pAdapter, D3D_FEATURE_LEVEL MinimumFeatureLevel, const IID & riid, void** ppDevice); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXD3D12CreateDevice( IUnknown* pAdapter, D3D_FEATURE_LEVEL MinimumFeatureLevel, const IID & riid, void** ppDevice); static YY_THUNK_FNTYPE_D3D12CreateDevice __attribute__((__cdecl__)) try_get_D3D12CreateDevice() noexcept;
 #endif
@@ -288,6 +456,18 @@ __APPLY_UNIT_TEST_BOOL(D3D12GetDebugInterface); typedef HRESULT(__attribute__((_
 
 #if YY_THUNK_GUARD_try_get_D3D12SerializeVersionedRootSignature
 __APPLY_UNIT_TEST_BOOL(D3D12SerializeVersionedRootSignature); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_D3D12SerializeVersionedRootSignature)( const D3D12_VERSIONED_ROOT_SIGNATURE_DESC* _pRootSignature, ID3DBlob** _ppBlob, ID3DBlob** _ppErrorBlob); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXD3D12SerializeVersionedRootSignature( const D3D12_VERSIONED_ROOT_SIGNATURE_DESC* _pRootSignature, ID3DBlob** _ppBlob, ID3DBlob** _ppErrorBlob); static YY_THUNK_FNTYPE_D3D12SerializeVersionedRootSignature __attribute__((__cdecl__)) try_get_D3D12SerializeVersionedRootSignature() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_Direct3DCreate9Ex
+__APPLY_UNIT_TEST_BOOL(Direct3DCreate9Ex); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_Direct3DCreate9Ex)(UINT SDKVersion, IDirect3D9Ex** unnamedParam2); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDirect3DCreate9Ex(UINT SDKVersion, IDirect3D9Ex** unnamedParam2); static YY_THUNK_FNTYPE_Direct3DCreate9Ex __attribute__((__cdecl__)) try_get_Direct3DCreate9Ex() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SymSetSearchPathW
+__APPLY_UNIT_TEST_BOOL(SymSetSearchPathW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SymSetSearchPathW)( HANDLE hProcess, PCWSTR SearchPathA); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSymSetSearchPathW( HANDLE hProcess, PCWSTR SearchPathA); static YY_THUNK_FNTYPE_SymSetSearchPathW __attribute__((__cdecl__)) try_get_SymSetSearchPathW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SymGetSearchPathW
+__APPLY_UNIT_TEST_BOOL(SymGetSearchPathW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SymGetSearchPathW)( HANDLE hProcess, PWSTR SearchPathA, DWORD SearchPathLength); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSymGetSearchPathW( HANDLE hProcess, PWSTR SearchPathA, DWORD SearchPathLength); static YY_THUNK_FNTYPE_SymGetSearchPathW __attribute__((__cdecl__)) try_get_SymGetSearchPathW() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_DCompositionCreateDevice
@@ -310,6 +490,58 @@ __APPLY_UNIT_TEST_BOOL(DnsQueryEx); typedef DNS_STATUS(__attribute__((__stdcall_
 __APPLY_UNIT_TEST_BOOL(DnsCancelQuery); typedef DNS_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DnsCancelQuery)( PDNS_QUERY_CANCEL _pCancelHandle); extern "C" DNS_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXDnsCancelQuery( PDNS_QUERY_CANCEL _pCancelHandle); static YY_THUNK_FNTYPE_DnsCancelQuery __attribute__((__cdecl__)) try_get_DnsCancelQuery() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_DwmEnableBlurBehindWindow
+__APPLY_UNIT_TEST_BOOL(DwmEnableBlurBehindWindow); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmEnableBlurBehindWindow)(HWND _hWnd, const DWM_BLURBEHIND* _pBlurBehind); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmEnableBlurBehindWindow(HWND _hWnd, const DWM_BLURBEHIND* _pBlurBehind); static YY_THUNK_FNTYPE_DwmEnableBlurBehindWindow __attribute__((__cdecl__)) try_get_DwmEnableBlurBehindWindow() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmIsCompositionEnabled
+__APPLY_UNIT_TEST_BOOL(DwmIsCompositionEnabled); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmIsCompositionEnabled)( BOOL* _pbEnabled); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmIsCompositionEnabled( BOOL* _pbEnabled); static YY_THUNK_FNTYPE_DwmIsCompositionEnabled __attribute__((__cdecl__)) try_get_DwmIsCompositionEnabled() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmEnableComposition
+__APPLY_UNIT_TEST_BOOL(DwmEnableComposition); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmEnableComposition)(UINT _uCompositionAction); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmEnableComposition(UINT _uCompositionAction); static YY_THUNK_FNTYPE_DwmEnableComposition __attribute__((__cdecl__)) try_get_DwmEnableComposition() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmExtendFrameIntoClientArea
+__APPLY_UNIT_TEST_BOOL(DwmExtendFrameIntoClientArea); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmExtendFrameIntoClientArea)(HWND _hWnd, const MARGINS* _pMarInset); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmExtendFrameIntoClientArea(HWND _hWnd, const MARGINS* _pMarInset); static YY_THUNK_FNTYPE_DwmExtendFrameIntoClientArea __attribute__((__cdecl__)) try_get_DwmExtendFrameIntoClientArea() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmDefWindowProc
+__APPLY_UNIT_TEST_BOOL(DwmDefWindowProc); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmDefWindowProc)( HWND _hWnd, UINT _uMsg, WPARAM _wParam, LPARAM _lParam, LRESULT* _plResult); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmDefWindowProc( HWND _hWnd, UINT _uMsg, WPARAM _wParam, LPARAM _lParam, LRESULT* _plResult); static YY_THUNK_FNTYPE_DwmDefWindowProc __attribute__((__cdecl__)) try_get_DwmDefWindowProc() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmGetColorizationColor
+__APPLY_UNIT_TEST_BOOL(DwmGetColorizationColor); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmGetColorizationColor)( DWORD* _pcrColorization, BOOL* _pbOpaqueBlend); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmGetColorizationColor( DWORD* _pcrColorization, BOOL* _pbOpaqueBlend); static YY_THUNK_FNTYPE_DwmGetColorizationColor __attribute__((__cdecl__)) try_get_DwmGetColorizationColor() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmGetWindowAttribute
+__APPLY_UNIT_TEST_BOOL(DwmGetWindowAttribute); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmGetWindowAttribute)(HWND _hWnd, DWORD _uAttribute, PVOID _pvAttribute, DWORD _cbAttribute); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmGetWindowAttribute(HWND _hWnd, DWORD _uAttribute, PVOID _pvAttribute, DWORD _cbAttribute); static YY_THUNK_FNTYPE_DwmGetWindowAttribute __attribute__((__cdecl__)) try_get_DwmGetWindowAttribute() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmSetWindowAttribute
+__APPLY_UNIT_TEST_BOOL(DwmSetWindowAttribute); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmSetWindowAttribute)(HWND _hWnd, DWORD _uAttribute, LPCVOID _pvAttribute, DWORD _cbAttribute); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmSetWindowAttribute(HWND _hWnd, DWORD _uAttribute, LPCVOID _pvAttribute, DWORD _cbAttribute); static YY_THUNK_FNTYPE_DwmSetWindowAttribute __attribute__((__cdecl__)) try_get_DwmSetWindowAttribute() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmFlush
+__APPLY_UNIT_TEST_BOOL(DwmFlush); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmFlush)(); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmFlush(); static YY_THUNK_FNTYPE_DwmFlush __attribute__((__cdecl__)) try_get_DwmFlush() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmGetCompositionTimingInfo
+__APPLY_UNIT_TEST_BOOL(DwmGetCompositionTimingInfo); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmGetCompositionTimingInfo)( HWND _hWnd, DWM_TIMING_INFO* _pTimingInfo); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmGetCompositionTimingInfo( HWND _hWnd, DWM_TIMING_INFO* _pTimingInfo); static YY_THUNK_FNTYPE_DwmGetCompositionTimingInfo __attribute__((__cdecl__)) try_get_DwmGetCompositionTimingInfo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmInvalidateIconicBitmaps
+__APPLY_UNIT_TEST_BOOL(DwmInvalidateIconicBitmaps); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmInvalidateIconicBitmaps)(HWND _hWnd); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmInvalidateIconicBitmaps(HWND _hWnd); static YY_THUNK_FNTYPE_DwmInvalidateIconicBitmaps __attribute__((__cdecl__)) try_get_DwmInvalidateIconicBitmaps() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmSetIconicLivePreviewBitmap
+__APPLY_UNIT_TEST_BOOL(DwmSetIconicLivePreviewBitmap); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmSetIconicLivePreviewBitmap)(HWND _hWnd, HBITMAP _hBmp, POINT* _pClientPonit, DWORD _fSITFlags); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmSetIconicLivePreviewBitmap(HWND _hWnd, HBITMAP _hBmp, POINT* _pClientPonit, DWORD _fSITFlags); static YY_THUNK_FNTYPE_DwmSetIconicLivePreviewBitmap __attribute__((__cdecl__)) try_get_DwmSetIconicLivePreviewBitmap() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DwmSetIconicThumbnail
+__APPLY_UNIT_TEST_BOOL(DwmSetIconicThumbnail); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DwmSetIconicThumbnail)(HWND _hWnd, HBITMAP _hBmp, DWORD _fSITFlags); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDwmSetIconicThumbnail(HWND _hWnd, HBITMAP _hBmp, DWORD _fSITFlags); static YY_THUNK_FNTYPE_DwmSetIconicThumbnail __attribute__((__cdecl__)) try_get_DwmSetIconicThumbnail() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_CreateDXGIFactory
 __APPLY_UNIT_TEST_BOOL(CreateDXGIFactory); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateDXGIFactory)(const IID & _IID, void** _ppFactory); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateDXGIFactory(const IID & _IID, void** _ppFactory); static YY_THUNK_FNTYPE_CreateDXGIFactory __attribute__((__cdecl__)) try_get_CreateDXGIFactory() noexcept;
 #endif
@@ -322,8 +554,56 @@ __APPLY_UNIT_TEST_BOOL(CreateDXGIFactory1); typedef HRESULT(__attribute__((__std
 __APPLY_UNIT_TEST_BOOL(CreateDXGIFactory2); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateDXGIFactory2)(UINT _fFlags, const IID & _IID, void** _ppFactory); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateDXGIFactory2(UINT _fFlags, const IID & _IID, void** _ppFactory); static YY_THUNK_FNTYPE_CreateDXGIFactory2 __attribute__((__cdecl__)) try_get_CreateDXGIFactory2() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_DXVA2CreateDirect3DDeviceManager9
+__APPLY_UNIT_TEST_BOOL(DXVA2CreateDirect3DDeviceManager9); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DXVA2CreateDirect3DDeviceManager9)( UINT* pResetToken, IDirect3DDeviceManager9** ppDeviceManager); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDXVA2CreateDirect3DDeviceManager9( UINT* pResetToken, IDirect3DDeviceManager9** ppDeviceManager); static YY_THUNK_FNTYPE_DXVA2CreateDirect3DDeviceManager9 __attribute__((__cdecl__)) try_get_DXVA2CreateDirect3DDeviceManager9() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DXVA2CreateVideoService
+__APPLY_UNIT_TEST_BOOL(DXVA2CreateVideoService); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DXVA2CreateVideoService)( IDirect3DDevice9* pDD, const IID & riid, void** ppService); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDXVA2CreateVideoService( IDirect3DDevice9* pDD, const IID & riid, void** ppService); static YY_THUNK_FNTYPE_DXVA2CreateVideoService __attribute__((__cdecl__)) try_get_DXVA2CreateVideoService() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetAttachDatabase2W
+__APPLY_UNIT_TEST_BOOL(JetAttachDatabase2W); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetAttachDatabase2W)( JET_SESID sesid, JET_PCWSTR szFilename, const unsigned long cpgDatabaseSizeMax, JET_GRBIT grbit); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetAttachDatabase2W( JET_SESID sesid, JET_PCWSTR szFilename, const unsigned long cpgDatabaseSizeMax, JET_GRBIT grbit); static YY_THUNK_FNTYPE_JetAttachDatabase2W __attribute__((__cdecl__)) try_get_JetAttachDatabase2W() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetBeginSessionW
+__APPLY_UNIT_TEST_BOOL(JetBeginSessionW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetBeginSessionW)( JET_INSTANCE instance, JET_SESID* psesid, JET_PCWSTR szUserName, JET_PCWSTR szPassword); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetBeginSessionW( JET_INSTANCE instance, JET_SESID* psesid, JET_PCWSTR szUserName, JET_PCWSTR szPassword); static YY_THUNK_FNTYPE_JetBeginSessionW __attribute__((__cdecl__)) try_get_JetBeginSessionW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetCreateInstanceW
+__APPLY_UNIT_TEST_BOOL(JetCreateInstanceW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetCreateInstanceW)( JET_INSTANCE* pinstance, JET_PCWSTR szInstanceName); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetCreateInstanceW( JET_INSTANCE* pinstance, JET_PCWSTR szInstanceName); static YY_THUNK_FNTYPE_JetCreateInstanceW __attribute__((__cdecl__)) try_get_JetCreateInstanceW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetGetTableColumnInfoW
+__APPLY_UNIT_TEST_BOOL(JetGetTableColumnInfoW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetGetTableColumnInfoW)( JET_SESID sesid, JET_TABLEID tableid, JET_PCWSTR szColumnName, void* pvResult, unsigned long cbMax, unsigned long InfoLevel); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetGetTableColumnInfoW( JET_SESID sesid, JET_TABLEID tableid, JET_PCWSTR szColumnName, void* pvResult, unsigned long cbMax, unsigned long InfoLevel); static YY_THUNK_FNTYPE_JetGetTableColumnInfoW __attribute__((__cdecl__)) try_get_JetGetTableColumnInfoW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetOpenDatabaseW
+__APPLY_UNIT_TEST_BOOL(JetOpenDatabaseW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetOpenDatabaseW)( JET_SESID sesid, JET_PCWSTR szFilename, JET_PCWSTR szConnect, JET_DBID* pdbid, JET_GRBIT grbit); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetOpenDatabaseW( JET_SESID sesid, JET_PCWSTR szFilename, JET_PCWSTR szConnect, JET_DBID* pdbid, JET_GRBIT grbit); static YY_THUNK_FNTYPE_JetOpenDatabaseW __attribute__((__cdecl__)) try_get_JetOpenDatabaseW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetOpenTableW
+__APPLY_UNIT_TEST_BOOL(JetOpenTableW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetOpenTableW)( JET_SESID sesid, JET_DBID dbid, JET_PCWSTR szTableName, const void* pvParameters, unsigned long cbParameters, JET_GRBIT grbit, JET_TABLEID* ptableid); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetOpenTableW( JET_SESID sesid, JET_DBID dbid, JET_PCWSTR szTableName, const void* pvParameters, unsigned long cbParameters, JET_GRBIT grbit, JET_TABLEID* ptableid); static YY_THUNK_FNTYPE_JetOpenTableW __attribute__((__cdecl__)) try_get_JetOpenTableW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetSetSystemParameterW
+__APPLY_UNIT_TEST_BOOL(JetSetSystemParameterW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetSetSystemParameterW)( JET_INSTANCE* pinstance, JET_SESID sesid, unsigned long paramid, JET_API_PTR lParam, JET_PCWSTR szParam); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetSetSystemParameterW( JET_INSTANCE* pinstance, JET_SESID sesid, unsigned long paramid, JET_API_PTR lParam, JET_PCWSTR szParam); static YY_THUNK_FNTYPE_JetSetSystemParameterW __attribute__((__cdecl__)) try_get_JetSetSystemParameterW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_JetGetSystemParameterW
+__APPLY_UNIT_TEST_BOOL(JetGetSystemParameterW); typedef JET_ERR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_JetGetSystemParameterW)( JET_INSTANCE instance, JET_SESID sesid, unsigned long paramid, JET_API_PTR* plParam, JET_PWSTR szParam, unsigned long cbMax); extern "C" JET_ERR __attribute__((__stdcall__)) __FALLBACK_PREFIXJetGetSystemParameterW( JET_INSTANCE instance, JET_SESID sesid, unsigned long paramid, JET_API_PTR* plParam, JET_PWSTR szParam, unsigned long cbMax); static YY_THUNK_FNTYPE_JetGetSystemParameterW __attribute__((__cdecl__)) try_get_JetGetSystemParameterW() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_ChangeWindowMessageFilterEx
 __APPLY_UNIT_TEST_BOOL(ChangeWindowMessageFilterEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ChangeWindowMessageFilterEx)( HWND _hWnd, UINT _uMessage, DWORD _uAction, PCHANGEFILTERSTRUCT _pChangeFilterStruct); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXChangeWindowMessageFilterEx( HWND _hWnd, UINT _uMessage, DWORD _uAction, PCHANGEFILTERSTRUCT _pChangeFilterStruct); static YY_THUNK_FNTYPE_ChangeWindowMessageFilterEx __attribute__((__cdecl__)) try_get_ChangeWindowMessageFilterEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_AddClipboardFormatListener
+__APPLY_UNIT_TEST_BOOL(AddClipboardFormatListener); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_AddClipboardFormatListener)( HWND _hWnd); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXAddClipboardFormatListener( HWND _hWnd); static YY_THUNK_FNTYPE_AddClipboardFormatListener __attribute__((__cdecl__)) try_get_AddClipboardFormatListener() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RemoveClipboardFormatListener
+__APPLY_UNIT_TEST_BOOL(RemoveClipboardFormatListener); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RemoveClipboardFormatListener)( HWND _hWnd); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXRemoveClipboardFormatListener( HWND _hWnd); static YY_THUNK_FNTYPE_RemoveClipboardFormatListener __attribute__((__cdecl__)) try_get_RemoveClipboardFormatListener() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_RegisterSuspendResumeNotification
@@ -334,8 +614,36 @@ __APPLY_UNIT_TEST_BOOL(RegisterSuspendResumeNotification); typedef HPOWERNOTIFY(
 __APPLY_UNIT_TEST_BOOL(UnregisterSuspendResumeNotification); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UnregisterSuspendResumeNotification)( HPOWERNOTIFY _hHandle); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXUnregisterSuspendResumeNotification( HPOWERNOTIFY _hHandle); static YY_THUNK_FNTYPE_UnregisterSuspendResumeNotification __attribute__((__cdecl__)) try_get_UnregisterSuspendResumeNotification() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_RegisterPowerSettingNotification
+__APPLY_UNIT_TEST_BOOL(RegisterPowerSettingNotification); typedef HPOWERNOTIFY(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegisterPowerSettingNotification)( HANDLE hRecipient, LPCGUID PowerSettingGuid, DWORD Flags); extern "C" HPOWERNOTIFY __attribute__((__stdcall__)) __FALLBACK_PREFIXRegisterPowerSettingNotification( HANDLE hRecipient, LPCGUID PowerSettingGuid, DWORD Flags); static YY_THUNK_FNTYPE_RegisterPowerSettingNotification __attribute__((__cdecl__)) try_get_RegisterPowerSettingNotification() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UnregisterPowerSettingNotification
+__APPLY_UNIT_TEST_BOOL(UnregisterPowerSettingNotification); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UnregisterPowerSettingNotification)( HPOWERNOTIFY Handle); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXUnregisterPowerSettingNotification( HPOWERNOTIFY Handle); static YY_THUNK_FNTYPE_UnregisterPowerSettingNotification __attribute__((__cdecl__)) try_get_UnregisterPowerSettingNotification() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DisplayConfigGetDeviceInfo
+__APPLY_UNIT_TEST_BOOL(DisplayConfigGetDeviceInfo); typedef LONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DisplayConfigGetDeviceInfo)( DISPLAYCONFIG_DEVICE_INFO_HEADER* requestPacket); extern "C" LONG __attribute__((__stdcall__)) __FALLBACK_PREFIXDisplayConfigGetDeviceInfo( DISPLAYCONFIG_DEVICE_INFO_HEADER* requestPacket); static YY_THUNK_FNTYPE_DisplayConfigGetDeviceInfo __attribute__((__cdecl__)) try_get_DisplayConfigGetDeviceInfo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetDisplayConfigBufferSizes
+__APPLY_UNIT_TEST_BOOL(GetDisplayConfigBufferSizes); typedef LONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetDisplayConfigBufferSizes)( UINT32 flags, UINT32* numPathArrayElements, UINT32* numModeInfoArrayElements); extern "C" LONG __attribute__((__stdcall__)) __FALLBACK_PREFIXGetDisplayConfigBufferSizes( UINT32 flags, UINT32* numPathArrayElements, UINT32* numModeInfoArrayElements); static YY_THUNK_FNTYPE_GetDisplayConfigBufferSizes __attribute__((__cdecl__)) try_get_GetDisplayConfigBufferSizes() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_QueryDisplayConfig
+__APPLY_UNIT_TEST_BOOL(QueryDisplayConfig); typedef LONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryDisplayConfig)( UINT32 flags, UINT32* numPathArrayElements, DISPLAYCONFIG_PATH_INFO* pathArray, UINT32* numModeInfoArrayElements, DISPLAYCONFIG_MODE_INFO* modeInfoArray, DISPLAYCONFIG_TOPOLOGY_ID* currentTopologyId); extern "C" LONG __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryDisplayConfig( UINT32 flags, UINT32* numPathArrayElements, DISPLAYCONFIG_PATH_INFO* pathArray, UINT32* numModeInfoArrayElements, DISPLAYCONFIG_MODE_INFO* modeInfoArray, DISPLAYCONFIG_TOPOLOGY_ID* currentTopologyId); static YY_THUNK_FNTYPE_QueryDisplayConfig __attribute__((__cdecl__)) try_get_QueryDisplayConfig() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_SetCoalescableTimer
 __APPLY_UNIT_TEST_BOOL(SetCoalescableTimer); typedef UINT_PTR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetCoalescableTimer)( HWND _hWnd, UINT_PTR _nIDEvent, UINT _uElapse, TIMERPROC _lpTimerFunc, ULONG _uToleranceDelay); extern "C" UINT_PTR __attribute__((__stdcall__)) __FALLBACK_PREFIXSetCoalescableTimer( HWND _hWnd, UINT_PTR _nIDEvent, UINT _uElapse, TIMERPROC _lpTimerFunc, ULONG _uToleranceDelay); static YY_THUNK_FNTYPE_SetCoalescableTimer __attribute__((__cdecl__)) try_get_SetCoalescableTimer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PhysicalToLogicalPoint
+__APPLY_UNIT_TEST_BOOL(PhysicalToLogicalPoint); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PhysicalToLogicalPoint)( HWND _hWnd, LPPOINT _pPoint); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXPhysicalToLogicalPoint( HWND _hWnd, LPPOINT _pPoint); static YY_THUNK_FNTYPE_PhysicalToLogicalPoint __attribute__((__cdecl__)) try_get_PhysicalToLogicalPoint() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_LogicalToPhysicalPoint
+__APPLY_UNIT_TEST_BOOL(LogicalToPhysicalPoint); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LogicalToPhysicalPoint)( HWND _hWnd, LPPOINT _pPoint); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXLogicalToPhysicalPoint( HWND _hWnd, LPPOINT _pPoint); static YY_THUNK_FNTYPE_LogicalToPhysicalPoint __attribute__((__cdecl__)) try_get_LogicalToPhysicalPoint() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_PhysicalToLogicalPointForPerMonitorDPI
@@ -348,6 +656,14 @@ __APPLY_UNIT_TEST_BOOL(LogicalToPhysicalPointForPerMonitorDPI); typedef BOOL(__a
 
 #if YY_THUNK_GUARD_try_get_WindowFromPhysicalPoint
 __APPLY_UNIT_TEST_BOOL(WindowFromPhysicalPoint); typedef HWND(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WindowFromPhysicalPoint)( POINT _oPoint); extern "C" HWND __attribute__((__stdcall__)) __FALLBACK_PREFIXWindowFromPhysicalPoint( POINT _oPoint); static YY_THUNK_FNTYPE_WindowFromPhysicalPoint __attribute__((__cdecl__)) try_get_WindowFromPhysicalPoint() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetWindowsHookExW
+__APPLY_UNIT_TEST_BOOL(SetWindowsHookExW); typedef HHOOK(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetWindowsHookExW)( int _idHook, HOOKPROC _pfn, HINSTANCE _hMod, DWORD _uThreadId); extern "C" HHOOK __attribute__((__stdcall__)) __FALLBACK_PREFIXSetWindowsHookExW( int _idHook, HOOKPROC _pfn, HINSTANCE _hMod, DWORD _uThreadId); static YY_THUNK_FNTYPE_SetWindowsHookExW __attribute__((__cdecl__)) try_get_SetWindowsHookExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetWindowsHookExA
+__APPLY_UNIT_TEST_BOOL(SetWindowsHookExA); typedef HHOOK(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetWindowsHookExA)( int _idHook, HOOKPROC _pfn, HINSTANCE _hMod, DWORD _uThreadId); extern "C" HHOOK __attribute__((__stdcall__)) __FALLBACK_PREFIXSetWindowsHookExA( int _idHook, HOOKPROC _pfn, HINSTANCE _hMod, DWORD _uThreadId); static YY_THUNK_FNTYPE_SetWindowsHookExA __attribute__((__cdecl__)) try_get_SetWindowsHookExA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_RegisterPointerDeviceNotifications
@@ -422,8 +738,84 @@ __APPLY_UNIT_TEST_BOOL(EnableMouseInPointer); typedef BOOL(__attribute__((__stdc
 __APPLY_UNIT_TEST_BOOL(GetPointerDeviceRects); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetPointerDeviceRects)( HANDLE _hDevice, RECT* _pPointerDeviceRect, RECT* _pDisplayRect); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetPointerDeviceRects( HANDLE _hDevice, RECT* _pPointerDeviceRect, RECT* _pDisplayRect); static YY_THUNK_FNTYPE_GetPointerDeviceRects __attribute__((__cdecl__)) try_get_GetPointerDeviceRects() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_SHGetStockIconInfo
+__APPLY_UNIT_TEST_BOOL(SHGetStockIconInfo); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHGetStockIconInfo)(SHSTOCKICONID _eSiid, UINT _fFlags, SHSTOCKICONINFO* _pSii); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHGetStockIconInfo(SHSTOCKICONID _eSiid, UINT _fFlags, SHSTOCKICONINFO* _pSii); static YY_THUNK_FNTYPE_SHGetStockIconInfo __attribute__((__cdecl__)) try_get_SHGetStockIconInfo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetIfTable2
+__APPLY_UNIT_TEST_BOOL(GetIfTable2); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetIfTable2)( PMIB_IF_TABLE2 * _ppTable2); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetIfTable2( PMIB_IF_TABLE2 * _ppTable2); static YY_THUNK_FNTYPE_GetIfTable2 __attribute__((__cdecl__)) try_get_GetIfTable2() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetIfTable2Ex
+__APPLY_UNIT_TEST_BOOL(GetIfTable2Ex); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetIfTable2Ex)( MIB_IF_TABLE_LEVEL _eLevel, PMIB_IF_TABLE2* _ppTable2); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetIfTable2Ex( MIB_IF_TABLE_LEVEL _eLevel, PMIB_IF_TABLE2* _ppTable2); static YY_THUNK_FNTYPE_GetIfTable2Ex __attribute__((__cdecl__)) try_get_GetIfTable2Ex() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetIfEntry2
+__APPLY_UNIT_TEST_BOOL(GetIfEntry2); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetIfEntry2)( PMIB_IF_ROW2 _pRow); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetIfEntry2( PMIB_IF_ROW2 _pRow); static YY_THUNK_FNTYPE_GetIfEntry2 __attribute__((__cdecl__)) try_get_GetIfEntry2() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetIfEntry2Ex
 __APPLY_UNIT_TEST_BOOL(GetIfEntry2Ex); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetIfEntry2Ex)( MIB_IF_ENTRY_LEVEL _eLevel, PMIB_IF_ROW2 _pRow); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetIfEntry2Ex( MIB_IF_ENTRY_LEVEL _eLevel, PMIB_IF_ROW2 _pRow); static YY_THUNK_FNTYPE_GetIfEntry2Ex __attribute__((__cdecl__)) try_get_GetIfEntry2Ex() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_FreeMibTable
+__APPLY_UNIT_TEST_BOOL(FreeMibTable); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FreeMibTable)( PVOID _pMemory); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXFreeMibTable( PVOID _pMemory); static YY_THUNK_FNTYPE_FreeMibTable __attribute__((__cdecl__)) try_get_FreeMibTable() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceIndexToLuid
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceIndexToLuid); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceIndexToLuid)( NET_IFINDEX InterfaceIndex, PNET_LUID InterfaceLuid); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceIndexToLuid( NET_IFINDEX InterfaceIndex, PNET_LUID InterfaceLuid); static YY_THUNK_FNTYPE_ConvertInterfaceIndexToLuid __attribute__((__cdecl__)) try_get_ConvertInterfaceIndexToLuid() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToNameA
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceLuidToNameA); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceLuidToNameA)( const NET_LUID* InterfaceLuid, PSTR InterfaceName, SIZE_T Length); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceLuidToNameA( const NET_LUID* InterfaceLuid, PSTR InterfaceName, SIZE_T Length); static YY_THUNK_FNTYPE_ConvertInterfaceLuidToNameA __attribute__((__cdecl__)) try_get_ConvertInterfaceLuidToNameA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToNameW
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceLuidToNameW); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceLuidToNameW)( const NET_LUID* InterfaceLuid, PWSTR InterfaceName, SIZE_T Length); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceLuidToNameW( const NET_LUID* InterfaceLuid, PWSTR InterfaceName, SIZE_T Length); static YY_THUNK_FNTYPE_ConvertInterfaceLuidToNameW __attribute__((__cdecl__)) try_get_ConvertInterfaceLuidToNameW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceNameToLuidA
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceNameToLuidA); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceNameToLuidA)( const CHAR* InterfaceName, NET_LUID* InterfaceLuid); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceNameToLuidA( const CHAR* InterfaceName, NET_LUID* InterfaceLuid); static YY_THUNK_FNTYPE_ConvertInterfaceNameToLuidA __attribute__((__cdecl__)) try_get_ConvertInterfaceNameToLuidA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceNameToLuidW
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceNameToLuidW); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceNameToLuidW)( const WCHAR* InterfaceName, NET_LUID* InterfaceLuid); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceNameToLuidW( const WCHAR* InterfaceName, NET_LUID* InterfaceLuid); static YY_THUNK_FNTYPE_ConvertInterfaceNameToLuidW __attribute__((__cdecl__)) try_get_ConvertInterfaceNameToLuidW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_if_nametoindex
+__APPLY_UNIT_TEST_BOOL(if_nametoindex); typedef NET_IFINDEX(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_if_nametoindex)( PCSTR _szInterfaceName); extern "C" NET_IFINDEX __attribute__((__stdcall__)) __FALLBACK_PREFIXif_nametoindex( PCSTR _szInterfaceName); static YY_THUNK_FNTYPE_if_nametoindex __attribute__((__cdecl__)) try_get_if_nametoindex() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_if_indextoname
+__APPLY_UNIT_TEST_BOOL(if_indextoname); typedef PCHAR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_if_indextoname)( NET_IFINDEX InterfaceIndex, PCHAR InterfaceName); extern "C" PCHAR __attribute__((__stdcall__)) __FALLBACK_PREFIXif_indextoname( NET_IFINDEX InterfaceIndex, PCHAR InterfaceName); static YY_THUNK_FNTYPE_if_indextoname __attribute__((__cdecl__)) try_get_if_indextoname() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToGuid
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceLuidToGuid); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceLuidToGuid)( const NET_LUID* _pInterfaceLuid, GUID* _pInterfaceGuid); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceLuidToGuid( const NET_LUID* _pInterfaceLuid, GUID* _pInterfaceGuid); static YY_THUNK_FNTYPE_ConvertInterfaceLuidToGuid __attribute__((__cdecl__)) try_get_ConvertInterfaceLuidToGuid() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ConvertInterfaceLuidToIndex
+__APPLY_UNIT_TEST_BOOL(ConvertInterfaceLuidToIndex); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ConvertInterfaceLuidToIndex)( const NET_LUID* _pInterfaceLuid, PNET_IFINDEX _pInterfaceIndex); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXConvertInterfaceLuidToIndex( const NET_LUID* _pInterfaceLuid, PNET_IFINDEX _pInterfaceIndex); static YY_THUNK_FNTYPE_ConvertInterfaceLuidToIndex __attribute__((__cdecl__)) try_get_ConvertInterfaceLuidToIndex() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NotifyIpInterfaceChange
+__APPLY_UNIT_TEST_BOOL(NotifyIpInterfaceChange); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NotifyIpInterfaceChange)( ADDRESS_FAMILY _uFamily, PIPINTERFACE_CHANGE_CALLBACK _pfnCallback, PVOID _pCallerContext, BOOLEAN _bInitialNotification, HANDLE* _phNotificationHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXNotifyIpInterfaceChange( ADDRESS_FAMILY _uFamily, PIPINTERFACE_CHANGE_CALLBACK _pfnCallback, PVOID _pCallerContext, BOOLEAN _bInitialNotification, HANDLE* _phNotificationHandle); static YY_THUNK_FNTYPE_NotifyIpInterfaceChange __attribute__((__cdecl__)) try_get_NotifyIpInterfaceChange() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetUnicastIpAddressTable
+__APPLY_UNIT_TEST_BOOL(GetUnicastIpAddressTable); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetUnicastIpAddressTable)( ADDRESS_FAMILY _uFamily, PMIB_UNICASTIPADDRESS_TABLE* _ppTable); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetUnicastIpAddressTable( ADDRESS_FAMILY _uFamily, PMIB_UNICASTIPADDRESS_TABLE* _ppTable); static YY_THUNK_FNTYPE_GetUnicastIpAddressTable __attribute__((__cdecl__)) try_get_GetUnicastIpAddressTable() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NotifyStableUnicastIpAddressTable
+__APPLY_UNIT_TEST_BOOL(NotifyStableUnicastIpAddressTable); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NotifyStableUnicastIpAddressTable)( ADDRESS_FAMILY _uFamily, PMIB_UNICASTIPADDRESS_TABLE* _ppTable, PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK _pfnCallback, PVOID _pCallerContext, HANDLE* _phNotificationHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXNotifyStableUnicastIpAddressTable( ADDRESS_FAMILY _uFamily, PMIB_UNICASTIPADDRESS_TABLE* _ppTable, PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK _pfnCallback, PVOID _pCallerContext, HANDLE* _phNotificationHandle); static YY_THUNK_FNTYPE_NotifyStableUnicastIpAddressTable __attribute__((__cdecl__)) try_get_NotifyStableUnicastIpAddressTable() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CancelMibChangeNotify2
+__APPLY_UNIT_TEST_BOOL(CancelMibChangeNotify2); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CancelMibChangeNotify2)( HANDLE _hNotificationHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXCancelMibChangeNotify2( HANDLE _hNotificationHandle); static YY_THUNK_FNTYPE_CancelMibChangeNotify2 __attribute__((__cdecl__)) try_get_CancelMibChangeNotify2() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetTcpTable2
+__APPLY_UNIT_TEST_BOOL(GetTcpTable2); typedef ULONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetTcpTable2)( PMIB_TCPTABLE2 _pTcpTable, PULONG _pSizePointer, BOOL _bOrder); extern "C" ULONG __attribute__((__stdcall__)) __FALLBACK_PREFIXGetTcpTable2( PMIB_TCPTABLE2 _pTcpTable, PULONG _pSizePointer, BOOL _bOrder); static YY_THUNK_FNTYPE_GetTcpTable2 __attribute__((__cdecl__)) try_get_GetTcpTable2() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_MFCreateDeviceSource
@@ -450,8 +842,80 @@ __APPLY_UNIT_TEST_BOOL(MFLockDXGIDeviceManager); typedef HRESULT(__attribute__((
 __APPLY_UNIT_TEST_BOOL(MFUnlockDXGIDeviceManager); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFUnlockDXGIDeviceManager)(); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFUnlockDXGIDeviceManager(); static YY_THUNK_FNTYPE_MFUnlockDXGIDeviceManager __attribute__((__cdecl__)) try_get_MFUnlockDXGIDeviceManager() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_MFCreateAlignedMemoryBuffer
+__APPLY_UNIT_TEST_BOOL(MFCreateAlignedMemoryBuffer); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateAlignedMemoryBuffer)( DWORD cbMaxLength, DWORD cbAligment, IMFMediaBuffer** ppBuffer); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateAlignedMemoryBuffer( DWORD cbMaxLength, DWORD cbAligment, IMFMediaBuffer** ppBuffer); static YY_THUNK_FNTYPE_MFCreateAlignedMemoryBuffer __attribute__((__cdecl__)) try_get_MFCreateAlignedMemoryBuffer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateAsyncResult
+__APPLY_UNIT_TEST_BOOL(MFCreateAsyncResult); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateAsyncResult)(IUnknown* punkObject, IMFAsyncCallback* pCallback, IUnknown* punkState, IMFAsyncResult** ppAsyncResult); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateAsyncResult(IUnknown* punkObject, IMFAsyncCallback* pCallback, IUnknown* punkState, IMFAsyncResult** ppAsyncResult); static YY_THUNK_FNTYPE_MFCreateAsyncResult __attribute__((__cdecl__)) try_get_MFCreateAsyncResult() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateAttributes
+__APPLY_UNIT_TEST_BOOL(MFCreateAttributes); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateAttributes)( IMFAttributes** ppMFAttributes, UINT32 cInitialSize); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateAttributes( IMFAttributes** ppMFAttributes, UINT32 cInitialSize); static YY_THUNK_FNTYPE_MFCreateAttributes __attribute__((__cdecl__)) try_get_MFCreateAttributes() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateEventQueue
+__APPLY_UNIT_TEST_BOOL(MFCreateEventQueue); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateEventQueue)( IMFMediaEventQueue** ppMediaEventQueue); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateEventQueue( IMFMediaEventQueue** ppMediaEventQueue); static YY_THUNK_FNTYPE_MFCreateEventQueue __attribute__((__cdecl__)) try_get_MFCreateEventQueue() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateMediaBufferWrapper
+__APPLY_UNIT_TEST_BOOL(MFCreateMediaBufferWrapper); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateMediaBufferWrapper)( IMFMediaBuffer* pBuffer, DWORD cbOffset, DWORD dwLength, IMFMediaBuffer** ppBuffer); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateMediaBufferWrapper( IMFMediaBuffer* pBuffer, DWORD cbOffset, DWORD dwLength, IMFMediaBuffer** ppBuffer); static YY_THUNK_FNTYPE_MFCreateMediaBufferWrapper __attribute__((__cdecl__)) try_get_MFCreateMediaBufferWrapper() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateMediaEvent
+__APPLY_UNIT_TEST_BOOL(MFCreateMediaEvent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateMediaEvent)( MediaEventType met, const GUID & guidExtendedType, HRESULT hrStatus, const PROPVARIANT* pvValue, IMFMediaEvent** ppEvent); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateMediaEvent( MediaEventType met, const GUID & guidExtendedType, HRESULT hrStatus, const PROPVARIANT* pvValue, IMFMediaEvent** ppEvent); static YY_THUNK_FNTYPE_MFCreateMediaEvent __attribute__((__cdecl__)) try_get_MFCreateMediaEvent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateMediaType
+__APPLY_UNIT_TEST_BOOL(MFCreateMediaType); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateMediaType)( IMFMediaType** ppMFType); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateMediaType( IMFMediaType** ppMFType); static YY_THUNK_FNTYPE_MFCreateMediaType __attribute__((__cdecl__)) try_get_MFCreateMediaType() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateMemoryBuffer
+__APPLY_UNIT_TEST_BOOL(MFCreateMemoryBuffer); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateMemoryBuffer)( DWORD cbMaxLength, IMFMediaBuffer** ppBuffer); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateMemoryBuffer( DWORD cbMaxLength, IMFMediaBuffer** ppBuffer); static YY_THUNK_FNTYPE_MFCreateMemoryBuffer __attribute__((__cdecl__)) try_get_MFCreateMemoryBuffer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreatePresentationDescriptor
+__APPLY_UNIT_TEST_BOOL(MFCreatePresentationDescriptor); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreatePresentationDescriptor)(DWORD cStreamDescriptors, IMFStreamDescriptor** apStreamDescriptors, IMFPresentationDescriptor** ppPresentationDescriptor); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreatePresentationDescriptor(DWORD cStreamDescriptors, IMFStreamDescriptor** apStreamDescriptors, IMFPresentationDescriptor** ppPresentationDescriptor); static YY_THUNK_FNTYPE_MFCreatePresentationDescriptor __attribute__((__cdecl__)) try_get_MFCreatePresentationDescriptor() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateSample
+__APPLY_UNIT_TEST_BOOL(MFCreateSample); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateSample)( IMFSample** ppIMFSample); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateSample( IMFSample** ppIMFSample); static YY_THUNK_FNTYPE_MFCreateSample __attribute__((__cdecl__)) try_get_MFCreateSample() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateStreamDescriptor
+__APPLY_UNIT_TEST_BOOL(MFCreateStreamDescriptor); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateStreamDescriptor)(DWORD dwStreamIdentifier, DWORD cMediaTypes, IMFMediaType** apMediaTypes, IMFStreamDescriptor** ppDescriptor); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateStreamDescriptor(DWORD dwStreamIdentifier, DWORD cMediaTypes, IMFMediaType** apMediaTypes, IMFStreamDescriptor** ppDescriptor); static YY_THUNK_FNTYPE_MFCreateStreamDescriptor __attribute__((__cdecl__)) try_get_MFCreateStreamDescriptor() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCreateWaveFormatExFromMFMediaType
+__APPLY_UNIT_TEST_BOOL(MFCreateWaveFormatExFromMFMediaType); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCreateWaveFormatExFromMFMediaType)( IMFMediaType* pMFType, WAVEFORMATEX** ppWF, UINT32* pcbSize, UINT32 Flags); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCreateWaveFormatExFromMFMediaType( IMFMediaType* pMFType, WAVEFORMATEX** ppWF, UINT32* pcbSize, UINT32 Flags); static YY_THUNK_FNTYPE_MFCreateWaveFormatExFromMFMediaType __attribute__((__cdecl__)) try_get_MFCreateWaveFormatExFromMFMediaType() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFFrameRateToAverageTimePerFrame
+__APPLY_UNIT_TEST_BOOL(MFFrameRateToAverageTimePerFrame); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFFrameRateToAverageTimePerFrame)( UINT32 unNumerator, UINT32 unDenominator, UINT64* punAverageTimePerFrame); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFFrameRateToAverageTimePerFrame( UINT32 unNumerator, UINT32 unDenominator, UINT64* punAverageTimePerFrame); static YY_THUNK_FNTYPE_MFFrameRateToAverageTimePerFrame __attribute__((__cdecl__)) try_get_MFFrameRateToAverageTimePerFrame() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFGetSystemTime
+__APPLY_UNIT_TEST_BOOL(MFGetSystemTime); typedef MFTIME(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFGetSystemTime)(void); extern "C" MFTIME __attribute__((__stdcall__)) __FALLBACK_PREFIXMFGetSystemTime(void); static YY_THUNK_FNTYPE_MFGetSystemTime __attribute__((__cdecl__)) try_get_MFGetSystemTime() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFInitMediaTypeFromWaveFormatEx
+__APPLY_UNIT_TEST_BOOL(MFInitMediaTypeFromWaveFormatEx); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFInitMediaTypeFromWaveFormatEx)( IMFMediaType* pMFType, const WAVEFORMATEX* pWaveFormat, UINT32 cbBufSize); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFInitMediaTypeFromWaveFormatEx( IMFMediaType* pMFType, const WAVEFORMATEX* pWaveFormat, UINT32 cbBufSize); static YY_THUNK_FNTYPE_MFInitMediaTypeFromWaveFormatEx __attribute__((__cdecl__)) try_get_MFInitMediaTypeFromWaveFormatEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFShutdown
+__APPLY_UNIT_TEST_BOOL(MFShutdown); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFShutdown)(); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFShutdown(); static YY_THUNK_FNTYPE_MFShutdown __attribute__((__cdecl__)) try_get_MFShutdown() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFStartup
+__APPLY_UNIT_TEST_BOOL(MFStartup); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFStartup)(ULONG Version, DWORD dwFlags); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFStartup(ULONG Version, DWORD dwFlags); static YY_THUNK_FNTYPE_MFStartup __attribute__((__cdecl__)) try_get_MFStartup() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_MFTEnumEx
 __APPLY_UNIT_TEST_BOOL(MFTEnumEx); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFTEnumEx)( GUID guidCategory, UINT32 Flags, const MFT_REGISTER_TYPE_INFO* pInputType, const MFT_REGISTER_TYPE_INFO* pOutputType, IMFActivate*** pppMFTActivate, UINT32* pnumMFTActivate); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFTEnumEx( GUID guidCategory, UINT32 Flags, const MFT_REGISTER_TYPE_INFO* pInputType, const MFT_REGISTER_TYPE_INFO* pOutputType, IMFActivate*** pppMFTActivate, UINT32* pnumMFTActivate); static YY_THUNK_FNTYPE_MFTEnumEx __attribute__((__cdecl__)) try_get_MFTEnumEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MFCancelWorkItem
+__APPLY_UNIT_TEST_BOOL(MFCancelWorkItem); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MFCancelWorkItem)(MFWORKITEM_KEY _Key); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXMFCancelWorkItem(MFWORKITEM_KEY _Key); static YY_THUNK_FNTYPE_MFCancelWorkItem __attribute__((__cdecl__)) try_get_MFCancelWorkItem() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_MFLockSharedWorkQueue
@@ -482,6 +946,74 @@ __APPLY_UNIT_TEST_BOOL(MFCreateSourceReaderFromMediaSource); typedef HRESULT(__a
 __APPLY_UNIT_TEST_BOOL(ActivateAudioInterfaceAsync); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ActivateAudioInterfaceAsync)( LPCWSTR _szDeviceInterfacePath, const IID & riid, PROPVARIANT* _pActivationParams, IActivateAudioInterfaceCompletionHandler* _pCompletionHandler, IActivateAudioInterfaceAsyncOperation** _ppActivationOperation); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXActivateAudioInterfaceAsync( LPCWSTR _szDeviceInterfacePath, const IID & riid, PROPVARIANT* _pActivationParams, IActivateAudioInterfaceCompletionHandler* _pCompletionHandler, IActivateAudioInterfaceAsyncOperation** _ppActivationOperation); static YY_THUNK_FNTYPE_ActivateAudioInterfaceAsync __attribute__((__cdecl__)) try_get_ActivateAudioInterfaceAsync() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_NCryptOpenStorageProvider
+__APPLY_UNIT_TEST_BOOL(NCryptOpenStorageProvider); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptOpenStorageProvider)( NCRYPT_PROV_HANDLE* _phProvider, LPCWSTR _szProviderName, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptOpenStorageProvider( NCRYPT_PROV_HANDLE* _phProvider, LPCWSTR _szProviderName, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptOpenStorageProvider __attribute__((__cdecl__)) try_get_NCryptOpenStorageProvider() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptIsAlgSupported
+__APPLY_UNIT_TEST_BOOL(NCryptIsAlgSupported); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptIsAlgSupported)( NCRYPT_PROV_HANDLE _hProvider, LPCWSTR _pszAlgId, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptIsAlgSupported( NCRYPT_PROV_HANDLE _hProvider, LPCWSTR _pszAlgId, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptIsAlgSupported __attribute__((__cdecl__)) try_get_NCryptIsAlgSupported() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptCreatePersistedKey
+__APPLY_UNIT_TEST_BOOL(NCryptCreatePersistedKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptCreatePersistedKey)( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE* _phKey, LPCWSTR _pszAlgId, LPCWSTR _pszKeyName, DWORD _dwLegacyKeySpec, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptCreatePersistedKey( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE* _phKey, LPCWSTR _pszAlgId, LPCWSTR _pszKeyName, DWORD _dwLegacyKeySpec, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptCreatePersistedKey __attribute__((__cdecl__)) try_get_NCryptCreatePersistedKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptSetProperty
+__APPLY_UNIT_TEST_BOOL(NCryptSetProperty); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptSetProperty)( NCRYPT_HANDLE _hObject, LPCWSTR _pszProperty, PBYTE _pbInput, DWORD _cbInput, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptSetProperty( NCRYPT_HANDLE _hObject, LPCWSTR _pszProperty, PBYTE _pbInput, DWORD _cbInput, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptSetProperty __attribute__((__cdecl__)) try_get_NCryptSetProperty() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptGetProperty
+__APPLY_UNIT_TEST_BOOL(NCryptGetProperty); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptGetProperty)( NCRYPT_HANDLE _hObject, LPCWSTR _pszProperty, PBYTE _pbOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptGetProperty( NCRYPT_HANDLE _hObject, LPCWSTR _pszProperty, PBYTE _pbOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptGetProperty __attribute__((__cdecl__)) try_get_NCryptGetProperty() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptFinalizeKey
+__APPLY_UNIT_TEST_BOOL(NCryptFinalizeKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptFinalizeKey)( NCRYPT_KEY_HANDLE _hKey, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptFinalizeKey( NCRYPT_KEY_HANDLE _hKey, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptFinalizeKey __attribute__((__cdecl__)) try_get_NCryptFinalizeKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptOpenKey
+__APPLY_UNIT_TEST_BOOL(NCryptOpenKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptOpenKey)( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE* _phKey, LPCWSTR _pszKeyName, DWORD _dwLegacyKeySpec, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptOpenKey( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE* _phKey, LPCWSTR _pszKeyName, DWORD _dwLegacyKeySpec, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptOpenKey __attribute__((__cdecl__)) try_get_NCryptOpenKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptImportKey
+__APPLY_UNIT_TEST_BOOL(NCryptImportKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptImportKey)( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, NCryptBufferDesc* _pParameterList, NCRYPT_KEY_HANDLE* _phKey, PBYTE _pbData, DWORD _cbData, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptImportKey( NCRYPT_PROV_HANDLE _hProvider, NCRYPT_KEY_HANDLE _hImportKey, LPCWSTR _szBlobType, NCryptBufferDesc* _pParameterList, NCRYPT_KEY_HANDLE* _phKey, PBYTE _pbData, DWORD _cbData, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptImportKey __attribute__((__cdecl__)) try_get_NCryptImportKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptExportKey
+__APPLY_UNIT_TEST_BOOL(NCryptExportKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptExportKey)( NCRYPT_KEY_HANDLE _hKey, NCRYPT_KEY_HANDLE _hExportKey, LPCWSTR _szBlobType, NCryptBufferDesc* _pParameterList, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptExportKey( NCRYPT_KEY_HANDLE _hKey, NCRYPT_KEY_HANDLE _hExportKey, LPCWSTR _szBlobType, NCryptBufferDesc* _pParameterList, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptExportKey __attribute__((__cdecl__)) try_get_NCryptExportKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptSignHash
+__APPLY_UNIT_TEST_BOOL(NCryptSignHash); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptSignHash)( NCRYPT_KEY_HANDLE _hKey, void* _pPaddingInfo, PBYTE _pbHashValue, DWORD _cbHashValue, PBYTE _pbSignature, DWORD _cbSignature, DWORD* _pcbResult, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptSignHash( NCRYPT_KEY_HANDLE _hKey, void* _pPaddingInfo, PBYTE _pbHashValue, DWORD _cbHashValue, PBYTE _pbSignature, DWORD _cbSignature, DWORD* _pcbResult, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptSignHash __attribute__((__cdecl__)) try_get_NCryptSignHash() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptVerifySignature
+__APPLY_UNIT_TEST_BOOL(NCryptVerifySignature); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptVerifySignature)( NCRYPT_KEY_HANDLE _hKey, void* _pPaddingInfo, PBYTE _pbHashValue, DWORD _cbHashValue, PBYTE _pbSignature, DWORD _cbSignature, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptVerifySignature( NCRYPT_KEY_HANDLE _hKey, void* _pPaddingInfo, PBYTE _pbHashValue, DWORD _cbHashValue, PBYTE _pbSignature, DWORD _cbSignature, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptVerifySignature __attribute__((__cdecl__)) try_get_NCryptVerifySignature() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptEncrypt
+__APPLY_UNIT_TEST_BOOL(NCryptEncrypt); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptEncrypt)( NCRYPT_KEY_HANDLE _hKey, PBYTE _pInput, DWORD _cbInput, void* _pPaddingInfo, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _fFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptEncrypt( NCRYPT_KEY_HANDLE _hKey, PBYTE _pInput, DWORD _cbInput, void* _pPaddingInfo, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _fFlags); static YY_THUNK_FNTYPE_NCryptEncrypt __attribute__((__cdecl__)) try_get_NCryptEncrypt() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptDecrypt
+__APPLY_UNIT_TEST_BOOL(NCryptDecrypt); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptDecrypt)( NCRYPT_KEY_HANDLE _hKey, PBYTE _pInput, DWORD _cbInput, void* _pPaddingInfo, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _fFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptDecrypt( NCRYPT_KEY_HANDLE _hKey, PBYTE _pInput, DWORD _cbInput, void* _pPaddingInfo, PBYTE _pOutput, DWORD _cbOutput, DWORD* _pcbResult, DWORD _fFlags); static YY_THUNK_FNTYPE_NCryptDecrypt __attribute__((__cdecl__)) try_get_NCryptDecrypt() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptDeleteKey
+__APPLY_UNIT_TEST_BOOL(NCryptDeleteKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptDeleteKey)( NCRYPT_KEY_HANDLE _hKey, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptDeleteKey( NCRYPT_KEY_HANDLE _hKey, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptDeleteKey __attribute__((__cdecl__)) try_get_NCryptDeleteKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptFreeObject
+__APPLY_UNIT_TEST_BOOL(NCryptFreeObject); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptFreeObject)( NCRYPT_HANDLE _hObject); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptFreeObject( NCRYPT_HANDLE _hObject); static YY_THUNK_FNTYPE_NCryptFreeObject __attribute__((__cdecl__)) try_get_NCryptFreeObject() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptSecretAgreement
+__APPLY_UNIT_TEST_BOOL(NCryptSecretAgreement); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptSecretAgreement)( NCRYPT_KEY_HANDLE _hPrivKey, NCRYPT_KEY_HANDLE _hPubKey, NCRYPT_SECRET_HANDLE* _phAgreedSecret, DWORD _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptSecretAgreement( NCRYPT_KEY_HANDLE _hPrivKey, NCRYPT_KEY_HANDLE _hPubKey, NCRYPT_SECRET_HANDLE* _phAgreedSecret, DWORD _dwFlags); static YY_THUNK_FNTYPE_NCryptSecretAgreement __attribute__((__cdecl__)) try_get_NCryptSecretAgreement() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_NCryptDeriveKey
+__APPLY_UNIT_TEST_BOOL(NCryptDeriveKey); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptDeriveKey)( NCRYPT_SECRET_HANDLE _hSharedSecret, LPCWSTR _pwszKDF, NCryptBufferDesc* _pParameterList, PBYTE _pbDerivedKey, DWORD _cbDerivedKey, DWORD* _pcbResult, ULONG _dwFlags); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptDeriveKey( NCRYPT_SECRET_HANDLE _hSharedSecret, LPCWSTR _pwszKDF, NCryptBufferDesc* _pParameterList, PBYTE _pbDerivedKey, DWORD _cbDerivedKey, DWORD* _pcbResult, ULONG _dwFlags); static YY_THUNK_FNTYPE_NCryptDeriveKey __attribute__((__cdecl__)) try_get_NCryptDeriveKey() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_NCryptCreateProtectionDescriptor
 __APPLY_UNIT_TEST_BOOL(NCryptCreateProtectionDescriptor); typedef SECURITY_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NCryptCreateProtectionDescriptor)( LPCWSTR _pwszDescriptorString, DWORD _dwFlags, NCRYPT_DESCRIPTOR_HANDLE* _phDescriptor); extern "C" SECURITY_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNCryptCreateProtectionDescriptor( LPCWSTR _pwszDescriptorString, DWORD _dwFlags, NCRYPT_DESCRIPTOR_HANDLE* _phDescriptor); static YY_THUNK_FNTYPE_NCryptCreateProtectionDescriptor __attribute__((__cdecl__)) try_get_NCryptCreateProtectionDescriptor() noexcept;
 #endif
@@ -510,6 +1042,10 @@ __APPLY_UNIT_TEST_BOOL(NetGetAadJoinInformation); typedef HRESULT(__attribute__(
 __APPLY_UNIT_TEST_BOOL(NetFreeAadJoinInformation); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NetFreeAadJoinInformation)( PDSREG_JOIN_INFO _pJoinInfo); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXNetFreeAadJoinInformation( PDSREG_JOIN_INFO _pJoinInfo); static YY_THUNK_FNTYPE_NetFreeAadJoinInformation __attribute__((__cdecl__)) try_get_NetFreeAadJoinInformation() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_NtCancelIoFileEx
+__APPLY_UNIT_TEST_BOOL(NtCancelIoFileEx); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NtCancelIoFileEx)(HANDLE _hHandle, IO_STATUS_BLOCK* _pIo, IO_STATUS_BLOCK* _pIoStatus); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNtCancelIoFileEx(HANDLE _hHandle, IO_STATUS_BLOCK* _pIo, IO_STATUS_BLOCK* _pIoStatus); static YY_THUNK_FNTYPE_NtCancelIoFileEx __attribute__((__cdecl__)) try_get_NtCancelIoFileEx() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_NtOpenKeyEx
 __APPLY_UNIT_TEST_BOOL(NtOpenKeyEx); typedef NTSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_NtOpenKeyEx)( PHANDLE _phKeyHandle, ACCESS_MASK _fDesiredAccess, POBJECT_ATTRIBUTES _pObjectAttributes, ULONG _fOpenOptions); extern "C" NTSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXNtOpenKeyEx( PHANDLE _phKeyHandle, ACCESS_MASK _fDesiredAccess, POBJECT_ATTRIBUTES _pObjectAttributes, ULONG _fOpenOptions); static YY_THUNK_FNTYPE_NtOpenKeyEx __attribute__((__cdecl__)) try_get_NtOpenKeyEx() noexcept;
 #endif
@@ -522,8 +1058,84 @@ __APPLY_UNIT_TEST_BOOL(RtlAddGrowableFunctionTable); typedef DWORD(__attribute__
 __APPLY_UNIT_TEST_BOOL(RtlDeleteGrowableFunctionTable); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RtlDeleteGrowableFunctionTable)( PVOID _pDynamicTable); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXRtlDeleteGrowableFunctionTable( PVOID _pDynamicTable); static YY_THUNK_FNTYPE_RtlDeleteGrowableFunctionTable __attribute__((__cdecl__)) try_get_RtlDeleteGrowableFunctionTable() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_PdhAddEnglishCounterW
+__APPLY_UNIT_TEST_BOOL(PdhAddEnglishCounterW); typedef PDH_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PdhAddEnglishCounterW)( PDH_HQUERY hQuery, LPCWSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER * phCounter); extern "C" PDH_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXPdhAddEnglishCounterW( PDH_HQUERY hQuery, LPCWSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER * phCounter); static YY_THUNK_FNTYPE_PdhAddEnglishCounterW __attribute__((__cdecl__)) try_get_PdhAddEnglishCounterW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PdhAddEnglishCounterA
+__APPLY_UNIT_TEST_BOOL(PdhAddEnglishCounterA); typedef PDH_STATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PdhAddEnglishCounterA)( PDH_HQUERY hQuery, LPCSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER * phCounter); extern "C" PDH_STATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXPdhAddEnglishCounterA( PDH_HQUERY hQuery, LPCSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER * phCounter); static YY_THUNK_FNTYPE_PdhAddEnglishCounterA __attribute__((__cdecl__)) try_get_PdhAddEnglishCounterA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PowerDeterminePlatformRole
+__APPLY_UNIT_TEST_BOOL(PowerDeterminePlatformRole); typedef POWER_PLATFORM_ROLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PowerDeterminePlatformRole)(); extern "C" POWER_PLATFORM_ROLE __attribute__((__stdcall__)) __FALLBACK_PREFIXPowerDeterminePlatformRole(); static YY_THUNK_FNTYPE_PowerDeterminePlatformRole __attribute__((__cdecl__)) try_get_PowerDeterminePlatformRole() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PowerGetActiveScheme
+__APPLY_UNIT_TEST_BOOL(PowerGetActiveScheme); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PowerGetActiveScheme)( HKEY _hUserRootPowerKey, GUID** _ppActivePolicyGuid); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXPowerGetActiveScheme( HKEY _hUserRootPowerKey, GUID** _ppActivePolicyGuid); static YY_THUNK_FNTYPE_PowerGetActiveScheme __attribute__((__cdecl__)) try_get_PowerGetActiveScheme() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PowerReadACValue
+__APPLY_UNIT_TEST_BOOL(PowerReadACValue); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PowerReadACValue)( HKEY _hRootPowerKey, const GUID* _pSchemeGuid, const GUID* _pSubGroupOfPowerSettingsGuid, const GUID* _pPowerSettingGuid, PULONG _puType, LPBYTE _pBuffer, LPDWORD _puBufferSize); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXPowerReadACValue( HKEY _hRootPowerKey, const GUID* _pSchemeGuid, const GUID* _pSubGroupOfPowerSettingsGuid, const GUID* _pPowerSettingGuid, PULONG _puType, LPBYTE _pBuffer, LPDWORD _puBufferSize); static YY_THUNK_FNTYPE_PowerReadACValue __attribute__((__cdecl__)) try_get_PowerReadACValue() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PowerReadDCValue
+__APPLY_UNIT_TEST_BOOL(PowerReadDCValue); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PowerReadDCValue)( HKEY _hRootPowerKey, const GUID* _pSchemeGuid, const GUID* _pSubGroupOfPowerSettingsGuid, const GUID* _pPowerSettingGuid, PULONG _puType, LPBYTE _pBuffer, LPDWORD _puBufferSize); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXPowerReadDCValue( HKEY _hRootPowerKey, const GUID* _pSchemeGuid, const GUID* _pSubGroupOfPowerSettingsGuid, const GUID* _pPowerSettingGuid, PULONG _puType, LPBYTE _pBuffer, LPDWORD _puBufferSize); static YY_THUNK_FNTYPE_PowerReadDCValue __attribute__((__cdecl__)) try_get_PowerReadDCValue() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitPropVariantFromCLSID
+__APPLY_UNIT_TEST_BOOL(InitPropVariantFromCLSID); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitPropVariantFromCLSID)( const IID & _ClsId, PROPVARIANT* _pPropVar); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXInitPropVariantFromCLSID( const IID & _ClsId, PROPVARIANT* _pPropVar); static YY_THUNK_FNTYPE_InitPropVariantFromCLSID __attribute__((__cdecl__)) try_get_InitPropVariantFromCLSID() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PSGetPropertyKeyFromName
+__APPLY_UNIT_TEST_BOOL(PSGetPropertyKeyFromName); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PSGetPropertyKeyFromName)( PCWSTR _szName, PROPERTYKEY* _pPropKey); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXPSGetPropertyKeyFromName( PCWSTR _szName, PROPERTYKEY* _pPropKey); static YY_THUNK_FNTYPE_PSGetPropertyKeyFromName __attribute__((__cdecl__)) try_get_PSGetPropertyKeyFromName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_PSCreateMemoryPropertyStore
+__APPLY_UNIT_TEST_BOOL(PSCreateMemoryPropertyStore); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PSCreateMemoryPropertyStore)( const IID & riid, void** ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXPSCreateMemoryPropertyStore( const IID & riid, void** ppv); static YY_THUNK_FNTYPE_PSCreateMemoryPropertyStore __attribute__((__cdecl__)) try_get_PSCreateMemoryPropertyStore() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_VariantCompare
+__APPLY_UNIT_TEST_BOOL(VariantCompare); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_VariantCompare)( const VARIANT & _Left, const VARIANT & _Rigth); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXVariantCompare( const VARIANT & _Left, const VARIANT & _Rigth); static YY_THUNK_FNTYPE_VariantCompare __attribute__((__cdecl__)) try_get_VariantCompare() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaClientsAreListening
+__APPLY_UNIT_TEST_BOOL(UiaClientsAreListening); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaClientsAreListening)(); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaClientsAreListening(); static YY_THUNK_FNTYPE_UiaClientsAreListening __attribute__((__cdecl__)) try_get_UiaClientsAreListening() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaHostProviderFromHwnd
+__APPLY_UNIT_TEST_BOOL(UiaHostProviderFromHwnd); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaHostProviderFromHwnd)(HWND hwnd, IRawElementProviderSimple ** ppProvider); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaHostProviderFromHwnd(HWND hwnd, IRawElementProviderSimple ** ppProvider); static YY_THUNK_FNTYPE_UiaHostProviderFromHwnd __attribute__((__cdecl__)) try_get_UiaHostProviderFromHwnd() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaRaiseAutomationEvent
+__APPLY_UNIT_TEST_BOOL(UiaRaiseAutomationEvent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaRaiseAutomationEvent)(IRawElementProviderSimple * pProvider, EVENTID id); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaRaiseAutomationEvent(IRawElementProviderSimple * pProvider, EVENTID id); static YY_THUNK_FNTYPE_UiaRaiseAutomationEvent __attribute__((__cdecl__)) try_get_UiaRaiseAutomationEvent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaRaiseAutomationPropertyChangedEvent
+__APPLY_UNIT_TEST_BOOL(UiaRaiseAutomationPropertyChangedEvent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaRaiseAutomationPropertyChangedEvent)(IRawElementProviderSimple * pProvider, PROPERTYID id, VARIANT oldValue, VARIANT newValue); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaRaiseAutomationPropertyChangedEvent(IRawElementProviderSimple * pProvider, PROPERTYID id, VARIANT oldValue, VARIANT newValue); static YY_THUNK_FNTYPE_UiaRaiseAutomationPropertyChangedEvent __attribute__((__cdecl__)) try_get_UiaRaiseAutomationPropertyChangedEvent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaReturnRawElementProvider
+__APPLY_UNIT_TEST_BOOL(UiaReturnRawElementProvider); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaReturnRawElementProvider)(HWND hwnd, WPARAM wParam, LPARAM lParam, IRawElementProviderSimple * el); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaReturnRawElementProvider(HWND hwnd, WPARAM wParam, LPARAM lParam, IRawElementProviderSimple * el); static YY_THUNK_FNTYPE_UiaReturnRawElementProvider __attribute__((__cdecl__)) try_get_UiaReturnRawElementProvider() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaGetReservedMixedAttributeValue
+__APPLY_UNIT_TEST_BOOL(UiaGetReservedMixedAttributeValue); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaGetReservedMixedAttributeValue)( IUnknown** punkMixedAttributeValue); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaGetReservedMixedAttributeValue( IUnknown** punkMixedAttributeValue); static YY_THUNK_FNTYPE_UiaGetReservedMixedAttributeValue __attribute__((__cdecl__)) try_get_UiaGetReservedMixedAttributeValue() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaGetReservedNotSupportedValue
+__APPLY_UNIT_TEST_BOOL(UiaGetReservedNotSupportedValue); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaGetReservedNotSupportedValue)( IUnknown** punkNotSupportedValue); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaGetReservedNotSupportedValue( IUnknown** punkNotSupportedValue); static YY_THUNK_FNTYPE_UiaGetReservedNotSupportedValue __attribute__((__cdecl__)) try_get_UiaGetReservedNotSupportedValue() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaRaiseStructureChangedEvent
+__APPLY_UNIT_TEST_BOOL(UiaRaiseStructureChangedEvent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaRaiseStructureChangedEvent)(IRawElementProviderSimple* pProvider, enum StructureChangeType structureChangeType, int* pRuntimeId, int cRuntimeIdLen); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaRaiseStructureChangedEvent(IRawElementProviderSimple* pProvider, enum StructureChangeType structureChangeType, int* pRuntimeId, int cRuntimeIdLen); static YY_THUNK_FNTYPE_UiaRaiseStructureChangedEvent __attribute__((__cdecl__)) try_get_UiaRaiseStructureChangedEvent() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_UiaRaiseNotificationEvent
 __APPLY_UNIT_TEST_BOOL(UiaRaiseNotificationEvent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaRaiseNotificationEvent)( IRawElementProviderSimple* _pProvider, enum NotificationKind _eNotificationKind, enum NotificationProcessing _eNotificationProcessing, BSTR _szDisplayString, BSTR _szActivityId); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaRaiseNotificationEvent( IRawElementProviderSimple* _pProvider, enum NotificationKind _eNotificationKind, enum NotificationProcessing _eNotificationProcessing, BSTR _szDisplayString, BSTR _szActivityId); static YY_THUNK_FNTYPE_UiaRaiseNotificationEvent __attribute__((__cdecl__)) try_get_UiaRaiseNotificationEvent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UiaLookupId
+__APPLY_UNIT_TEST_BOOL(UiaLookupId); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UiaLookupId)(enum AutomationIdentifierType _eType, const GUID* _pGuid); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXUiaLookupId(enum AutomationIdentifierType _eType, const GUID* _pGuid); static YY_THUNK_FNTYPE_UiaLookupId __attribute__((__cdecl__)) try_get_UiaLookupId() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_CreateAppContainerProfile
@@ -544,6 +1156,38 @@ __APPLY_UNIT_TEST_BOOL(GetAppContainerFolderPath); typedef HRESULT(__attribute__
 
 #if YY_THUNK_GUARD_try_get_GetAppContainerRegistryLocation
 __APPLY_UNIT_TEST_BOOL(GetAppContainerRegistryLocation); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetAppContainerRegistryLocation)( REGSAM _DesiredAccess, PHKEY _phAppContainerKey); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXGetAppContainerRegistryLocation( REGSAM _DesiredAccess, PHKEY _phAppContainerKey); static YY_THUNK_FNTYPE_GetAppContainerRegistryLocation __attribute__((__cdecl__)) try_get_GetAppContainerRegistryLocation() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DrawThemeTextEx
+__APPLY_UNIT_TEST_BOOL(DrawThemeTextEx); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DrawThemeTextEx)( HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int cchText, DWORD dwTextFlags, LPRECT pRect, const DTTOPTS *pOptions); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXDrawThemeTextEx( HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int cchText, DWORD dwTextFlags, LPRECT pRect, const DTTOPTS *pOptions); static YY_THUNK_FNTYPE_DrawThemeTextEx __attribute__((__cdecl__)) try_get_DrawThemeTextEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetThemeTransitionDuration
+__APPLY_UNIT_TEST_BOOL(GetThemeTransitionDuration); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetThemeTransitionDuration)( HTHEME hTheme, int iPartId, int iStateIdFrom, int iStateIdTo, int iPropId, DWORD *pdwDuration); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXGetThemeTransitionDuration( HTHEME hTheme, int iPartId, int iStateIdFrom, int iStateIdTo, int iPropId, DWORD *pdwDuration); static YY_THUNK_FNTYPE_GetThemeTransitionDuration __attribute__((__cdecl__)) try_get_GetThemeTransitionDuration() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetWindowThemeAttribute
+__APPLY_UNIT_TEST_BOOL(SetWindowThemeAttribute); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetWindowThemeAttribute)( HWND hwnd, enum WINDOWTHEMEATTRIBUTETYPE eAttribute, PVOID pvAttribute, DWORD cbAttribute); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSetWindowThemeAttribute( HWND hwnd, enum WINDOWTHEMEATTRIBUTETYPE eAttribute, PVOID pvAttribute, DWORD cbAttribute); static YY_THUNK_FNTYPE_SetWindowThemeAttribute __attribute__((__cdecl__)) try_get_SetWindowThemeAttribute() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EvtClose
+__APPLY_UNIT_TEST_BOOL(EvtClose); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EvtClose)( EVT_HANDLE Object); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEvtClose( EVT_HANDLE Object); static YY_THUNK_FNTYPE_EvtClose __attribute__((__cdecl__)) try_get_EvtClose() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EvtCreateRenderContext
+__APPLY_UNIT_TEST_BOOL(EvtCreateRenderContext); typedef EVT_HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EvtCreateRenderContext)(DWORD ValuePathsCount, LPCWSTR* ValuePaths, DWORD Flags); extern "C" EVT_HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXEvtCreateRenderContext(DWORD ValuePathsCount, LPCWSTR* ValuePaths, DWORD Flags); static YY_THUNK_FNTYPE_EvtCreateRenderContext __attribute__((__cdecl__)) try_get_EvtCreateRenderContext() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EvtNext
+__APPLY_UNIT_TEST_BOOL(EvtNext); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EvtNext)( EVT_HANDLE ResultSet, DWORD EventsSize, PEVT_HANDLE Events, DWORD Timeout, DWORD Flags, PDWORD Returned); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEvtNext( EVT_HANDLE ResultSet, DWORD EventsSize, PEVT_HANDLE Events, DWORD Timeout, DWORD Flags, PDWORD Returned); static YY_THUNK_FNTYPE_EvtNext __attribute__((__cdecl__)) try_get_EvtNext() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EvtQuery
+__APPLY_UNIT_TEST_BOOL(EvtQuery); typedef EVT_HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EvtQuery)( EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, DWORD Flags); extern "C" EVT_HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXEvtQuery( EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, DWORD Flags); static YY_THUNK_FNTYPE_EvtQuery __attribute__((__cdecl__)) try_get_EvtQuery() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EvtRender
+__APPLY_UNIT_TEST_BOOL(EvtRender); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EvtRender)( EVT_HANDLE Context, EVT_HANDLE Fragment, DWORD Flags, DWORD BufferSize, PVOID Buffer, PDWORD BufferUsed, PDWORD PropertyCount); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEvtRender( EVT_HANDLE Context, EVT_HANDLE Fragment, DWORD Flags, DWORD BufferSize, PVOID Buffer, PDWORD BufferUsed, PDWORD PropertyCount); static YY_THUNK_FNTYPE_EvtRender __attribute__((__cdecl__)) try_get_EvtRender() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_WinHttpCreateProxyResolver
@@ -570,6 +1214,50 @@ __APPLY_UNIT_TEST_BOOL(WinHttpGetProxyResult); typedef DWORD(__attribute__((__st
 __APPLY_UNIT_TEST_BOOL(WinHttpFreeProxyResult); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinHttpFreeProxyResult)( WINHTTP_PROXY_RESULT* _pProxyResult); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWinHttpFreeProxyResult( WINHTTP_PROXY_RESULT* _pProxyResult); static YY_THUNK_FNTYPE_WinHttpFreeProxyResult __attribute__((__cdecl__)) try_get_WinHttpFreeProxyResult() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_WinUsb_ControlTransfer
+__APPLY_UNIT_TEST_BOOL(WinUsb_ControlTransfer); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_ControlTransfer)( WINUSB_INTERFACE_HANDLE InterfaceHandle, WINUSB_SETUP_PACKET SetupPacket, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_ControlTransfer( WINUSB_INTERFACE_HANDLE InterfaceHandle, WINUSB_SETUP_PACKET SetupPacket, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); static YY_THUNK_FNTYPE_WinUsb_ControlTransfer __attribute__((__cdecl__)) try_get_WinUsb_ControlTransfer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_Free
+__APPLY_UNIT_TEST_BOOL(WinUsb_Free); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_Free)( WINUSB_INTERFACE_HANDLE InterfaceHandle); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_Free( WINUSB_INTERFACE_HANDLE InterfaceHandle); static YY_THUNK_FNTYPE_WinUsb_Free __attribute__((__cdecl__)) try_get_WinUsb_Free() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_GetAssociatedInterface
+__APPLY_UNIT_TEST_BOOL(WinUsb_GetAssociatedInterface); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_GetAssociatedInterface)( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR AssociatedInterfaceIndex, PWINUSB_INTERFACE_HANDLE AssociatedInterfaceHandle); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_GetAssociatedInterface( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR AssociatedInterfaceIndex, PWINUSB_INTERFACE_HANDLE AssociatedInterfaceHandle); static YY_THUNK_FNTYPE_WinUsb_GetAssociatedInterface __attribute__((__cdecl__)) try_get_WinUsb_GetAssociatedInterface() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_GetOverlappedResult
+__APPLY_UNIT_TEST_BOOL(WinUsb_GetOverlappedResult); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_GetOverlappedResult)( WINUSB_INTERFACE_HANDLE InterfaceHandle, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, BOOL bWait); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_GetOverlappedResult( WINUSB_INTERFACE_HANDLE InterfaceHandle, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, BOOL bWait); static YY_THUNK_FNTYPE_WinUsb_GetOverlappedResult __attribute__((__cdecl__)) try_get_WinUsb_GetOverlappedResult() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_Initialize
+__APPLY_UNIT_TEST_BOOL(WinUsb_Initialize); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_Initialize)( HANDLE DeviceHandle, PWINUSB_INTERFACE_HANDLE InterfaceHandle); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_Initialize( HANDLE DeviceHandle, PWINUSB_INTERFACE_HANDLE InterfaceHandle); static YY_THUNK_FNTYPE_WinUsb_Initialize __attribute__((__cdecl__)) try_get_WinUsb_Initialize() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_ReadPipe
+__APPLY_UNIT_TEST_BOOL(WinUsb_ReadPipe); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_ReadPipe)( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_ReadPipe( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); static YY_THUNK_FNTYPE_WinUsb_ReadPipe __attribute__((__cdecl__)) try_get_WinUsb_ReadPipe() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_ResetPipe
+__APPLY_UNIT_TEST_BOOL(WinUsb_ResetPipe); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_ResetPipe)( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_ResetPipe( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID); static YY_THUNK_FNTYPE_WinUsb_ResetPipe __attribute__((__cdecl__)) try_get_WinUsb_ResetPipe() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_SetCurrentAlternateSetting
+__APPLY_UNIT_TEST_BOOL(WinUsb_SetCurrentAlternateSetting); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_SetCurrentAlternateSetting)( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR SettingNumber); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_SetCurrentAlternateSetting( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR SettingNumber); static YY_THUNK_FNTYPE_WinUsb_SetCurrentAlternateSetting __attribute__((__cdecl__)) try_get_WinUsb_SetCurrentAlternateSetting() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WinUsb_WritePipe
+__APPLY_UNIT_TEST_BOOL(WinUsb_WritePipe); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WinUsb_WritePipe)( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWinUsb_WritePipe( WINUSB_INTERFACE_HANDLE InterfaceHandle, UCHAR PipeID, PUCHAR Buffer, ULONG BufferLength, PULONG LengthTransferred, LPOVERLAPPED Overlapped); static YY_THUNK_FNTYPE_WinUsb_WritePipe __attribute__((__cdecl__)) try_get_WinUsb_WritePipe() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetDateFormatEx
+__APPLY_UNIT_TEST_BOOL(GetDateFormatEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetDateFormatEx)( LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME* lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate, LPCWSTR lpCalendar); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetDateFormatEx( LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME* lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate, LPCWSTR lpCalendar); static YY_THUNK_FNTYPE_GetDateFormatEx __attribute__((__cdecl__)) try_get_GetDateFormatEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetTimeFormatEx
+__APPLY_UNIT_TEST_BOOL(GetTimeFormatEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetTimeFormatEx)( LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME* lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetTimeFormatEx( LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME* lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime); static YY_THUNK_FNTYPE_GetTimeFormatEx __attribute__((__cdecl__)) try_get_GetTimeFormatEx() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_RaiseFailFastException
 __APPLY_UNIT_TEST_BOOL(RaiseFailFastException); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RaiseFailFastException)( PEXCEPTION_RECORD pExceptionRecord, PCONTEXT pContextRecord, DWORD dwFlags); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXRaiseFailFastException( PEXCEPTION_RECORD pExceptionRecord, PCONTEXT pContextRecord, DWORD dwFlags); static YY_THUNK_FNTYPE_RaiseFailFastException __attribute__((__cdecl__)) try_get_RaiseFailFastException() noexcept;
 #endif
@@ -582,8 +1270,28 @@ __APPLY_UNIT_TEST_BOOL(SetThreadErrorMode); typedef BOOL(__attribute__((__stdcal
 __APPLY_UNIT_TEST_BOOL(GetThreadErrorMode); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetThreadErrorMode)(void); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetThreadErrorMode(void); static YY_THUNK_FNTYPE_GetThreadErrorMode __attribute__((__cdecl__)) try_get_GetThreadErrorMode() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_GetErrorMode
+__APPLY_UNIT_TEST_BOOL(GetErrorMode); typedef UINT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetErrorMode)(void); extern "C" UINT __attribute__((__stdcall__)) __FALLBACK_PREFIXGetErrorMode(void); static YY_THUNK_FNTYPE_GetErrorMode __attribute__((__cdecl__)) try_get_GetErrorMode() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_IsThreadAFiber
+__APPLY_UNIT_TEST_BOOL(IsThreadAFiber); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_IsThreadAFiber)(void); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXIsThreadAFiber(void); static YY_THUNK_FNTYPE_IsThreadAFiber __attribute__((__cdecl__)) try_get_IsThreadAFiber() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetFileInformationByHandleEx
 __APPLY_UNIT_TEST_BOOL(GetFileInformationByHandleEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFileInformationByHandleEx)( HANDLE hFile, FILE_INFO_BY_HANDLE_CLASS FileInformationClass, LPVOID lpFileInformation, DWORD dwBufferSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFileInformationByHandleEx( HANDLE hFile, FILE_INFO_BY_HANDLE_CLASS FileInformationClass, LPVOID lpFileInformation, DWORD dwBufferSize); static YY_THUNK_FNTYPE_GetFileInformationByHandleEx __attribute__((__cdecl__)) try_get_GetFileInformationByHandleEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetFileInformationByHandle
+__APPLY_UNIT_TEST_BOOL(SetFileInformationByHandle); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetFileInformationByHandle)( HANDLE hFile, FILE_INFO_BY_HANDLE_CLASS FileInformationClass, LPVOID lpFileInformation, DWORD dwBufferSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetFileInformationByHandle( HANDLE hFile, FILE_INFO_BY_HANDLE_CLASS FileInformationClass, LPVOID lpFileInformation, DWORD dwBufferSize); static YY_THUNK_FNTYPE_SetFileInformationByHandle __attribute__((__cdecl__)) try_get_SetFileInformationByHandle() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFinalPathNameByHandleW
+__APPLY_UNIT_TEST_BOOL(GetFinalPathNameByHandleW); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFinalPathNameByHandleW)( HANDLE hFile, LPWSTR lpszFilePath, DWORD cchFilePath, DWORD dwFlags); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFinalPathNameByHandleW( HANDLE hFile, LPWSTR lpszFilePath, DWORD cchFilePath, DWORD dwFlags); static YY_THUNK_FNTYPE_GetFinalPathNameByHandleW __attribute__((__cdecl__)) try_get_GetFinalPathNameByHandleW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFinalPathNameByHandleA
+__APPLY_UNIT_TEST_BOOL(GetFinalPathNameByHandleA); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFinalPathNameByHandleA)( HANDLE hFile, LPSTR lpszFilePath, DWORD cchFilePath, DWORD dwFlags); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFinalPathNameByHandleA( HANDLE hFile, LPSTR lpszFilePath, DWORD cchFilePath, DWORD dwFlags); static YY_THUNK_FNTYPE_GetFinalPathNameByHandleA __attribute__((__cdecl__)) try_get_GetFinalPathNameByHandleA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_CreateFile2
@@ -596,6 +1304,14 @@ __APPLY_UNIT_TEST_BOOL(CreateFile3); typedef HANDLE(__attribute__((__stdcall__))
 
 #if YY_THUNK_GUARD_try_get_OpenFileById
 __APPLY_UNIT_TEST_BOOL(OpenFileById); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_OpenFileById)( HANDLE hVolumeHint, LPFILE_ID_DESCRIPTOR lpFileId, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwFlagsAndAttributes); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXOpenFileById( HANDLE hVolumeHint, LPFILE_ID_DESCRIPTOR lpFileId, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwFlagsAndAttributes); static YY_THUNK_FNTYPE_OpenFileById __attribute__((__cdecl__)) try_get_OpenFileById() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateSymbolicLinkW
+__APPLY_UNIT_TEST_BOOL(CreateSymbolicLinkW); typedef BOOLEAN(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateSymbolicLinkW)( LPCWSTR lpSymlinkFileName, LPCWSTR lpTargetFileName, DWORD dwFlags); extern "C" BOOLEAN __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateSymbolicLinkW( LPCWSTR lpSymlinkFileName, LPCWSTR lpTargetFileName, DWORD dwFlags); static YY_THUNK_FNTYPE_CreateSymbolicLinkW __attribute__((__cdecl__)) try_get_CreateSymbolicLinkW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateSymbolicLinkA
+__APPLY_UNIT_TEST_BOOL(CreateSymbolicLinkA); typedef BOOLEAN(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateSymbolicLinkA)( LPCSTR lpSymlinkFileName, LPCSTR lpTargetFileName, DWORD dwFlags); extern "C" BOOLEAN __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateSymbolicLinkA( LPCSTR lpSymlinkFileName, LPCSTR lpTargetFileName, DWORD dwFlags); static YY_THUNK_FNTYPE_CreateSymbolicLinkA __attribute__((__cdecl__)) try_get_CreateSymbolicLinkA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_FindFirstFileExW
@@ -626,6 +1342,26 @@ __APPLY_UNIT_TEST_BOOL(GetTempPath2W); typedef DWORD(__attribute__((__stdcall__)
 __APPLY_UNIT_TEST_BOOL(GetTempPath2A); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetTempPath2A)( DWORD BufferLength, LPSTR Buffer); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetTempPath2A( DWORD BufferLength, LPSTR Buffer); static YY_THUNK_FNTYPE_GetTempPath2A __attribute__((__cdecl__)) try_get_GetTempPath2A() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_CreateFileW
+__APPLY_UNIT_TEST_BOOL(CreateFileW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateFileW)( LPCWSTR _szFileName, DWORD _uDesiredAccess, DWORD _uShareMode, LPSECURITY_ATTRIBUTES _pSecurityAttributes, DWORD _uCreationDisposition, DWORD _uFlagsAndAttributes, HANDLE _hTemplateFile); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateFileW( LPCWSTR _szFileName, DWORD _uDesiredAccess, DWORD _uShareMode, LPSECURITY_ATTRIBUTES _pSecurityAttributes, DWORD _uCreationDisposition, DWORD _uFlagsAndAttributes, HANDLE _hTemplateFile); static YY_THUNK_FNTYPE_CreateFileW __attribute__((__cdecl__)) try_get_CreateFileW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateFileA
+__APPLY_UNIT_TEST_BOOL(CreateFileA); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateFileA)( LPCSTR _szFileName, DWORD _uDesiredAccess, DWORD _uShareMode, LPSECURITY_ATTRIBUTES _pSecurityAttributes, DWORD _uCreationDisposition, DWORD _uFlagsAndAttributes, HANDLE _hTemplateFile); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateFileA( LPCSTR _szFileName, DWORD _uDesiredAccess, DWORD _uShareMode, LPSECURITY_ATTRIBUTES _pSecurityAttributes, DWORD _uCreationDisposition, DWORD _uFlagsAndAttributes, HANDLE _hTemplateFile); static YY_THUNK_FNTYPE_CreateFileA __attribute__((__cdecl__)) try_get_CreateFileA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CancelIoEx
+__APPLY_UNIT_TEST_BOOL(CancelIoEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CancelIoEx)( HANDLE hFile, LPOVERLAPPED lpOverlapped); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCancelIoEx( HANDLE hFile, LPOVERLAPPED lpOverlapped); static YY_THUNK_FNTYPE_CancelIoEx __attribute__((__cdecl__)) try_get_CancelIoEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CancelSynchronousIo
+__APPLY_UNIT_TEST_BOOL(CancelSynchronousIo); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CancelSynchronousIo)( HANDLE _hThread); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCancelSynchronousIo( HANDLE _hThread); static YY_THUNK_FNTYPE_CancelSynchronousIo __attribute__((__cdecl__)) try_get_CancelSynchronousIo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetQueuedCompletionStatusEx
+__APPLY_UNIT_TEST_BOOL(GetQueuedCompletionStatusEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetQueuedCompletionStatusEx)( HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries, ULONG ulCount, PULONG ulNumEntriesRemoved, DWORD dwMilliseconds, BOOL fAlertable); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetQueuedCompletionStatusEx( HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries, ULONG ulCount, PULONG ulNumEntriesRemoved, DWORD dwMilliseconds, BOOL fAlertable); static YY_THUNK_FNTYPE_GetQueuedCompletionStatusEx __attribute__((__cdecl__)) try_get_GetQueuedCompletionStatusEx() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetOverlappedResultEx
 __APPLY_UNIT_TEST_BOOL(GetOverlappedResultEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetOverlappedResultEx)( HANDLE _hFile, LPOVERLAPPED _pOverlapped, LPDWORD _puNumberOfBytesTransferred, DWORD _uMilliseconds, BOOL _bAlertable); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetOverlappedResultEx( HANDLE _hFile, LPOVERLAPPED _pOverlapped, LPDWORD _puNumberOfBytesTransferred, DWORD _uMilliseconds, BOOL _bAlertable); static YY_THUNK_FNTYPE_GetOverlappedResultEx __attribute__((__cdecl__)) try_get_GetOverlappedResultEx() noexcept;
 #endif
@@ -638,8 +1374,20 @@ __APPLY_UNIT_TEST_BOOL(LoadLibraryExW); typedef HMODULE(__attribute__((__stdcall
 __APPLY_UNIT_TEST_BOOL(LoadLibraryExA); typedef HMODULE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LoadLibraryExA)( LPCSTR _szLibFileName, HANDLE _hFile, DWORD _fFlags); extern "C" HMODULE __attribute__((__stdcall__)) __FALLBACK_PREFIXLoadLibraryExA( LPCSTR _szLibFileName, HANDLE _hFile, DWORD _fFlags); static YY_THUNK_FNTYPE_LoadLibraryExA __attribute__((__cdecl__)) try_get_LoadLibraryExA() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_EnumResourceLanguagesExW
+__APPLY_UNIT_TEST_BOOL(EnumResourceLanguagesExW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumResourceLanguagesExW)( HMODULE _hModule, LPCWSTR _lpType, LPCWSTR _lpName, ENUMRESLANGPROCW _lpEnumFunc, LONG_PTR _lParam, DWORD _dwFlags, LANGID _LangId); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumResourceLanguagesExW( HMODULE _hModule, LPCWSTR _lpType, LPCWSTR _lpName, ENUMRESLANGPROCW _lpEnumFunc, LONG_PTR _lParam, DWORD _dwFlags, LANGID _LangId); static YY_THUNK_FNTYPE_EnumResourceLanguagesExW __attribute__((__cdecl__)) try_get_EnumResourceLanguagesExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumResourceLanguagesExA
+__APPLY_UNIT_TEST_BOOL(EnumResourceLanguagesExA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumResourceLanguagesExA)( HMODULE _hModule, LPCSTR _lpType, LPCSTR _lpName, ENUMRESLANGPROCA _lpEnumFunc, LONG_PTR _lParam, DWORD _dwFlags, LANGID _LangId); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumResourceLanguagesExA( HMODULE _hModule, LPCSTR _lpType, LPCSTR _lpName, ENUMRESLANGPROCA _lpEnumFunc, LONG_PTR _lParam, DWORD _dwFlags, LANGID _LangId); static YY_THUNK_FNTYPE_EnumResourceLanguagesExA __attribute__((__cdecl__)) try_get_EnumResourceLanguagesExA() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_FindStringOrdinal
 __APPLY_UNIT_TEST_BOOL(FindStringOrdinal); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FindStringOrdinal)( DWORD _uFindStringOrdinalFlags, LPCWSTR _pStringSource, int _cchSource, LPCWSTR _pStringValue, int _cchValue, BOOL _bIgnoreCase); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXFindStringOrdinal( DWORD _uFindStringOrdinalFlags, LPCWSTR _pStringSource, int _cchSource, LPCWSTR _pStringValue, int _cchValue, BOOL _bIgnoreCase); static YY_THUNK_FNTYPE_FindStringOrdinal __attribute__((__cdecl__)) try_get_FindStringOrdinal() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DisableThreadLibraryCalls
+__APPLY_UNIT_TEST_BOOL(DisableThreadLibraryCalls); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DisableThreadLibraryCalls)( HMODULE _hLibModule); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXDisableThreadLibraryCalls( HMODULE _hLibModule); static YY_THUNK_FNTYPE_DisableThreadLibraryCalls __attribute__((__cdecl__)) try_get_DisableThreadLibraryCalls() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_LoadLibraryW
@@ -662,16 +1410,96 @@ __APPLY_UNIT_TEST_BOOL(AddDllDirectory); typedef DLL_DIRECTORY_COOKIE(__attribut
 __APPLY_UNIT_TEST_BOOL(RemoveDllDirectory); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RemoveDllDirectory)( DLL_DIRECTORY_COOKIE _pCookie); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXRemoveDllDirectory( DLL_DIRECTORY_COOKIE _pCookie); static YY_THUNK_FNTYPE_RemoveDllDirectory __attribute__((__cdecl__)) try_get_RemoveDllDirectory() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_LocaleNameToLCID
+__APPLY_UNIT_TEST_BOOL(LocaleNameToLCID); typedef LCID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LocaleNameToLCID)( LPCWSTR lpName, DWORD dwFlags); extern "C" LCID __attribute__((__stdcall__)) __FALLBACK_PREFIXLocaleNameToLCID( LPCWSTR lpName, DWORD dwFlags); static YY_THUNK_FNTYPE_LocaleNameToLCID __attribute__((__cdecl__)) try_get_LocaleNameToLCID() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_LCIDToLocaleName
+__APPLY_UNIT_TEST_BOOL(LCIDToLocaleName); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LCIDToLocaleName)( LCID Locale, LPWSTR lpName, int cchName, DWORD dwFlags); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXLCIDToLocaleName( LCID Locale, LPWSTR lpName, int cchName, DWORD dwFlags); static YY_THUNK_FNTYPE_LCIDToLocaleName __attribute__((__cdecl__)) try_get_LCIDToLocaleName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetLocaleInfoEx
+__APPLY_UNIT_TEST_BOOL(GetLocaleInfoEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetLocaleInfoEx)( LPCWSTR lpLocaleName, LCTYPE LCType, LPWSTR lpLCData, int cchData); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetLocaleInfoEx( LPCWSTR lpLocaleName, LCTYPE LCType, LPWSTR lpLCData, int cchData); static YY_THUNK_FNTYPE_GetLocaleInfoEx __attribute__((__cdecl__)) try_get_GetLocaleInfoEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetNumberFormatEx
+__APPLY_UNIT_TEST_BOOL(GetNumberFormatEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNumberFormatEx)( LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, const NUMBERFMTW *lpFormat, LPWSTR lpNumberStr, int cchNumber); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNumberFormatEx( LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, const NUMBERFMTW *lpFormat, LPWSTR lpNumberStr, int cchNumber); static YY_THUNK_FNTYPE_GetNumberFormatEx __attribute__((__cdecl__)) try_get_GetNumberFormatEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetCurrencyFormatEx
+__APPLY_UNIT_TEST_BOOL(GetCurrencyFormatEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetCurrencyFormatEx)( LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, const CURRENCYFMTW *lpFormat, LPWSTR lpCurrencyStr, int cchCurrency); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetCurrencyFormatEx( LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, const CURRENCYFMTW *lpFormat, LPWSTR lpCurrencyStr, int cchCurrency); static YY_THUNK_FNTYPE_GetCurrencyFormatEx __attribute__((__cdecl__)) try_get_GetCurrencyFormatEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetUserDefaultLocaleName
+__APPLY_UNIT_TEST_BOOL(GetUserDefaultLocaleName); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetUserDefaultLocaleName)( LPWSTR lpLocaleName, int cchLocaleName); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetUserDefaultLocaleName( LPWSTR lpLocaleName, int cchLocaleName); static YY_THUNK_FNTYPE_GetUserDefaultLocaleName __attribute__((__cdecl__)) try_get_GetUserDefaultLocaleName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetSystemDefaultLocaleName
+__APPLY_UNIT_TEST_BOOL(GetSystemDefaultLocaleName); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetSystemDefaultLocaleName)( LPWSTR lpLocaleName, int cchLocaleName); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetSystemDefaultLocaleName( LPWSTR lpLocaleName, int cchLocaleName); static YY_THUNK_FNTYPE_GetSystemDefaultLocaleName __attribute__((__cdecl__)) try_get_GetSystemDefaultLocaleName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumCalendarInfoExEx
+__APPLY_UNIT_TEST_BOOL(EnumCalendarInfoExEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumCalendarInfoExEx)( CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx, LPCWSTR lpLocaleName, CALID Calendar, LPCWSTR lpReserved, CALTYPE CalType, LPARAM lParam); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumCalendarInfoExEx( CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx, LPCWSTR lpLocaleName, CALID Calendar, LPCWSTR lpReserved, CALTYPE CalType, LPARAM lParam); static YY_THUNK_FNTYPE_EnumCalendarInfoExEx __attribute__((__cdecl__)) try_get_EnumCalendarInfoExEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumDateFormatsExEx
+__APPLY_UNIT_TEST_BOOL(EnumDateFormatsExEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumDateFormatsExEx)( DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx, LPCWSTR lpLocaleName, DWORD dwFlags, LPARAM lParam); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumDateFormatsExEx( DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx, LPCWSTR lpLocaleName, DWORD dwFlags, LPARAM lParam); static YY_THUNK_FNTYPE_EnumDateFormatsExEx __attribute__((__cdecl__)) try_get_EnumDateFormatsExEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_LCMapStringEx
+__APPLY_UNIT_TEST_BOOL(LCMapStringEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LCMapStringEx)( LPCWSTR lpLocaleName, DWORD dwMapFlags, LPCWSTR lpSrcStr, int cchSrc, LPWSTR lpDestStr, int cchDest, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM sortHandle); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXLCMapStringEx( LPCWSTR lpLocaleName, DWORD dwMapFlags, LPCWSTR lpSrcStr, int cchSrc, LPWSTR lpDestStr, int cchDest, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM sortHandle); static YY_THUNK_FNTYPE_LCMapStringEx __attribute__((__cdecl__)) try_get_LCMapStringEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumSystemLocalesEx
+__APPLY_UNIT_TEST_BOOL(EnumSystemLocalesEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumSystemLocalesEx)( LOCALE_ENUMPROCEX lpLocaleEnumProcEx, DWORD dwFlags, LPARAM lParam, LPVOID lpReserved); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumSystemLocalesEx( LOCALE_ENUMPROCEX lpLocaleEnumProcEx, DWORD dwFlags, LPARAM lParam, LPVOID lpReserved); static YY_THUNK_FNTYPE_EnumSystemLocalesEx __attribute__((__cdecl__)) try_get_EnumSystemLocalesEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetThreadPreferredUILanguages
+__APPLY_UNIT_TEST_BOOL(GetThreadPreferredUILanguages); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetThreadPreferredUILanguages)( DWORD dwFlags, PULONG pulNumLanguages, PZZWSTR pwszLanguagesBuffer, PULONG pcchLanguagesBuffer); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetThreadPreferredUILanguages( DWORD dwFlags, PULONG pulNumLanguages, PZZWSTR pwszLanguagesBuffer, PULONG pcchLanguagesBuffer); static YY_THUNK_FNTYPE_GetThreadPreferredUILanguages __attribute__((__cdecl__)) try_get_GetThreadPreferredUILanguages() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetThreadUILanguage
+__APPLY_UNIT_TEST_BOOL(GetThreadUILanguage); typedef LANGID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetThreadUILanguage)(void); extern "C" LANGID __attribute__((__stdcall__)) __FALLBACK_PREFIXGetThreadUILanguage(void); static YY_THUNK_FNTYPE_GetThreadUILanguage __attribute__((__cdecl__)) try_get_GetThreadUILanguage() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_ResolveLocaleName
 __APPLY_UNIT_TEST_BOOL(ResolveLocaleName); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ResolveLocaleName)( LPCWSTR lpNameToResolve, LPWSTR lpLocaleName, int cchLocaleName); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXResolveLocaleName( LPCWSTR lpNameToResolve, LPWSTR lpLocaleName, int cchLocaleName); static YY_THUNK_FNTYPE_ResolveLocaleName __attribute__((__cdecl__)) try_get_ResolveLocaleName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetUserPreferredUILanguages
+__APPLY_UNIT_TEST_BOOL(GetUserPreferredUILanguages); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetUserPreferredUILanguages)( DWORD dwFlags, PULONG pulNumLanguages, PZZWSTR pwszLanguagesBuffer, PULONG pcchLanguagesBuffer); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetUserPreferredUILanguages( DWORD dwFlags, PULONG pulNumLanguages, PZZWSTR pwszLanguagesBuffer, PULONG pcchLanguagesBuffer); static YY_THUNK_FNTYPE_GetUserPreferredUILanguages __attribute__((__cdecl__)) try_get_GetUserPreferredUILanguages() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_EnumTimeFormatsEx
+__APPLY_UNIT_TEST_BOOL(EnumTimeFormatsEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumTimeFormatsEx)( TIMEFMT_ENUMPROCEX _pfnTimeFmtEnumProcEx, LPCWSTR _szLocaleName, DWORD _fFlags, LPARAM _lParam); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumTimeFormatsEx( TIMEFMT_ENUMPROCEX _pfnTimeFmtEnumProcEx, LPCWSTR _szLocaleName, DWORD _fFlags, LPARAM _lParam); static YY_THUNK_FNTYPE_EnumTimeFormatsEx __attribute__((__cdecl__)) try_get_EnumTimeFormatsEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetCalendarInfoEx
+__APPLY_UNIT_TEST_BOOL(GetCalendarInfoEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetCalendarInfoEx)( LPCWSTR _szLocaleName, CALID _Calendar, LPCWSTR _szReserved, CALTYPE _CalType, LPWSTR _szCalData, int _cchData, LPDWORD _puValue); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXGetCalendarInfoEx( LPCWSTR _szLocaleName, CALID _Calendar, LPCWSTR _szReserved, CALTYPE _CalType, LPWSTR _szCalData, int _cchData, LPDWORD _puValue); static YY_THUNK_FNTYPE_GetCalendarInfoEx __attribute__((__cdecl__)) try_get_GetCalendarInfoEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetNLSVersionEx
+__APPLY_UNIT_TEST_BOOL(GetNLSVersionEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNLSVersionEx)( NLS_FUNCTION _uFunction, LPCWSTR _szLocaleName, LPNLSVERSIONINFOEX _pVersionInformation); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNLSVersionEx( NLS_FUNCTION _uFunction, LPCWSTR _szLocaleName, LPNLSVERSIONINFOEX _pVersionInformation); static YY_THUNK_FNTYPE_GetNLSVersionEx __attribute__((__cdecl__)) try_get_GetNLSVersionEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_FindNLSStringEx
+__APPLY_UNIT_TEST_BOOL(FindNLSStringEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FindNLSStringEx)( LPCWSTR _szLocaleName, DWORD _fFindNLSStringFlags, LPCWSTR _szStringSource, int _cchSource, LPCWSTR _szStringValue, int _cchValue, LPINT _pcchFound, LPNLSVERSIONINFO _pVersionInformation, LPVOID _pReserved, LPARAM _hSortHandle); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXFindNLSStringEx( LPCWSTR _szLocaleName, DWORD _fFindNLSStringFlags, LPCWSTR _szStringSource, int _cchSource, LPCWSTR _szStringValue, int _cchValue, LPINT _pcchFound, LPNLSVERSIONINFO _pVersionInformation, LPVOID _pReserved, LPARAM _hSortHandle); static YY_THUNK_FNTYPE_FindNLSStringEx __attribute__((__cdecl__)) try_get_FindNLSStringEx() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_GetMemoryErrorHandlingCapabilities
 __APPLY_UNIT_TEST_BOOL(GetMemoryErrorHandlingCapabilities); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetMemoryErrorHandlingCapabilities)( PULONG Capabilities); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetMemoryErrorHandlingCapabilities( PULONG Capabilities); static YY_THUNK_FNTYPE_GetMemoryErrorHandlingCapabilities __attribute__((__cdecl__)) try_get_GetMemoryErrorHandlingCapabilities() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_AllocateUserPhysicalPagesNuma
+__APPLY_UNIT_TEST_BOOL(AllocateUserPhysicalPagesNuma); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_AllocateUserPhysicalPagesNuma)( HANDLE hProcess, PULONG_PTR NumberOfPages, PULONG_PTR PageArray, DWORD nndPreferred); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXAllocateUserPhysicalPagesNuma( HANDLE hProcess, PULONG_PTR NumberOfPages, PULONG_PTR PageArray, DWORD nndPreferred); static YY_THUNK_FNTYPE_AllocateUserPhysicalPagesNuma __attribute__((__cdecl__)) try_get_AllocateUserPhysicalPagesNuma() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_VirtualAllocFromApp
 __APPLY_UNIT_TEST_BOOL(VirtualAllocFromApp); typedef PVOID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_VirtualAllocFromApp)( PVOID BaseAddress, SIZE_T Size, ULONG AllocationType, ULONG Protection); extern "C" PVOID __attribute__((__stdcall__)) __FALLBACK_PREFIXVirtualAllocFromApp( PVOID BaseAddress, SIZE_T Size, ULONG AllocationType, ULONG Protection); static YY_THUNK_FNTYPE_VirtualAllocFromApp __attribute__((__cdecl__)) try_get_VirtualAllocFromApp() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_VirtualAllocExNuma
+__APPLY_UNIT_TEST_BOOL(VirtualAllocExNuma); typedef LPVOID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_VirtualAllocExNuma)( HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect, DWORD nndPreferred); extern "C" LPVOID __attribute__((__stdcall__)) __FALLBACK_PREFIXVirtualAllocExNuma( HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect, DWORD nndPreferred); static YY_THUNK_FNTYPE_VirtualAllocExNuma __attribute__((__cdecl__)) try_get_VirtualAllocExNuma() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_VirtualAlloc2
@@ -680,6 +1508,14 @@ __APPLY_UNIT_TEST_BOOL(VirtualAlloc2); typedef PVOID(__attribute__((__stdcall__)
 
 #if YY_THUNK_GUARD_try_get_VirtualAlloc2FromApp
 __APPLY_UNIT_TEST_BOOL(VirtualAlloc2FromApp); typedef PVOID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_VirtualAlloc2FromApp)( HANDLE Process, PVOID BaseAddress, SIZE_T Size, ULONG AllocationType, ULONG PageProtection, MEM_EXTENDED_PARAMETER* ExtendedParameters, ULONG ParameterCount); extern "C" PVOID __attribute__((__stdcall__)) __FALLBACK_PREFIXVirtualAlloc2FromApp( HANDLE Process, PVOID BaseAddress, SIZE_T Size, ULONG AllocationType, ULONG PageProtection, MEM_EXTENDED_PARAMETER* ExtendedParameters, ULONG ParameterCount); static YY_THUNK_FNTYPE_VirtualAlloc2FromApp __attribute__((__cdecl__)) try_get_VirtualAlloc2FromApp() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateFileMappingNumaW
+__APPLY_UNIT_TEST_BOOL(CreateFileMappingNumaW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateFileMappingNumaW)( HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName, DWORD nndPreferred); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateFileMappingNumaW( HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName, DWORD nndPreferred); static YY_THUNK_FNTYPE_CreateFileMappingNumaW __attribute__((__cdecl__)) try_get_CreateFileMappingNumaW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateFileMappingNumaA
+__APPLY_UNIT_TEST_BOOL(CreateFileMappingNumaA); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateFileMappingNumaA)( HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCSTR lpName, DWORD nndPreferred); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateFileMappingNumaA( HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCSTR lpName, DWORD nndPreferred); static YY_THUNK_FNTYPE_CreateFileMappingNumaA __attribute__((__cdecl__)) try_get_CreateFileMappingNumaA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_CreateFileMappingFromApp
@@ -720,6 +1556,22 @@ __APPLY_UNIT_TEST_BOOL(ReclaimVirtualMemory); typedef DWORD(__attribute__((__std
 
 #if YY_THUNK_GUARD_try_get_PrefetchVirtualMemory
 __APPLY_UNIT_TEST_BOOL(PrefetchVirtualMemory); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_PrefetchVirtualMemory)( HANDLE _hProcess, ULONG_PTR _uNumberOfEntries, PWIN32_MEMORY_RANGE_ENTRY _pVirtualAddresses, ULONG _fFlags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXPrefetchVirtualMemory( HANDLE _hProcess, ULONG_PTR _uNumberOfEntries, PWIN32_MEMORY_RANGE_ENTRY _pVirtualAddresses, ULONG _fFlags); static YY_THUNK_FNTYPE_PrefetchVirtualMemory __attribute__((__cdecl__)) try_get_PrefetchVirtualMemory() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetNamedPipeClientProcessId
+__APPLY_UNIT_TEST_BOOL(GetNamedPipeClientProcessId); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNamedPipeClientProcessId)( HANDLE _hNamedPipe, PULONG _pClientProcessId); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNamedPipeClientProcessId( HANDLE _hNamedPipe, PULONG _pClientProcessId); static YY_THUNK_FNTYPE_GetNamedPipeClientProcessId __attribute__((__cdecl__)) try_get_GetNamedPipeClientProcessId() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetNamedPipeServerProcessId
+__APPLY_UNIT_TEST_BOOL(GetNamedPipeServerProcessId); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNamedPipeServerProcessId)( HANDLE _hNamedPipe, PULONG _pServerProcessId); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNamedPipeServerProcessId( HANDLE _hNamedPipe, PULONG _pServerProcessId); static YY_THUNK_FNTYPE_GetNamedPipeServerProcessId __attribute__((__cdecl__)) try_get_GetNamedPipeServerProcessId() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateNamedPipeW
+__APPLY_UNIT_TEST_BOOL(CreateNamedPipeW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateNamedPipeW)( LPCWSTR _szPipeName, DWORD _uOpenMode, DWORD _uPipeMode, DWORD _uMaxInstances, DWORD _uOutBufferSize, DWORD _uInBufferSize, DWORD _uDefaultTimeout, LPSECURITY_ATTRIBUTES _pSecurityAttributes); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateNamedPipeW( LPCWSTR _szPipeName, DWORD _uOpenMode, DWORD _uPipeMode, DWORD _uMaxInstances, DWORD _uOutBufferSize, DWORD _uInBufferSize, DWORD _uDefaultTimeout, LPSECURITY_ATTRIBUTES _pSecurityAttributes); static YY_THUNK_FNTYPE_CreateNamedPipeW __attribute__((__cdecl__)) try_get_CreateNamedPipeW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateNamedPipeA
+__APPLY_UNIT_TEST_BOOL(CreateNamedPipeA); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateNamedPipeA)( LPCSTR _szPipeName, DWORD _uOpenMode, DWORD _uPipeMode, DWORD _uMaxInstances, DWORD _uOutBufferSize, DWORD _uInBufferSize, DWORD _uDefaultTimeout, LPSECURITY_ATTRIBUTES _pSecurityAttributes); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateNamedPipeA( LPCSTR _szPipeName, DWORD _uOpenMode, DWORD _uPipeMode, DWORD _uMaxInstances, DWORD _uOutBufferSize, DWORD _uInBufferSize, DWORD _uDefaultTimeout, LPSECURITY_ATTRIBUTES _pSecurityAttributes); static YY_THUNK_FNTYPE_CreateNamedPipeA __attribute__((__cdecl__)) try_get_CreateNamedPipeA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_PathIsUNCEx
@@ -814,6 +1666,22 @@ __APPLY_UNIT_TEST_BOOL(PathAllocCanonicalize); typedef HRESULT(__attribute__((__
 __APPLY_UNIT_TEST_BOOL(GetCurrentProcessorNumberEx); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetCurrentProcessorNumberEx)( PPROCESSOR_NUMBER ProcNumber); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXGetCurrentProcessorNumberEx( PPROCESSOR_NUMBER ProcNumber); static YY_THUNK_FNTYPE_GetCurrentProcessorNumberEx __attribute__((__cdecl__)) try_get_GetCurrentProcessorNumberEx() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_FlushProcessWriteBuffers
+__APPLY_UNIT_TEST_BOOL(FlushProcessWriteBuffers); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FlushProcessWriteBuffers)(void); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXFlushProcessWriteBuffers(void); static YY_THUNK_FNTYPE_FlushProcessWriteBuffers __attribute__((__cdecl__)) try_get_FlushProcessWriteBuffers() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitializeProcThreadAttributeList
+__APPLY_UNIT_TEST_BOOL(InitializeProcThreadAttributeList); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitializeProcThreadAttributeList)( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList, DWORD dwAttributeCount, DWORD dwFlags, PSIZE_T lpSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXInitializeProcThreadAttributeList( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList, DWORD dwAttributeCount, DWORD dwFlags, PSIZE_T lpSize); static YY_THUNK_FNTYPE_InitializeProcThreadAttributeList __attribute__((__cdecl__)) try_get_InitializeProcThreadAttributeList() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_DeleteProcThreadAttributeList
+__APPLY_UNIT_TEST_BOOL(DeleteProcThreadAttributeList); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_DeleteProcThreadAttributeList)( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXDeleteProcThreadAttributeList( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList); static YY_THUNK_FNTYPE_DeleteProcThreadAttributeList __attribute__((__cdecl__)) try_get_DeleteProcThreadAttributeList() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UpdateProcThreadAttribute
+__APPLY_UNIT_TEST_BOOL(UpdateProcThreadAttribute); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UpdateProcThreadAttribute)( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList, DWORD dwFlags, DWORD_PTR Attribute, PVOID lpValue, SIZE_T cbSize, PVOID lpPreviousValue, PSIZE_T lpReturnSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXUpdateProcThreadAttribute( LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList, DWORD dwFlags, DWORD_PTR Attribute, PVOID lpValue, SIZE_T cbSize, PVOID lpPreviousValue, PSIZE_T lpReturnSize); static YY_THUNK_FNTYPE_UpdateProcThreadAttribute __attribute__((__cdecl__)) try_get_UpdateProcThreadAttribute() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetProcessMitigationPolicy
 __APPLY_UNIT_TEST_BOOL(GetProcessMitigationPolicy); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetProcessMitigationPolicy)( HANDLE _hProcess, PROCESS_MITIGATION_POLICY _eMitigationPolicy, PVOID _pBuffer, SIZE_T _cbLength); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetProcessMitigationPolicy( HANDLE _hProcess, PROCESS_MITIGATION_POLICY _eMitigationPolicy, PVOID _pBuffer, SIZE_T _cbLength); static YY_THUNK_FNTYPE_GetProcessMitigationPolicy __attribute__((__cdecl__)) try_get_GetProcessMitigationPolicy() noexcept;
 #endif
@@ -850,6 +1718,14 @@ __APPLY_UNIT_TEST_BOOL(GetThreadIdealProcessorEx); typedef BOOL(__attribute__((_
 __APPLY_UNIT_TEST_BOOL(CreateRemoteThreadEx); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateRemoteThreadEx)( HANDLE _hProcess, LPSECURITY_ATTRIBUTES _pThreadAttributes, SIZE_T _uStackSize, LPTHREAD_START_ROUTINE _pStartAddress, LPVOID _pParameter, DWORD _fCreationFlags, LPPROC_THREAD_ATTRIBUTE_LIST _pAttributeList, LPDWORD _pThreadId); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateRemoteThreadEx( HANDLE _hProcess, LPSECURITY_ATTRIBUTES _pThreadAttributes, SIZE_T _uStackSize, LPTHREAD_START_ROUTINE _pStartAddress, LPVOID _pParameter, DWORD _fCreationFlags, LPPROC_THREAD_ATTRIBUTE_LIST _pAttributeList, LPDWORD _pThreadId); static YY_THUNK_FNTYPE_CreateRemoteThreadEx __attribute__((__cdecl__)) try_get_CreateRemoteThreadEx() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_OpenProcess
+__APPLY_UNIT_TEST_BOOL(OpenProcess); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_OpenProcess)( DWORD _fDesiredAccess, BOOL _bInheritHandle, DWORD _uProcessId); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXOpenProcess( DWORD _fDesiredAccess, BOOL _bInheritHandle, DWORD _uProcessId); static YY_THUNK_FNTYPE_OpenProcess __attribute__((__cdecl__)) try_get_OpenProcess() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_OpenThread
+__APPLY_UNIT_TEST_BOOL(OpenThread); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_OpenThread)( DWORD _fDesiredAccess, BOOL _bInheritHandle, DWORD _uThreadId); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXOpenThread( DWORD _fDesiredAccess, BOOL _bInheritHandle, DWORD _uThreadId); static YY_THUNK_FNTYPE_OpenThread __attribute__((__cdecl__)) try_get_OpenThread() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetThreadDescription
 __APPLY_UNIT_TEST_BOOL(GetThreadDescription); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetThreadDescription)( HANDLE _hThread, PWSTR* _pszThreadDescription); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXGetThreadDescription( HANDLE _hThread, PWSTR* _pszThreadDescription); static YY_THUNK_FNTYPE_GetThreadDescription __attribute__((__cdecl__)) try_get_GetThreadDescription() noexcept;
 #endif
@@ -874,6 +1750,22 @@ __APPLY_UNIT_TEST_BOOL(GetActiveProcessorGroupCount); typedef WORD(__attribute__
 __APPLY_UNIT_TEST_BOOL(GetMaximumProcessorGroupCount); typedef WORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetMaximumProcessorGroupCount)(void); extern "C" WORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetMaximumProcessorGroupCount(void); static YY_THUNK_FNTYPE_GetMaximumProcessorGroupCount __attribute__((__cdecl__)) try_get_GetMaximumProcessorGroupCount() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_QueryFullProcessImageNameW
+__APPLY_UNIT_TEST_BOOL(QueryFullProcessImageNameW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryFullProcessImageNameW)( HANDLE hProcess, DWORD dwFlags, LPWSTR lpExeName, PDWORD lpdwSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryFullProcessImageNameW( HANDLE hProcess, DWORD dwFlags, LPWSTR lpExeName, PDWORD lpdwSize); static YY_THUNK_FNTYPE_QueryFullProcessImageNameW __attribute__((__cdecl__)) try_get_QueryFullProcessImageNameW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_QueryFullProcessImageNameA
+__APPLY_UNIT_TEST_BOOL(QueryFullProcessImageNameA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryFullProcessImageNameA)( HANDLE hProcess, DWORD dwFlags, LPSTR lpExeName, PDWORD lpdwSize); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryFullProcessImageNameA( HANDLE hProcess, DWORD dwFlags, LPSTR lpExeName, PDWORD lpdwSize); static YY_THUNK_FNTYPE_QueryFullProcessImageNameA __attribute__((__cdecl__)) try_get_QueryFullProcessImageNameA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_QueryThreadCycleTime
+__APPLY_UNIT_TEST_BOOL(QueryThreadCycleTime); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryThreadCycleTime)( HANDLE ThreadHandle, PULONG64 CycleTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryThreadCycleTime( HANDLE ThreadHandle, PULONG64 CycleTime); static YY_THUNK_FNTYPE_QueryThreadCycleTime __attribute__((__cdecl__)) try_get_QueryThreadCycleTime() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_QueryProcessCycleTime
+__APPLY_UNIT_TEST_BOOL(QueryProcessCycleTime); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryProcessCycleTime)( HANDLE ProcessHandle, PULONG64 CycleTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryProcessCycleTime( HANDLE ProcessHandle, PULONG64 CycleTime); static YY_THUNK_FNTYPE_QueryProcessCycleTime __attribute__((__cdecl__)) try_get_QueryProcessCycleTime() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_QueryUnbiasedInterruptTime
 __APPLY_UNIT_TEST_BOOL(QueryUnbiasedInterruptTime); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryUnbiasedInterruptTime)( PULONGLONG _puUnbiasedTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryUnbiasedInterruptTime( PULONGLONG _puUnbiasedTime); static YY_THUNK_FNTYPE_QueryUnbiasedInterruptTime __attribute__((__cdecl__)) try_get_QueryUnbiasedInterruptTime() noexcept;
 #endif
@@ -894,16 +1786,152 @@ __APPLY_UNIT_TEST_BOOL(QueryInterruptTimePrecise); typedef void(__attribute__((_
 __APPLY_UNIT_TEST_BOOL(QueryIdleProcessorCycleTimeEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryIdleProcessorCycleTimeEx)( USHORT _uGroup, PULONG _puBufferLength, PULONG64 _puProcessorIdleCycleTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryIdleProcessorCycleTimeEx( USHORT _uGroup, PULONG _puBufferLength, PULONG64 _puProcessorIdleCycleTime); static YY_THUNK_FNTYPE_QueryIdleProcessorCycleTimeEx __attribute__((__cdecl__)) try_get_QueryIdleProcessorCycleTimeEx() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_QueryIdleProcessorCycleTime
+__APPLY_UNIT_TEST_BOOL(QueryIdleProcessorCycleTime); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_QueryIdleProcessorCycleTime)( PULONG _pBufferLength, PULONG64 _pProcessorIdleCycleTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXQueryIdleProcessorCycleTime( PULONG _pBufferLength, PULONG64 _pProcessorIdleCycleTime); static YY_THUNK_FNTYPE_QueryIdleProcessorCycleTime __attribute__((__cdecl__)) try_get_QueryIdleProcessorCycleTime() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegSetKeyValueW
+__APPLY_UNIT_TEST_BOOL(RegSetKeyValueW); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegSetKeyValueW)( HKEY hKey, LPCWSTR lpSubKey, LPCWSTR lpValueName, DWORD dwType, LPCVOID lpData, DWORD cbData); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegSetKeyValueW( HKEY hKey, LPCWSTR lpSubKey, LPCWSTR lpValueName, DWORD dwType, LPCVOID lpData, DWORD cbData); static YY_THUNK_FNTYPE_RegSetKeyValueW __attribute__((__cdecl__)) try_get_RegSetKeyValueW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegSetKeyValueA
+__APPLY_UNIT_TEST_BOOL(RegSetKeyValueA); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegSetKeyValueA)( HKEY hKey, LPCSTR lpSubKey, LPCSTR lpValueName, DWORD dwType, LPCVOID lpData, DWORD cbData); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegSetKeyValueA( HKEY hKey, LPCSTR lpSubKey, LPCSTR lpValueName, DWORD dwType, LPCVOID lpData, DWORD cbData); static YY_THUNK_FNTYPE_RegSetKeyValueA __attribute__((__cdecl__)) try_get_RegSetKeyValueA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyValueW
+__APPLY_UNIT_TEST_BOOL(RegDeleteKeyValueW); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegDeleteKeyValueW)( HKEY hKey, LPCWSTR lpSubKey, LPCWSTR lpValueName); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegDeleteKeyValueW( HKEY hKey, LPCWSTR lpSubKey, LPCWSTR lpValueName); static YY_THUNK_FNTYPE_RegDeleteKeyValueW __attribute__((__cdecl__)) try_get_RegDeleteKeyValueW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegDeleteKeyValueA
+__APPLY_UNIT_TEST_BOOL(RegDeleteKeyValueA); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegDeleteKeyValueA)( HKEY hKey, LPCSTR lpSubKey, LPCSTR lpValueName); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegDeleteKeyValueA( HKEY hKey, LPCSTR lpSubKey, LPCSTR lpValueName); static YY_THUNK_FNTYPE_RegDeleteKeyValueA __attribute__((__cdecl__)) try_get_RegDeleteKeyValueA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegDeleteTreeW
+__APPLY_UNIT_TEST_BOOL(RegDeleteTreeW); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegDeleteTreeW)( HKEY hKey, LPCWSTR lpSubKey); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegDeleteTreeW( HKEY hKey, LPCWSTR lpSubKey); static YY_THUNK_FNTYPE_RegDeleteTreeW __attribute__((__cdecl__)) try_get_RegDeleteTreeW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegDeleteTreeA
+__APPLY_UNIT_TEST_BOOL(RegDeleteTreeA); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegDeleteTreeA)( HKEY hKey, LPCSTR lpSubKey); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegDeleteTreeA( HKEY hKey, LPCSTR lpSubKey); static YY_THUNK_FNTYPE_RegDeleteTreeA __attribute__((__cdecl__)) try_get_RegDeleteTreeA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegCopyTreeW
+__APPLY_UNIT_TEST_BOOL(RegCopyTreeW); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegCopyTreeW)( HKEY hKeySrc, LPCWSTR lpSubKey, HKEY hKeyDest); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegCopyTreeW( HKEY hKeySrc, LPCWSTR lpSubKey, HKEY hKeyDest); static YY_THUNK_FNTYPE_RegCopyTreeW __attribute__((__cdecl__)) try_get_RegCopyTreeW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_RegCopyTreeA
+__APPLY_UNIT_TEST_BOOL(RegCopyTreeA); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegCopyTreeA)( HKEY hKeySrc, LPCSTR lpSubKey, HKEY hKeyDest); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegCopyTreeA( HKEY hKeySrc, LPCSTR lpSubKey, HKEY hKeyDest); static YY_THUNK_FNTYPE_RegCopyTreeA __attribute__((__cdecl__)) try_get_RegCopyTreeA() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_RegCloseKey
 __APPLY_UNIT_TEST_BOOL(RegCloseKey); typedef LSTATUS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_RegCloseKey)( HKEY _hKey); extern "C" LSTATUS __attribute__((__stdcall__)) __FALLBACK_PREFIXRegCloseKey( HKEY _hKey); static YY_THUNK_FNTYPE_RegCloseKey __attribute__((__cdecl__)) try_get_RegCloseKey() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CompareStringEx
+__APPLY_UNIT_TEST_BOOL(CompareStringEx); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CompareStringEx)( LPCWSTR lpLocaleName, DWORD dwCmpFlags, LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM lParam); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXCompareStringEx( LPCWSTR lpLocaleName, DWORD dwCmpFlags, LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM lParam); static YY_THUNK_FNTYPE_CompareStringEx __attribute__((__cdecl__)) try_get_CompareStringEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CompareStringOrdinal
+__APPLY_UNIT_TEST_BOOL(CompareStringOrdinal); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CompareStringOrdinal)( LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, BOOL bIgnoreCase); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXCompareStringOrdinal( LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, BOOL bIgnoreCase); static YY_THUNK_FNTYPE_CompareStringOrdinal __attribute__((__cdecl__)) try_get_CompareStringOrdinal() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CompareStringA
+__APPLY_UNIT_TEST_BOOL(CompareStringA); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CompareStringA)( LCID Locale, DWORD dwCmpFlags, PCNZCH lpString1, int cchCount1, PCNZCH lpString2, int cchCount2); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXCompareStringA( LCID Locale, DWORD dwCmpFlags, PCNZCH lpString1, int cchCount1, PCNZCH lpString2, int cchCount2); static YY_THUNK_FNTYPE_CompareStringA __attribute__((__cdecl__)) try_get_CompareStringA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CompareStringW
+__APPLY_UNIT_TEST_BOOL(CompareStringW); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CompareStringW)( LCID Locale, DWORD dwCmpFlags, PCNZWCH lpString1, int cchCount1, PCNZWCH lpString2, int cchCount2); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXCompareStringW( LCID Locale, DWORD dwCmpFlags, PCNZWCH lpString1, int cchCount1, PCNZWCH lpString2, int cchCount2); static YY_THUNK_FNTYPE_CompareStringW __attribute__((__cdecl__)) try_get_CompareStringW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitializeCriticalSectionEx
+__APPLY_UNIT_TEST_BOOL(InitializeCriticalSectionEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitializeCriticalSectionEx)( LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXInitializeCriticalSectionEx( LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags); static YY_THUNK_FNTYPE_InitializeCriticalSectionEx __attribute__((__cdecl__)) try_get_InitializeCriticalSectionEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitOnceInitialize
+__APPLY_UNIT_TEST_BOOL(InitOnceInitialize); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitOnceInitialize)( PINIT_ONCE InitOnce); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXInitOnceInitialize( PINIT_ONCE InitOnce); static YY_THUNK_FNTYPE_InitOnceInitialize __attribute__((__cdecl__)) try_get_InitOnceInitialize() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitOnceBeginInitialize
+__APPLY_UNIT_TEST_BOOL(InitOnceBeginInitialize); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitOnceBeginInitialize)( LPINIT_ONCE lpInitOnce, DWORD dwFlags, PBOOL fPending, LPVOID* lpContext); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXInitOnceBeginInitialize( LPINIT_ONCE lpInitOnce, DWORD dwFlags, PBOOL fPending, LPVOID* lpContext); static YY_THUNK_FNTYPE_InitOnceBeginInitialize __attribute__((__cdecl__)) try_get_InitOnceBeginInitialize() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitOnceComplete
+__APPLY_UNIT_TEST_BOOL(InitOnceComplete); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitOnceComplete)( LPINIT_ONCE lpInitOnce, DWORD dwFlags, LPVOID lpContext); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXInitOnceComplete( LPINIT_ONCE lpInitOnce, DWORD dwFlags, LPVOID lpContext); static YY_THUNK_FNTYPE_InitOnceComplete __attribute__((__cdecl__)) try_get_InitOnceComplete() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitOnceExecuteOnce
+__APPLY_UNIT_TEST_BOOL(InitOnceExecuteOnce); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitOnceExecuteOnce)( PINIT_ONCE InitOnce, PINIT_ONCE_FN InitFn, PVOID Parameter, LPVOID* Context); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXInitOnceExecuteOnce( PINIT_ONCE InitOnce, PINIT_ONCE_FN InitFn, PVOID Parameter, LPVOID* Context); static YY_THUNK_FNTYPE_InitOnceExecuteOnce __attribute__((__cdecl__)) try_get_InitOnceExecuteOnce() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateEventExW
+__APPLY_UNIT_TEST_BOOL(CreateEventExW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateEventExW)( LPSECURITY_ATTRIBUTES lpEventAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateEventExW( LPSECURITY_ATTRIBUTES lpEventAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateEventExW __attribute__((__cdecl__)) try_get_CreateEventExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateEventExA
+__APPLY_UNIT_TEST_BOOL(CreateEventExA); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateEventExA)( LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateEventExA( LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateEventExA __attribute__((__cdecl__)) try_get_CreateEventExA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateMutexExW
+__APPLY_UNIT_TEST_BOOL(CreateMutexExW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateMutexExW)( LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateMutexExW( LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateMutexExW __attribute__((__cdecl__)) try_get_CreateMutexExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateMutexExA
+__APPLY_UNIT_TEST_BOOL(CreateMutexExA); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateMutexExA)( LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateMutexExA( LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateMutexExA __attribute__((__cdecl__)) try_get_CreateMutexExA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateSemaphoreExW
+__APPLY_UNIT_TEST_BOOL(CreateSemaphoreExW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateSemaphoreExW)( LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateSemaphoreExW( LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateSemaphoreExW __attribute__((__cdecl__)) try_get_CreateSemaphoreExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateWaitableTimerExW
+__APPLY_UNIT_TEST_BOOL(CreateWaitableTimerExW); typedef HANDLE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateWaitableTimerExW)( LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCWSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess); extern "C" HANDLE __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateWaitableTimerExW( LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCWSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess); static YY_THUNK_FNTYPE_CreateWaitableTimerExW __attribute__((__cdecl__)) try_get_CreateWaitableTimerExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitializeSRWLock
+__APPLY_UNIT_TEST_BOOL(InitializeSRWLock); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitializeSRWLock)( PSRWLOCK SRWLock); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXInitializeSRWLock( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_InitializeSRWLock __attribute__((__cdecl__)) try_get_InitializeSRWLock() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_AcquireSRWLockExclusive
+__APPLY_UNIT_TEST_BOOL(AcquireSRWLockExclusive); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_AcquireSRWLockExclusive)( PSRWLOCK SRWLock); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXAcquireSRWLockExclusive( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_AcquireSRWLockExclusive __attribute__((__cdecl__)) try_get_AcquireSRWLockExclusive() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_TryAcquireSRWLockExclusive
 __APPLY_UNIT_TEST_BOOL(TryAcquireSRWLockExclusive); typedef BOOLEAN(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_TryAcquireSRWLockExclusive)( PSRWLOCK SRWLock); extern "C" BOOLEAN __attribute__((__stdcall__)) __FALLBACK_PREFIXTryAcquireSRWLockExclusive( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_TryAcquireSRWLockExclusive __attribute__((__cdecl__)) try_get_TryAcquireSRWLockExclusive() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_ReleaseSRWLockExclusive
+__APPLY_UNIT_TEST_BOOL(ReleaseSRWLockExclusive); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ReleaseSRWLockExclusive)( PSRWLOCK SRWLock); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXReleaseSRWLockExclusive( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_ReleaseSRWLockExclusive __attribute__((__cdecl__)) try_get_ReleaseSRWLockExclusive() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_AcquireSRWLockShared
+__APPLY_UNIT_TEST_BOOL(AcquireSRWLockShared); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_AcquireSRWLockShared)( PSRWLOCK SRWLock); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXAcquireSRWLockShared( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_AcquireSRWLockShared __attribute__((__cdecl__)) try_get_AcquireSRWLockShared() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_TryAcquireSRWLockShared
 __APPLY_UNIT_TEST_BOOL(TryAcquireSRWLockShared); typedef BOOLEAN(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_TryAcquireSRWLockShared)( PSRWLOCK SRWLock); extern "C" BOOLEAN __attribute__((__stdcall__)) __FALLBACK_PREFIXTryAcquireSRWLockShared( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_TryAcquireSRWLockShared __attribute__((__cdecl__)) try_get_TryAcquireSRWLockShared() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ReleaseSRWLockShared
+__APPLY_UNIT_TEST_BOOL(ReleaseSRWLockShared); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ReleaseSRWLockShared)( PSRWLOCK SRWLock); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXReleaseSRWLockShared( PSRWLOCK SRWLock); static YY_THUNK_FNTYPE_ReleaseSRWLockShared __attribute__((__cdecl__)) try_get_ReleaseSRWLockShared() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InitializeConditionVariable
+__APPLY_UNIT_TEST_BOOL(InitializeConditionVariable); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InitializeConditionVariable)( PCONDITION_VARIABLE ConditionVariable); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXInitializeConditionVariable( PCONDITION_VARIABLE ConditionVariable); static YY_THUNK_FNTYPE_InitializeConditionVariable __attribute__((__cdecl__)) try_get_InitializeConditionVariable() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SleepConditionVariableCS
+__APPLY_UNIT_TEST_BOOL(SleepConditionVariableCS); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SleepConditionVariableCS)( PCONDITION_VARIABLE ConditionVariable, PCRITICAL_SECTION CriticalSection, DWORD dwMilliseconds); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSleepConditionVariableCS( PCONDITION_VARIABLE ConditionVariable, PCRITICAL_SECTION CriticalSection, DWORD dwMilliseconds); static YY_THUNK_FNTYPE_SleepConditionVariableCS __attribute__((__cdecl__)) try_get_SleepConditionVariableCS() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SleepConditionVariableSRW
+__APPLY_UNIT_TEST_BOOL(SleepConditionVariableSRW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SleepConditionVariableSRW)( PCONDITION_VARIABLE ConditionVariable, PSRWLOCK SRWLock, DWORD dwMilliseconds, ULONG Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSleepConditionVariableSRW( PCONDITION_VARIABLE ConditionVariable, PSRWLOCK SRWLock, DWORD dwMilliseconds, ULONG Flags); static YY_THUNK_FNTYPE_SleepConditionVariableSRW __attribute__((__cdecl__)) try_get_SleepConditionVariableSRW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WakeConditionVariable
+__APPLY_UNIT_TEST_BOOL(WakeConditionVariable); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WakeConditionVariable)( PCONDITION_VARIABLE ConditionVariable); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWakeConditionVariable( PCONDITION_VARIABLE ConditionVariable); static YY_THUNK_FNTYPE_WakeConditionVariable __attribute__((__cdecl__)) try_get_WakeConditionVariable() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WakeAllConditionVariable
+__APPLY_UNIT_TEST_BOOL(WakeAllConditionVariable); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WakeAllConditionVariable)( PCONDITION_VARIABLE ConditionVariable); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWakeAllConditionVariable( PCONDITION_VARIABLE ConditionVariable); static YY_THUNK_FNTYPE_WakeAllConditionVariable __attribute__((__cdecl__)) try_get_WakeAllConditionVariable() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_InitializeSynchronizationBarrier
@@ -934,12 +1962,20 @@ __APPLY_UNIT_TEST_BOOL(WakeByAddressAll); typedef void(__attribute__((__stdcall_
 __APPLY_UNIT_TEST_BOOL(SetWaitableTimerEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetWaitableTimerEx)( HANDLE _hTimer, const LARGE_INTEGER* _lpDueTime, LONG _iPeriod, PTIMERAPCROUTINE _pfnCompletionRoutine, LPVOID _lpArgToCompletionRoutine, PREASON_CONTEXT _pWakeContext, ULONG _uTolerableDelay); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetWaitableTimerEx( HANDLE _hTimer, const LARGE_INTEGER* _lpDueTime, LONG _iPeriod, PTIMERAPCROUTINE _pfnCompletionRoutine, LPVOID _lpArgToCompletionRoutine, PREASON_CONTEXT _pWakeContext, ULONG _uTolerableDelay); static YY_THUNK_FNTYPE_SetWaitableTimerEx __attribute__((__cdecl__)) try_get_SetWaitableTimerEx() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_GetTickCount64
+__APPLY_UNIT_TEST_BOOL(GetTickCount64); typedef ULONGLONG(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetTickCount64)(void); extern "C" ULONGLONG __attribute__((__stdcall__)) __FALLBACK_PREFIXGetTickCount64(void); static YY_THUNK_FNTYPE_GetTickCount64 __attribute__((__cdecl__)) try_get_GetTickCount64() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetSystemTimePreciseAsFileTime
 __APPLY_UNIT_TEST_BOOL(GetSystemTimePreciseAsFileTime); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetSystemTimePreciseAsFileTime)( LPFILETIME lpSystemTimeAsFileTime); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXGetSystemTimePreciseAsFileTime( LPFILETIME lpSystemTimeAsFileTime); static YY_THUNK_FNTYPE_GetSystemTimePreciseAsFileTime __attribute__((__cdecl__)) try_get_GetSystemTimePreciseAsFileTime() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_GetLogicalProcessorInformationEx
 __APPLY_UNIT_TEST_BOOL(GetLogicalProcessorInformationEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetLogicalProcessorInformationEx)( LOGICAL_PROCESSOR_RELATIONSHIP RelationshipType, PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX Buffer, PDWORD ReturnedLength); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetLogicalProcessorInformationEx( LOGICAL_PROCESSOR_RELATIONSHIP RelationshipType, PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX Buffer, PDWORD ReturnedLength); static YY_THUNK_FNTYPE_GetLogicalProcessorInformationEx __attribute__((__cdecl__)) try_get_GetLogicalProcessorInformationEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetProductInfo
+__APPLY_UNIT_TEST_BOOL(GetProductInfo); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetProductInfo)( DWORD dwOSMajorVersion, DWORD dwOSMinorVersion, DWORD dwSpMajorVersion, DWORD dwSpMinorVersion, PDWORD pdwReturnedProductType); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetProductInfo( DWORD dwOSMajorVersion, DWORD dwOSMinorVersion, DWORD dwSpMajorVersion, DWORD dwSpMinorVersion, PDWORD pdwReturnedProductType); static YY_THUNK_FNTYPE_GetProductInfo __attribute__((__cdecl__)) try_get_GetProductInfo() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_GetPhysicallyInstalledSystemMemory
@@ -962,6 +1998,126 @@ __APPLY_UNIT_TEST_BOOL(SetThreadGroupAffinity); typedef BOOL(__attribute__((__st
 __APPLY_UNIT_TEST_BOOL(GetNumaProximityNodeEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNumaProximityNodeEx)( ULONG ProximityId, PUSHORT NodeNumber); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNumaProximityNodeEx( ULONG ProximityId, PUSHORT NodeNumber); static YY_THUNK_FNTYPE_GetNumaProximityNodeEx __attribute__((__cdecl__)) try_get_GetNumaProximityNodeEx() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolWork
+__APPLY_UNIT_TEST_BOOL(CreateThreadpoolWork); typedef PTP_WORK(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateThreadpoolWork)( PTP_WORK_CALLBACK pfnwk, PVOID pv, PTP_CALLBACK_ENVIRON pcbe); extern "C" PTP_WORK __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateThreadpoolWork( PTP_WORK_CALLBACK pfnwk, PVOID pv, PTP_CALLBACK_ENVIRON pcbe); static YY_THUNK_FNTYPE_CreateThreadpoolWork __attribute__((__cdecl__)) try_get_CreateThreadpoolWork() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolWork
+__APPLY_UNIT_TEST_BOOL(CloseThreadpoolWork); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseThreadpoolWork)( PTP_WORK pwk); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseThreadpoolWork( PTP_WORK pwk); static YY_THUNK_FNTYPE_CloseThreadpoolWork __attribute__((__cdecl__)) try_get_CloseThreadpoolWork() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SubmitThreadpoolWork
+__APPLY_UNIT_TEST_BOOL(SubmitThreadpoolWork); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SubmitThreadpoolWork)( PTP_WORK pwk); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXSubmitThreadpoolWork( PTP_WORK pwk); static YY_THUNK_FNTYPE_SubmitThreadpoolWork __attribute__((__cdecl__)) try_get_SubmitThreadpoolWork() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolWorkCallbacks
+__APPLY_UNIT_TEST_BOOL(WaitForThreadpoolWorkCallbacks); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WaitForThreadpoolWorkCallbacks)( PTP_WORK pwk, BOOL fCancelPendingCallbacks); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWaitForThreadpoolWorkCallbacks( PTP_WORK pwk, BOOL fCancelPendingCallbacks); static YY_THUNK_FNTYPE_WaitForThreadpoolWorkCallbacks __attribute__((__cdecl__)) try_get_WaitForThreadpoolWorkCallbacks() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolTimer
+__APPLY_UNIT_TEST_BOOL(CreateThreadpoolTimer); typedef PTP_TIMER(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateThreadpoolTimer)( PTP_TIMER_CALLBACK pfnti, PVOID pv, PTP_CALLBACK_ENVIRON pcbe); extern "C" PTP_TIMER __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateThreadpoolTimer( PTP_TIMER_CALLBACK pfnti, PVOID pv, PTP_CALLBACK_ENVIRON pcbe); static YY_THUNK_FNTYPE_CreateThreadpoolTimer __attribute__((__cdecl__)) try_get_CreateThreadpoolTimer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetThreadpoolTimer
+__APPLY_UNIT_TEST_BOOL(SetThreadpoolTimer); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetThreadpoolTimer)( PTP_TIMER pti, PFILETIME pftDueTime, DWORD msPeriod, DWORD msWindowLength); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXSetThreadpoolTimer( PTP_TIMER pti, PFILETIME pftDueTime, DWORD msPeriod, DWORD msWindowLength); static YY_THUNK_FNTYPE_SetThreadpoolTimer __attribute__((__cdecl__)) try_get_SetThreadpoolTimer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolTimerCallbacks
+__APPLY_UNIT_TEST_BOOL(WaitForThreadpoolTimerCallbacks); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WaitForThreadpoolTimerCallbacks)( PTP_TIMER Timer, BOOL CancelPendingCallbacks); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWaitForThreadpoolTimerCallbacks( PTP_TIMER Timer, BOOL CancelPendingCallbacks); static YY_THUNK_FNTYPE_WaitForThreadpoolTimerCallbacks __attribute__((__cdecl__)) try_get_WaitForThreadpoolTimerCallbacks() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolTimer
+__APPLY_UNIT_TEST_BOOL(CloseThreadpoolTimer); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseThreadpoolTimer)( PTP_TIMER Timer); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseThreadpoolTimer( PTP_TIMER Timer); static YY_THUNK_FNTYPE_CloseThreadpoolTimer __attribute__((__cdecl__)) try_get_CloseThreadpoolTimer() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetEventWhenCallbackReturns
+__APPLY_UNIT_TEST_BOOL(SetEventWhenCallbackReturns); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetEventWhenCallbackReturns)( PTP_CALLBACK_INSTANCE Instance, HANDLE Event); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXSetEventWhenCallbackReturns( PTP_CALLBACK_INSTANCE Instance, HANDLE Event); static YY_THUNK_FNTYPE_SetEventWhenCallbackReturns __attribute__((__cdecl__)) try_get_SetEventWhenCallbackReturns() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ReleaseSemaphoreWhenCallbackReturns
+__APPLY_UNIT_TEST_BOOL(ReleaseSemaphoreWhenCallbackReturns); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ReleaseSemaphoreWhenCallbackReturns)( PTP_CALLBACK_INSTANCE Instance, HANDLE Semaphore, DWORD ReleaseCount); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXReleaseSemaphoreWhenCallbackReturns( PTP_CALLBACK_INSTANCE Instance, HANDLE Semaphore, DWORD ReleaseCount); static YY_THUNK_FNTYPE_ReleaseSemaphoreWhenCallbackReturns __attribute__((__cdecl__)) try_get_ReleaseSemaphoreWhenCallbackReturns() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_ReleaseMutexWhenCallbackReturns
+__APPLY_UNIT_TEST_BOOL(ReleaseMutexWhenCallbackReturns); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ReleaseMutexWhenCallbackReturns)( PTP_CALLBACK_INSTANCE Instance, HANDLE Mutex); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXReleaseMutexWhenCallbackReturns( PTP_CALLBACK_INSTANCE Instance, HANDLE Mutex); static YY_THUNK_FNTYPE_ReleaseMutexWhenCallbackReturns __attribute__((__cdecl__)) try_get_ReleaseMutexWhenCallbackReturns() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_LeaveCriticalSectionWhenCallbackReturns
+__APPLY_UNIT_TEST_BOOL(LeaveCriticalSectionWhenCallbackReturns); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_LeaveCriticalSectionWhenCallbackReturns)( PTP_CALLBACK_INSTANCE Instance, PCRITICAL_SECTION CriticalSection); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXLeaveCriticalSectionWhenCallbackReturns( PTP_CALLBACK_INSTANCE Instance, PCRITICAL_SECTION CriticalSection); static YY_THUNK_FNTYPE_LeaveCriticalSectionWhenCallbackReturns __attribute__((__cdecl__)) try_get_LeaveCriticalSectionWhenCallbackReturns() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_FreeLibraryWhenCallbackReturns
+__APPLY_UNIT_TEST_BOOL(FreeLibraryWhenCallbackReturns); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FreeLibraryWhenCallbackReturns)( PTP_CALLBACK_INSTANCE Instance, HMODULE DllHandle); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXFreeLibraryWhenCallbackReturns( PTP_CALLBACK_INSTANCE Instance, HMODULE DllHandle); static YY_THUNK_FNTYPE_FreeLibraryWhenCallbackReturns __attribute__((__cdecl__)) try_get_FreeLibraryWhenCallbackReturns() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_TrySubmitThreadpoolCallback
+__APPLY_UNIT_TEST_BOOL(TrySubmitThreadpoolCallback); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_TrySubmitThreadpoolCallback)( PTP_SIMPLE_CALLBACK Callback, PVOID Context, PTP_CALLBACK_ENVIRON CallbackEnviron); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXTrySubmitThreadpoolCallback( PTP_SIMPLE_CALLBACK Callback, PVOID Context, PTP_CALLBACK_ENVIRON CallbackEnviron); static YY_THUNK_FNTYPE_TrySubmitThreadpoolCallback __attribute__((__cdecl__)) try_get_TrySubmitThreadpoolCallback() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolWait
+__APPLY_UNIT_TEST_BOOL(CreateThreadpoolWait); typedef PTP_WAIT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateThreadpoolWait)( PTP_WAIT_CALLBACK Callback, PVOID Context, PTP_CALLBACK_ENVIRON CallbackEnviron); extern "C" PTP_WAIT __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateThreadpoolWait( PTP_WAIT_CALLBACK Callback, PVOID Context, PTP_CALLBACK_ENVIRON CallbackEnviron); static YY_THUNK_FNTYPE_CreateThreadpoolWait __attribute__((__cdecl__)) try_get_CreateThreadpoolWait() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolWait
+__APPLY_UNIT_TEST_BOOL(CloseThreadpoolWait); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseThreadpoolWait)( PTP_WAIT Wait); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseThreadpoolWait( PTP_WAIT Wait); static YY_THUNK_FNTYPE_CloseThreadpoolWait __attribute__((__cdecl__)) try_get_CloseThreadpoolWait() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetThreadpoolWait
+__APPLY_UNIT_TEST_BOOL(SetThreadpoolWait); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetThreadpoolWait)( PTP_WAIT Wait, HANDLE Handle, PFILETIME Timeout); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXSetThreadpoolWait( PTP_WAIT Wait, HANDLE Handle, PFILETIME Timeout); static YY_THUNK_FNTYPE_SetThreadpoolWait __attribute__((__cdecl__)) try_get_SetThreadpoolWait() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolWaitCallbacks
+__APPLY_UNIT_TEST_BOOL(WaitForThreadpoolWaitCallbacks); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WaitForThreadpoolWaitCallbacks)( PTP_WAIT Wait, BOOL CancelPendingCallbacks); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWaitForThreadpoolWaitCallbacks( PTP_WAIT Wait, BOOL CancelPendingCallbacks); static YY_THUNK_FNTYPE_WaitForThreadpoolWaitCallbacks __attribute__((__cdecl__)) try_get_WaitForThreadpoolWaitCallbacks() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateThreadpoolIo
+__APPLY_UNIT_TEST_BOOL(CreateThreadpoolIo); typedef PTP_IO(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateThreadpoolIo)( HANDLE _hFile, PTP_WIN32_IO_CALLBACK _pfnIoCallback, PVOID _pUserData, PTP_CALLBACK_ENVIRON _pCallbackEnviron); extern "C" PTP_IO __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateThreadpoolIo( HANDLE _hFile, PTP_WIN32_IO_CALLBACK _pfnIoCallback, PVOID _pUserData, PTP_CALLBACK_ENVIRON _pCallbackEnviron); static YY_THUNK_FNTYPE_CreateThreadpoolIo __attribute__((__cdecl__)) try_get_CreateThreadpoolIo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_StartThreadpoolIo
+__APPLY_UNIT_TEST_BOOL(StartThreadpoolIo); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_StartThreadpoolIo)( PTP_IO _pIo2); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXStartThreadpoolIo( PTP_IO _pIo2); static YY_THUNK_FNTYPE_StartThreadpoolIo __attribute__((__cdecl__)) try_get_StartThreadpoolIo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CancelThreadpoolIo
+__APPLY_UNIT_TEST_BOOL(CancelThreadpoolIo); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CancelThreadpoolIo)( PTP_IO _pIo2); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCancelThreadpoolIo( PTP_IO _pIo2); static YY_THUNK_FNTYPE_CancelThreadpoolIo __attribute__((__cdecl__)) try_get_CancelThreadpoolIo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CloseThreadpoolIo
+__APPLY_UNIT_TEST_BOOL(CloseThreadpoolIo); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseThreadpoolIo)( PTP_IO _pIo2); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseThreadpoolIo( PTP_IO _pIo2); static YY_THUNK_FNTYPE_CloseThreadpoolIo __attribute__((__cdecl__)) try_get_CloseThreadpoolIo() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WaitForThreadpoolIoCallbacks
+__APPLY_UNIT_TEST_BOOL(WaitForThreadpoolIoCallbacks); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WaitForThreadpoolIoCallbacks)( PTP_IO _pIo, BOOL _bCancelPendingCallbacks); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXWaitForThreadpoolIoCallbacks( PTP_IO _pIo, BOOL _bCancelPendingCallbacks); static YY_THUNK_FNTYPE_WaitForThreadpoolIoCallbacks __attribute__((__cdecl__)) try_get_WaitForThreadpoolIoCallbacks() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CreateThreadpool
+__APPLY_UNIT_TEST_BOOL(CreateThreadpool); typedef PTP_POOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CreateThreadpool)( PVOID _pReserved); extern "C" PTP_POOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCreateThreadpool( PVOID _pReserved); static YY_THUNK_FNTYPE_CreateThreadpool __attribute__((__cdecl__)) try_get_CreateThreadpool() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CloseThreadpool
+__APPLY_UNIT_TEST_BOOL(CloseThreadpool); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseThreadpool)( PTP_POOL _pPool2); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseThreadpool( PTP_POOL _pPool2); static YY_THUNK_FNTYPE_CloseThreadpool __attribute__((__cdecl__)) try_get_CloseThreadpool() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetThreadpoolThreadMaximum
+__APPLY_UNIT_TEST_BOOL(SetThreadpoolThreadMaximum); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetThreadpoolThreadMaximum)( PTP_POOL _pPool2, DWORD _cthrdMost); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXSetThreadpoolThreadMaximum( PTP_POOL _pPool2, DWORD _cthrdMost); static YY_THUNK_FNTYPE_SetThreadpoolThreadMaximum __attribute__((__cdecl__)) try_get_SetThreadpoolThreadMaximum() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetThreadpoolThreadMinimum
+__APPLY_UNIT_TEST_BOOL(SetThreadpoolThreadMinimum); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetThreadpoolThreadMinimum)( PTP_POOL _pPool2, DWORD _cthrdMic); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetThreadpoolThreadMinimum( PTP_POOL _pPool2, DWORD _cthrdMic); static YY_THUNK_FNTYPE_SetThreadpoolThreadMinimum __attribute__((__cdecl__)) try_get_SetThreadpoolThreadMinimum() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_CallbackMayRunLong
+__APPLY_UNIT_TEST_BOOL(CallbackMayRunLong); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CallbackMayRunLong)( PTP_CALLBACK_INSTANCE pci); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCallbackMayRunLong( PTP_CALLBACK_INSTANCE pci); static YY_THUNK_FNTYPE_CallbackMayRunLong __attribute__((__cdecl__)) try_get_CallbackMayRunLong() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetDynamicTimeZoneInformation
+__APPLY_UNIT_TEST_BOOL(GetDynamicTimeZoneInformation); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetDynamicTimeZoneInformation)( PDYNAMIC_TIME_ZONE_INFORMATION pTimeZoneInformation); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetDynamicTimeZoneInformation( PDYNAMIC_TIME_ZONE_INFORMATION pTimeZoneInformation); static YY_THUNK_FNTYPE_GetDynamicTimeZoneInformation __attribute__((__cdecl__)) try_get_GetDynamicTimeZoneInformation() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetDynamicTimeZoneInformation
+__APPLY_UNIT_TEST_BOOL(SetDynamicTimeZoneInformation); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetDynamicTimeZoneInformation)( const DYNAMIC_TIME_ZONE_INFORMATION* lpTimeZoneInformation); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetDynamicTimeZoneInformation( const DYNAMIC_TIME_ZONE_INFORMATION* lpTimeZoneInformation); static YY_THUNK_FNTYPE_SetDynamicTimeZoneInformation __attribute__((__cdecl__)) try_get_SetDynamicTimeZoneInformation() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_TzSpecificLocalTimeToSystemTimeEx
 __APPLY_UNIT_TEST_BOOL(TzSpecificLocalTimeToSystemTimeEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_TzSpecificLocalTimeToSystemTimeEx)( const DYNAMIC_TIME_ZONE_INFORMATION* _pTimeZoneInformation, const SYSTEMTIME* _pLocalTime, LPSYSTEMTIME _pUniversalTime); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXTzSpecificLocalTimeToSystemTimeEx( const DYNAMIC_TIME_ZONE_INFORMATION* _pTimeZoneInformation, const SYSTEMTIME* _pLocalTime, LPSYSTEMTIME _pUniversalTime); static YY_THUNK_FNTYPE_TzSpecificLocalTimeToSystemTimeEx __attribute__((__cdecl__)) try_get_TzSpecificLocalTimeToSystemTimeEx() noexcept;
 #endif
@@ -976,6 +2132,22 @@ __APPLY_UNIT_TEST_BOOL(GetTimeZoneInformationForYear); typedef BOOL(__attribute_
 
 #if YY_THUNK_GUARD_try_get_GetDynamicTimeZoneInformationEffectiveYears
 __APPLY_UNIT_TEST_BOOL(GetDynamicTimeZoneInformationEffectiveYears); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetDynamicTimeZoneInformationEffectiveYears)( const PDYNAMIC_TIME_ZONE_INFORMATION _pTimeZoneInformation, LPDWORD _puFirstYear, LPDWORD _puLastYear); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetDynamicTimeZoneInformationEffectiveYears( const PDYNAMIC_TIME_ZONE_INFORMATION _pTimeZoneInformation, LPDWORD _puFirstYear, LPDWORD _puLastYear); static YY_THUNK_FNTYPE_GetDynamicTimeZoneInformationEffectiveYears __attribute__((__cdecl__)) try_get_GetDynamicTimeZoneInformationEffectiveYears() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoExW
+__APPLY_UNIT_TEST_BOOL(GetFileVersionInfoExW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFileVersionInfoExW)( DWORD dwFlags, LPCWSTR lpwstrFilename, DWORD dwHandle, DWORD dwLen, LPVOID lpData); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFileVersionInfoExW( DWORD dwFlags, LPCWSTR lpwstrFilename, DWORD dwHandle, DWORD dwLen, LPVOID lpData); static YY_THUNK_FNTYPE_GetFileVersionInfoExW __attribute__((__cdecl__)) try_get_GetFileVersionInfoExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoExA
+__APPLY_UNIT_TEST_BOOL(GetFileVersionInfoExA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFileVersionInfoExA)( DWORD dwFlags, LPCSTR lpwstrFilename, DWORD dwHandle, DWORD dwLen, LPVOID lpData); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFileVersionInfoExA( DWORD dwFlags, LPCSTR lpwstrFilename, DWORD dwHandle, DWORD dwLen, LPVOID lpData); static YY_THUNK_FNTYPE_GetFileVersionInfoExA __attribute__((__cdecl__)) try_get_GetFileVersionInfoExA() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoSizeExW
+__APPLY_UNIT_TEST_BOOL(GetFileVersionInfoSizeExW); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFileVersionInfoSizeExW)( DWORD dwFlags, LPCWSTR lpwstrFilename, LPDWORD lpdwHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFileVersionInfoSizeExW( DWORD dwFlags, LPCWSTR lpwstrFilename, LPDWORD lpdwHandle); static YY_THUNK_FNTYPE_GetFileVersionInfoSizeExW __attribute__((__cdecl__)) try_get_GetFileVersionInfoSizeExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetFileVersionInfoSizeExA
+__APPLY_UNIT_TEST_BOOL(GetFileVersionInfoSizeExA); typedef DWORD(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetFileVersionInfoSizeExA)( DWORD dwFlags, LPCSTR lpwstrFilename, LPDWORD lpdwHandle); extern "C" DWORD __attribute__((__stdcall__)) __FALLBACK_PREFIXGetFileVersionInfoSizeExA( DWORD dwFlags, LPCSTR lpwstrFilename, LPDWORD lpdwHandle); static YY_THUNK_FNTYPE_GetFileVersionInfoSizeExA __attribute__((__cdecl__)) try_get_GetFileVersionInfoSizeExA() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_RoOriginateError
@@ -1050,6 +2222,10 @@ __APPLY_UNIT_TEST_BOOL(IsWow64Process2); typedef BOOL(__attribute__((__stdcall__
 __APPLY_UNIT_TEST_BOOL(IsWow64GuestMachineSupported); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_IsWow64GuestMachineSupported)( USHORT WowGuestMachine, BOOL* MachineIsSupported); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXIsWow64GuestMachineSupported( USHORT WowGuestMachine, BOOL* MachineIsSupported); static YY_THUNK_FNTYPE_IsWow64GuestMachineSupported __attribute__((__cdecl__)) try_get_IsWow64GuestMachineSupported() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_Wow64GetThreadContext
+__APPLY_UNIT_TEST_BOOL(Wow64GetThreadContext); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_Wow64GetThreadContext)( HANDLE _hThread, PWOW64_CONTEXT _pContext); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXWow64GetThreadContext( HANDLE _hThread, PWOW64_CONTEXT _pContext); static YY_THUNK_FNTYPE_Wow64GetThreadContext __attribute__((__cdecl__)) try_get_Wow64GetThreadContext() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetNumaNodeNumberFromHandle
 __APPLY_UNIT_TEST_BOOL(GetNumaNodeNumberFromHandle); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNumaNodeNumberFromHandle)( HANDLE hFile, PUSHORT NodeNumber); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNumaNodeNumberFromHandle( HANDLE hFile, PUSHORT NodeNumber); static YY_THUNK_FNTYPE_GetNumaNodeNumberFromHandle __attribute__((__cdecl__)) try_get_GetNumaNodeNumberFromHandle() noexcept;
 #endif
@@ -1060,6 +2236,14 @@ __APPLY_UNIT_TEST_BOOL(GetNumaProcessorNodeEx); typedef BOOL(__attribute__((__st
 
 #if YY_THUNK_GUARD_try_get_GetNumaAvailableMemoryNodeEx
 __APPLY_UNIT_TEST_BOOL(GetNumaAvailableMemoryNodeEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNumaAvailableMemoryNodeEx)( USHORT Node, PULONGLONG AvailableBytes); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNumaAvailableMemoryNodeEx( USHORT Node, PULONGLONG AvailableBytes); static YY_THUNK_FNTYPE_GetNumaAvailableMemoryNodeEx __attribute__((__cdecl__)) try_get_GetNumaAvailableMemoryNodeEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetNumaProximityNode
+__APPLY_UNIT_TEST_BOOL(GetNumaProximityNode); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetNumaProximityNode)( ULONG ProximityId, PUCHAR NodeNumber); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetNumaProximityNode( ULONG ProximityId, PUCHAR NodeNumber); static YY_THUNK_FNTYPE_GetNumaProximityNode __attribute__((__cdecl__)) try_get_GetNumaProximityNode() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_MapViewOfFileExNuma
+__APPLY_UNIT_TEST_BOOL(MapViewOfFileExNuma); typedef LPVOID(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_MapViewOfFileExNuma)( HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap, LPVOID lpBaseAddress, DWORD nndPreferred); extern "C" LPVOID __attribute__((__stdcall__)) __FALLBACK_PREFIXMapViewOfFileExNuma( HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh, DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap, LPVOID lpBaseAddress, DWORD nndPreferred); static YY_THUNK_FNTYPE_MapViewOfFileExNuma __attribute__((__cdecl__)) try_get_MapViewOfFileExNuma() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_GetFirmwareType
@@ -1078,12 +2262,104 @@ __APPLY_UNIT_TEST_BOOL(SetProcessDEPPolicy); typedef BOOL(__attribute__((__stdca
 __APPLY_UNIT_TEST_BOOL(GetSystemDEPPolicy); typedef DEP_SYSTEM_POLICY_TYPE(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetSystemDEPPolicy)(); extern "C" DEP_SYSTEM_POLICY_TYPE __attribute__((__stdcall__)) __FALLBACK_PREFIXGetSystemDEPPolicy(); static YY_THUNK_FNTYPE_GetSystemDEPPolicy __attribute__((__cdecl__)) try_get_GetSystemDEPPolicy() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_EnumProcessModulesEx
+__APPLY_UNIT_TEST_BOOL(EnumProcessModulesEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_EnumProcessModulesEx)( HANDLE hProcess, HMODULE* lphModule, DWORD cb, LPDWORD lpcbNeeded, DWORD dwFilterFlag); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXEnumProcessModulesEx( HANDLE hProcess, HMODULE* lphModule, DWORD cb, LPDWORD lpcbNeeded, DWORD dwFilterFlag); static YY_THUNK_FNTYPE_EnumProcessModulesEx __attribute__((__cdecl__)) try_get_EnumProcessModulesEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_GetWsChangesEx
+__APPLY_UNIT_TEST_BOOL(GetWsChangesEx); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetWsChangesEx)( HANDLE hProcess, PPSAPI_WS_WATCH_INFORMATION_EX lpWatchInfoEx, PDWORD cb); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXGetWsChangesEx( HANDLE hProcess, PPSAPI_WS_WATCH_INFORMATION_EX lpWatchInfoEx, PDWORD cb); static YY_THUNK_FNTYPE_GetWsChangesEx __attribute__((__cdecl__)) try_get_GetWsChangesEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiGetDevicePropertyW
+__APPLY_UNIT_TEST_BOOL(SetupDiGetDevicePropertyW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiGetDevicePropertyW)( HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiGetDevicePropertyW( HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags); static YY_THUNK_FNTYPE_SetupDiGetDevicePropertyW __attribute__((__cdecl__)) try_get_SetupDiGetDevicePropertyW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiSetDevicePropertyW
+__APPLY_UNIT_TEST_BOOL(SetupDiSetDevicePropertyW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiSetDevicePropertyW)( HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiSetDevicePropertyW( HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags); static YY_THUNK_FNTYPE_SetupDiSetDevicePropertyW __attribute__((__cdecl__)) try_get_SetupDiSetDevicePropertyW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiGetClassPropertyW
+__APPLY_UNIT_TEST_BOOL(SetupDiGetClassPropertyW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiGetClassPropertyW)( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiGetClassPropertyW( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags); static YY_THUNK_FNTYPE_SetupDiGetClassPropertyW __attribute__((__cdecl__)) try_get_SetupDiGetClassPropertyW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiGetClassPropertyExW
+__APPLY_UNIT_TEST_BOOL(SetupDiGetClassPropertyExW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiGetClassPropertyExW)( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags, PCWSTR MachineName, PVOID Reserved); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiGetClassPropertyExW( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags, PCWSTR MachineName, PVOID Reserved); static YY_THUNK_FNTYPE_SetupDiGetClassPropertyExW __attribute__((__cdecl__)) try_get_SetupDiGetClassPropertyExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiSetClassPropertyW
+__APPLY_UNIT_TEST_BOOL(SetupDiSetClassPropertyW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiSetClassPropertyW)( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiSetClassPropertyW( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags); static YY_THUNK_FNTYPE_SetupDiSetClassPropertyW __attribute__((__cdecl__)) try_get_SetupDiSetClassPropertyW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetupDiSetClassPropertyExW
+__APPLY_UNIT_TEST_BOOL(SetupDiSetClassPropertyExW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetupDiSetClassPropertyExW)( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PCWSTR MachineName, PVOID Reserved); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetupDiSetClassPropertyExW( const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PCWSTR MachineName, PVOID Reserved); static YY_THUNK_FNTYPE_SetupDiSetClassPropertyExW __attribute__((__cdecl__)) try_get_SetupDiSetClassPropertyExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHGetKnownFolderPath
+__APPLY_UNIT_TEST_BOOL(SHGetKnownFolderPath); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHGetKnownFolderPath)( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, PWSTR* ppszPath); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHGetKnownFolderPath( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, PWSTR* ppszPath); static YY_THUNK_FNTYPE_SHGetKnownFolderPath __attribute__((__cdecl__)) try_get_SHGetKnownFolderPath() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHSetKnownFolderPath
+__APPLY_UNIT_TEST_BOOL(SHSetKnownFolderPath); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHSetKnownFolderPath)( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, PCWSTR pszPath); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHSetKnownFolderPath( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, PCWSTR pszPath); static YY_THUNK_FNTYPE_SHSetKnownFolderPath __attribute__((__cdecl__)) try_get_SHSetKnownFolderPath() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHGetKnownFolderIDList
+__APPLY_UNIT_TEST_BOOL(SHGetKnownFolderIDList); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHGetKnownFolderIDList)( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, LPITEMIDLIST *ppidl); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHGetKnownFolderIDList( const KNOWNFOLDERID & rfid, DWORD dwFlags, HANDLE hToken, LPITEMIDLIST *ppidl); static YY_THUNK_FNTYPE_SHGetKnownFolderIDList __attribute__((__cdecl__)) try_get_SHGetKnownFolderIDList() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHBindToFolderIDListParent
+__APPLY_UNIT_TEST_BOOL(SHBindToFolderIDListParent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHBindToFolderIDListParent)( IShellFolder *psfRoot, LPCITEMIDLIST pidl, const IID & riid, void **ppv, LPCITEMIDLIST *ppidlLast); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHBindToFolderIDListParent( IShellFolder *psfRoot, LPCITEMIDLIST pidl, const IID & riid, void **ppv, LPCITEMIDLIST *ppidlLast); static YY_THUNK_FNTYPE_SHBindToFolderIDListParent __attribute__((__cdecl__)) try_get_SHBindToFolderIDListParent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHBindToFolderIDListParentEx
+__APPLY_UNIT_TEST_BOOL(SHBindToFolderIDListParentEx); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHBindToFolderIDListParentEx)( IShellFolder *psfRoot, LPCITEMIDLIST pidl, IBindCtx *ppbc, const IID & riid, void **ppv, LPCITEMIDLIST *ppidlLast); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHBindToFolderIDListParentEx( IShellFolder *psfRoot, LPCITEMIDLIST pidl, IBindCtx *ppbc, const IID & riid, void **ppv, LPCITEMIDLIST *ppidlLast); static YY_THUNK_FNTYPE_SHBindToFolderIDListParentEx __attribute__((__cdecl__)) try_get_SHBindToFolderIDListParentEx() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHBindToObject
+__APPLY_UNIT_TEST_BOOL(SHBindToObject); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHBindToObject)( IShellFolder *psf, LPCITEMIDLIST pidl, IBindCtx *pbc, const IID & riid, void **ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHBindToObject( IShellFolder *psf, LPCITEMIDLIST pidl, IBindCtx *pbc, const IID & riid, void **ppv); static YY_THUNK_FNTYPE_SHBindToObject __attribute__((__cdecl__)) try_get_SHBindToObject() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromIDList
+__APPLY_UNIT_TEST_BOOL(SHCreateItemFromIDList); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHCreateItemFromIDList)( LPCITEMIDLIST pidl, const IID & riid, void **ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHCreateItemFromIDList( LPCITEMIDLIST pidl, const IID & riid, void **ppv); static YY_THUNK_FNTYPE_SHCreateItemFromIDList __attribute__((__cdecl__)) try_get_SHCreateItemFromIDList() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHCreateItemWithParent
+__APPLY_UNIT_TEST_BOOL(SHCreateItemWithParent); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHCreateItemWithParent)( LPCITEMIDLIST pidlParent, IShellFolder *psfParent, LPCITEMIDLIST pidl, const IID & riid, void **ppvItem); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHCreateItemWithParent( LPCITEMIDLIST pidlParent, IShellFolder *psfParent, LPCITEMIDLIST pidl, const IID & riid, void **ppvItem); static YY_THUNK_FNTYPE_SHCreateItemWithParent __attribute__((__cdecl__)) try_get_SHCreateItemWithParent() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromRelativeName
+__APPLY_UNIT_TEST_BOOL(SHCreateItemFromRelativeName); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHCreateItemFromRelativeName)( IShellItem *psiParent, PCWSTR pszName, IBindCtx* pbc, const IID & riid, void **ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHCreateItemFromRelativeName( IShellItem *psiParent, PCWSTR pszName, IBindCtx* pbc, const IID & riid, void **ppv); static YY_THUNK_FNTYPE_SHCreateItemFromRelativeName __attribute__((__cdecl__)) try_get_SHCreateItemFromRelativeName() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHGetNameFromIDList
+__APPLY_UNIT_TEST_BOOL(SHGetNameFromIDList); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHGetNameFromIDList)( LPCITEMIDLIST pidl, SIGDN sigdnName, PWSTR *ppszName); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHGetNameFromIDList( LPCITEMIDLIST pidl, SIGDN sigdnName, PWSTR *ppszName); static YY_THUNK_FNTYPE_SHGetNameFromIDList __attribute__((__cdecl__)) try_get_SHGetNameFromIDList() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHCreateItemFromParsingName
+__APPLY_UNIT_TEST_BOOL(SHCreateItemFromParsingName); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHCreateItemFromParsingName)( PCWSTR pszPath, IBindCtx* pbc, const IID & riid, void** ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHCreateItemFromParsingName( PCWSTR pszPath, IBindCtx* pbc, const IID & riid, void** ppv); static YY_THUNK_FNTYPE_SHCreateItemFromParsingName __attribute__((__cdecl__)) try_get_SHCreateItemFromParsingName() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_Shell_NotifyIconGetRect
 __APPLY_UNIT_TEST_BOOL(Shell_NotifyIconGetRect); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_Shell_NotifyIconGetRect)( const NOTIFYICONIDENTIFIER* _pIdentifier, RECT* _pIconLocation); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXShell_NotifyIconGetRect( const NOTIFYICONIDENTIFIER* _pIdentifier, RECT* _pIconLocation); static YY_THUNK_FNTYPE_Shell_NotifyIconGetRect __attribute__((__cdecl__)) try_get_Shell_NotifyIconGetRect() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_SHGetPropertyStoreForWindow
 __APPLY_UNIT_TEST_BOOL(SHGetPropertyStoreForWindow); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHGetPropertyStoreForWindow)( HWND hwnd, const IID & riid, void** ppv); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHGetPropertyStoreForWindow( HWND hwnd, const IID & riid, void** ppv); static YY_THUNK_FNTYPE_SHGetPropertyStoreForWindow __attribute__((__cdecl__)) try_get_SHGetPropertyStoreForWindow() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHOpenWithDialog
+__APPLY_UNIT_TEST_BOOL(SHOpenWithDialog); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHOpenWithDialog)( HWND hwndParent, const OPENASINFO* poainfo); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHOpenWithDialog( HWND hwndParent, const OPENASINFO* poainfo); static YY_THUNK_FNTYPE_SHOpenWithDialog __attribute__((__cdecl__)) try_get_SHOpenWithDialog() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SHQueryUserNotificationState
+__APPLY_UNIT_TEST_BOOL(SHQueryUserNotificationState); typedef HRESULT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SHQueryUserNotificationState)( QUERY_USER_NOTIFICATION_STATE* pquns); extern "C" HRESULT __attribute__((__stdcall__)) __FALLBACK_PREFIXSHQueryUserNotificationState( QUERY_USER_NOTIFICATION_STATE* pquns); static YY_THUNK_FNTYPE_SHQueryUserNotificationState __attribute__((__cdecl__)) try_get_SHQueryUserNotificationState() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_IsProcessDPIAware
+__APPLY_UNIT_TEST_BOOL(IsProcessDPIAware); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_IsProcessDPIAware)(void); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXIsProcessDPIAware(void); static YY_THUNK_FNTYPE_IsProcessDPIAware __attribute__((__cdecl__)) try_get_IsProcessDPIAware() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SetProcessDPIAware
+__APPLY_UNIT_TEST_BOOL(SetProcessDPIAware); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SetProcessDPIAware)(void); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSetProcessDPIAware(void); static YY_THUNK_FNTYPE_SetProcessDPIAware __attribute__((__cdecl__)) try_get_SetProcessDPIAware() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_SetProcessDpiAwarenessContext
@@ -1150,6 +2426,22 @@ __APPLY_UNIT_TEST_BOOL(GetTouchInputInfo); typedef BOOL(__attribute__((__stdcall
 __APPLY_UNIT_TEST_BOOL(CloseTouchInputHandle); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_CloseTouchInputHandle)( HTOUCHINPUT _hTouchInput); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXCloseTouchInputHandle( HTOUCHINPUT _hTouchInput); static YY_THUNK_FNTYPE_CloseTouchInputHandle __attribute__((__cdecl__)) try_get_CloseTouchInputHandle() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_ChangeWindowMessageFilter
+__APPLY_UNIT_TEST_BOOL(ChangeWindowMessageFilter); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_ChangeWindowMessageFilter)( UINT _uMessage, DWORD _fFlag); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXChangeWindowMessageFilter( UINT _uMessage, DWORD _fFlag); static YY_THUNK_FNTYPE_ChangeWindowMessageFilter __attribute__((__cdecl__)) try_get_ChangeWindowMessageFilter() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_UpdateLayeredWindowIndirect
+__APPLY_UNIT_TEST_BOOL(UpdateLayeredWindowIndirect); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_UpdateLayeredWindowIndirect)( HWND hWnd, const UPDATELAYEREDWINDOWINFO* pULWInfo); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXUpdateLayeredWindowIndirect( HWND hWnd, const UPDATELAYEREDWINDOWINFO* pULWInfo); static YY_THUNK_FNTYPE_UpdateLayeredWindowIndirect __attribute__((__cdecl__)) try_get_UpdateLayeredWindowIndirect() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SystemParametersInfoW
+__APPLY_UNIT_TEST_BOOL(SystemParametersInfoW); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SystemParametersInfoW)( UINT _uAction, UINT _uParam, PVOID _pParam, UINT _fWinIni); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSystemParametersInfoW( UINT _uAction, UINT _uParam, PVOID _pParam, UINT _fWinIni); static YY_THUNK_FNTYPE_SystemParametersInfoW __attribute__((__cdecl__)) try_get_SystemParametersInfoW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_SystemParametersInfoA
+__APPLY_UNIT_TEST_BOOL(SystemParametersInfoA); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_SystemParametersInfoA)( UINT _uAction, UINT _uParam, PVOID _pParam, UINT _fWinIni); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXSystemParametersInfoA( UINT _uAction, UINT _uParam, PVOID _pParam, UINT _fWinIni); static YY_THUNK_FNTYPE_SystemParametersInfoA __attribute__((__cdecl__)) try_get_SystemParametersInfoA() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_GetAwarenessFromDpiAwarenessContext
 __APPLY_UNIT_TEST_BOOL(GetAwarenessFromDpiAwarenessContext); typedef DPI_AWARENESS(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetAwarenessFromDpiAwarenessContext)( DPI_AWARENESS_CONTEXT _hValue); extern "C" DPI_AWARENESS __attribute__((__stdcall__)) __FALLBACK_PREFIXGetAwarenessFromDpiAwarenessContext( DPI_AWARENESS_CONTEXT _hValue); static YY_THUNK_FNTYPE_GetAwarenessFromDpiAwarenessContext __attribute__((__cdecl__)) try_get_GetAwarenessFromDpiAwarenessContext() noexcept;
 #endif
@@ -1186,6 +2478,30 @@ __APPLY_UNIT_TEST_BOOL(GetSystemDpiForProcess); typedef UINT(__attribute__((__st
 __APPLY_UNIT_TEST_BOOL(IsValidDpiAwarenessContext); typedef BOOL(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_IsValidDpiAwarenessContext)( DPI_AWARENESS_CONTEXT _eValue); extern "C" BOOL __attribute__((__stdcall__)) __FALLBACK_PREFIXIsValidDpiAwarenessContext( DPI_AWARENESS_CONTEXT _eValue); static YY_THUNK_FNTYPE_IsValidDpiAwarenessContext __attribute__((__cdecl__)) try_get_IsValidDpiAwarenessContext() noexcept;
 #endif
 
+#if YY_THUNK_GUARD_try_get_inet_pton
+__APPLY_UNIT_TEST_BOOL(inet_pton); typedef INT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_inet_pton)( INT Family, PCSTR pszAddrString, PVOID pAddrBuf); extern "C" INT __attribute__((__stdcall__)) __FALLBACK_PREFIXinet_pton( INT Family, PCSTR pszAddrString, PVOID pAddrBuf); static YY_THUNK_FNTYPE_inet_pton __attribute__((__cdecl__)) try_get_inet_pton() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InetPtonW
+__APPLY_UNIT_TEST_BOOL(InetPtonW); typedef INT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InetPtonW)( INT Family, PCWSTR pszAddrString, PVOID pAddrBuf); extern "C" INT __attribute__((__stdcall__)) __FALLBACK_PREFIXInetPtonW( INT Family, PCWSTR pszAddrString, PVOID pAddrBuf); static YY_THUNK_FNTYPE_InetPtonW __attribute__((__cdecl__)) try_get_InetPtonW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_inet_ntop
+__APPLY_UNIT_TEST_BOOL(inet_ntop); typedef PCSTR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_inet_ntop)( INT Family, const void * pAddr, PSTR pStringBuf, size_t StringBufSize); extern "C" PCSTR __attribute__((__stdcall__)) __FALLBACK_PREFIXinet_ntop( INT Family, const void * pAddr, PSTR pStringBuf, size_t StringBufSize); static YY_THUNK_FNTYPE_inet_ntop __attribute__((__cdecl__)) try_get_inet_ntop() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_InetNtopW
+__APPLY_UNIT_TEST_BOOL(InetNtopW); typedef PCWSTR(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_InetNtopW)( INT Family, const void * pAddr, PWSTR pStringBuf, size_t StringBufSize); extern "C" PCWSTR __attribute__((__stdcall__)) __FALLBACK_PREFIXInetNtopW( INT Family, const void * pAddr, PWSTR pStringBuf, size_t StringBufSize); static YY_THUNK_FNTYPE_InetNtopW __attribute__((__cdecl__)) try_get_InetNtopW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WSAPoll
+__APPLY_UNIT_TEST_BOOL(WSAPoll); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WSAPoll)( LPWSAPOLLFD fdArray, ULONG fds, INT timeout); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXWSAPoll( LPWSAPOLLFD fdArray, ULONG fds, INT timeout); static YY_THUNK_FNTYPE_WSAPoll __attribute__((__cdecl__)) try_get_WSAPoll() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_WSAIoctl
+__APPLY_UNIT_TEST_BOOL(WSAIoctl); typedef int(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WSAIoctl)( SOCKET s, DWORD dwIoControlCode, LPVOID lpvInBuffer, DWORD cbInBuffer, LPVOID lpvOutBuffer, DWORD cbOutBuffer, LPDWORD lpcbBytesReturned, LPWSAOVERLAPPED lpOverlapped, LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine); extern "C" int __attribute__((__stdcall__)) __FALLBACK_PREFIXWSAIoctl( SOCKET s, DWORD dwIoControlCode, LPVOID lpvInBuffer, DWORD cbInBuffer, LPVOID lpvOutBuffer, DWORD cbOutBuffer, LPDWORD lpcbBytesReturned, LPWSAOVERLAPPED lpOverlapped, LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine); static YY_THUNK_FNTYPE_WSAIoctl __attribute__((__cdecl__)) try_get_WSAIoctl() noexcept;
+#endif
+
 #if YY_THUNK_GUARD_try_get_WSASocketW
 __APPLY_UNIT_TEST_BOOL(WSASocketW); typedef SOCKET(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_WSASocketW)( int af, int type, int protocol, LPWSAPROTOCOL_INFOW lpProtocolInfo, GROUP g, DWORD dwFlags); extern "C" SOCKET __attribute__((__stdcall__)) __FALLBACK_PREFIXWSASocketW( int af, int type, int protocol, LPWSAPROTOCOL_INFOW lpProtocolInfo, GROUP g, DWORD dwFlags); static YY_THUNK_FNTYPE_WSASocketW __attribute__((__cdecl__)) try_get_WSASocketW() noexcept;
 #endif
@@ -1208,6 +2524,14 @@ __APPLY_UNIT_TEST_BOOL(GetAddrInfoExA); typedef INT(__attribute__((__stdcall__))
 
 #if YY_THUNK_GUARD_try_get_GetAddrInfoExOverlappedResult
 __APPLY_UNIT_TEST_BOOL(GetAddrInfoExOverlappedResult); typedef INT(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_GetAddrInfoExOverlappedResult)( LPOVERLAPPED _pOverlapped); extern "C" INT __attribute__((__stdcall__)) __FALLBACK_PREFIXGetAddrInfoExOverlappedResult( LPOVERLAPPED _pOverlapped); static YY_THUNK_FNTYPE_GetAddrInfoExOverlappedResult __attribute__((__cdecl__)) try_get_GetAddrInfoExOverlappedResult() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_FreeAddrInfoExW
+__APPLY_UNIT_TEST_BOOL(FreeAddrInfoExW); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FreeAddrInfoExW)( PADDRINFOEXW _pAddrInfoEx); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXFreeAddrInfoExW( PADDRINFOEXW _pAddrInfoEx); static YY_THUNK_FNTYPE_FreeAddrInfoExW __attribute__((__cdecl__)) try_get_FreeAddrInfoExW() noexcept;
+#endif
+
+#if YY_THUNK_GUARD_try_get_FreeAddrInfoEx
+__APPLY_UNIT_TEST_BOOL(FreeAddrInfoEx); typedef void(__attribute__((__stdcall__))* YY_THUNK_FNTYPE_FreeAddrInfoEx)( PADDRINFOEXA _pAddrInfoEx); extern "C" void __attribute__((__stdcall__)) __FALLBACK_PREFIXFreeAddrInfoEx( PADDRINFOEXA _pAddrInfoEx); static YY_THUNK_FNTYPE_FreeAddrInfoEx __attribute__((__cdecl__)) try_get_FreeAddrInfoEx() noexcept;
 #endif
 
 #if YY_THUNK_GUARD_try_get_GetHostNameW

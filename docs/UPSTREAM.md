@@ -98,7 +98,7 @@ python tools/upstream_lock.py --diff
 python tools/portgen.py manifest --refresh
 
 # 4) 重新生成移植层；这里会告诉你哪条转换规则失效了
-python tools/portgen.py all
+python tools/portgen.py all --out src/port
 
 # 5) 重新配置 + 构建 + 跑测试
 cmake --preset mingw-x64

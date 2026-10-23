@@ -2,6 +2,7 @@
 build/
 out/
 .cache/
+target/
 compile_commands.json
 
 # src/port/ **刻意不忽略**：自足模式（YY_THUNKS_SELF_CONTAINED，默认开）下
