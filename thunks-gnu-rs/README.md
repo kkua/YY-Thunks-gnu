@@ -20,7 +20,7 @@
 ```toml
 # Cargo.toml
 [build-dependencies]
-thunks-gnu = "0.3"
+thunks-gnu = "0.4"
 ```
 
 ```rust

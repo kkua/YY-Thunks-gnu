@@ -23,7 +23,7 @@ This crate exports no Rust symbols. Its only job is to be called from your
 ```toml
 # Cargo.toml
 [build-dependencies]
-thunks-gnu = "0.3"
+thunks-gnu = "0.4"
 ```
 
 ```rust

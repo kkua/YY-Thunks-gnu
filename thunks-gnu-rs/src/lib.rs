@@ -46,8 +46,18 @@ use std::path::{Path, PathBuf};
 /// vendored 的移植层源码树（`vendor/YY-Thunks-gnu/src`，自包含：
 /// `compat/` 是手写垫片，`port/` 是 portgen 产物 + 上游头文件），相对 crate 根目录。
 const SOURCE_ROOT: &[&str] = &["vendor", "YY-Thunks-gnu", "src"];
-/// 唯一的翻译单元，等价 CMake 的 `YY_THUNKS_PORT_SOURCE`。
+/// 主翻译单元，等价 CMake 的 `YY_THUNKS_PORT_SOURCE`。
 const ENTRY_SOURCE: &[&str] = &["port", "Thunks", "YY_Thunks.cpp"];
+/// 手写垫片：把"新系统才有的实现 DLL"上的导出转发回老系统就有的 DLL。
+/// 目前只有 combase -> ole32（`CoCreateFreeThreadedMarshaler`、`CoTaskMemFree`），
+/// 用来消除 Win7 及更低目标上致命的 combase.dll 静态导入。详见文件头注释。
+///
+/// 仅在目标低于 Win8 时参与编译：Win8 起 combase.dll 本来就存在，
+/// 静态导入它没有问题，反而省掉一次 GetProcAddress 间接跳转。
+const SHIM_SOURCE: &[&str] = &["shim", "combase_shim.c"];
+/// 构建产物的"构成版本"。编译单元、写死的编译旗标或链接指令发生变化时递增，
+/// 让旧 $OUT_DIR 里的产物失效（指纹只记 crate 版本 + 目标，覆盖不到这些改动）。
+const BUILD_SCHEMA: &str = "3";
 /// 产出的静态库名（最终文件为 libyythunks.a）。
 const LIB_NAME: &str = "yythunks";
 /// 记录上一次成功编译所用配置的文件名（落在 $OUT_DIR 下，随 `cargo clean` 自动清除）。
@@ -289,6 +299,17 @@ fn build_yythunks(thunk_target: &str, show_warnings: bool) {
 
     build.file(&entry_source);
 
+    // DLL 级垫片（见 SHIM_SOURCE 的说明）。它与主翻译单元共用同一套旗标：
+    // g++ 驱动会把 .c 当 C++ 编译，因此其符号必须自己加 extern "C"；
+    // 强制前置的 yy_thunks_prelude.h 也依赖这一点（它 include 了 C++ 头）。
+    //
+    // 只在目标低于 Win8 时参与编译：Win8 起 combase.dll 本就存在，静态导入无风险，
+    // 留着这个垫片只会让每次调用多一次 GetProcAddress 间接跳转。
+    if needs_combase_shim(thunk_target) {
+        let shim_source = join_path(source_root.clone(), SHIM_SOURCE);
+        build.file(&shim_source);
+    }
+
     // 编译器告警已被 -w 抑制，但上游还有一批**故意留下**的提示：__WarningMessage__
     // 展开成 `#pragma message`，它不受 -w 影响，cc 仍会逐条转发成 cargo:warning。
     // 这里一并关掉；编译失败时 cc 依旧会打印完整命令与错误输出，不影响排错。
@@ -355,6 +376,17 @@ fn thunk_target() -> &'static str {
     }
 }
 
+/// 目标是否低于 Win8（Vista / Win7）—— 只有这类目标才需要 combase -> ole32 垫片。
+///
+/// combase.dll 自 Win8 起才存在；目标不低于 Win8 时静态导入它是合法的，
+/// 垫片只会让每次调用多一次 GetProcAddress 间接跳转，因此不编。
+///
+/// 判据刻意用 `thunk_target()` 的返回值而不是再读一遍 feature：两者共用同一份
+/// "同时打开多个 feature 时取最高目标"的逻辑，日后加新目标时不会出现判据漂移。
+fn needs_combase_shim(thunk_target: &str) -> bool {
+    matches!(thunk_target, "__WindowsNT6" | "__WindowsNT6_1")
+}
+
 /// 是否把编译器的消息转发给 Cargo（默认：不转发）。
 ///
 /// 由 feature = "show_warnings" 或环境变量 THUNKS_GNU_SHOW_WARNINGS=1 开启。
@@ -362,11 +394,17 @@ fn show_warnings() -> bool {
     cfg!(feature = "show_warnings") || env::var_os("THUNKS_GNU_SHOW_WARNINGS").is_some()
 }
 
-/// 当前编译配置的指纹：本 crate 版本 + YY_Thunks_Target。
+/// 当前编译配置的指纹：本 crate 版本 + YY_Thunks_Target + 产物构成版本。
 ///
-/// 这两项（外加 `build_yythunks` 里写死的编译旗标）唯一决定了产物的内容。
+/// 这三项（外加 `build_yythunks` 里写死的编译旗标）唯一决定了产物的内容。
+/// `BUILD_SCHEMA` 用于让"改了编译单元/旗标但版本号没变"的改动也能失效旧产物。
 fn build_footprint(thunk_target: &str) -> String {
-    format!("{}\n{}", env!("CARGO_PKG_VERSION"), thunk_target)
+    format!(
+        "{}\n{}\n{}",
+        env!("CARGO_PKG_VERSION"),
+        thunk_target,
+        BUILD_SCHEMA
+    )
 }
 
 /// 上一次成功编译留下的指纹；文件缺失或读失败一律返回 None（按最保守方式触发重编）。
