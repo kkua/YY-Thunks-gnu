@@ -21,6 +21,24 @@
 //! 目标版本由 Cargo feature 选择（`vista`/`win7`/`win8`/`win10_10240`/`win10_19041`），
 //! 对应上游的 `YY_Thunks_Target`，含义是**希望支持的最低系统**。
 
+/// 通过 C++ 编译器问出静态 libstdc++（`libstdc++.a`）的真实路径，找不到返回 `None`。
+///
+/// `g++ -print-file-name=libstdc++.a` 在库存在时打印其绝对路径，否则原样回显文件名
+/// 本身，据此判断。用 `cc` 取与主编译同一个编译器（会尊重 `CXX`）——它的搜索路径
+/// 覆盖 GCC 私有目录，正是 rustc 自己不知道、却需要补成 `-L` 的那一个。
+fn find_static_stdcpp() -> Option<PathBuf> {
+    let mut build = cc::Build::new();
+    build.cpp(true);
+    let mut cmd = build.get_compiler().to_command();
+    cmd.arg("-print-file-name=libstdc++.a");
+    let output = cmd.output().ok()?;
+    if !output.status.success() {
+        return None;
+    }
+    let path = PathBuf::from(String::from_utf8_lossy(&output.stdout).trim());
+    (path.is_absolute() && path.is_file()).then_some(path)
+}
+
 use std::env;
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -130,9 +148,30 @@ pub fn build() {
     // （其他目标下没有未定义引用，导入库成员不会被拉出来）。
     println!("cargo:rustc-link-lib=runtimeobject"); //
     // 新启用的 WinRT / DNS 模块里有 new/delete，C++14 起 delete 会发成 sized 版本
-    // （_ZdlPvy），需要 libstdc++ 的 operator delete。这里**静态**链接，
+    // （_ZdlPvy），可能需要 libstdc++ 的 operator delete。这里优先**静态**链接，
     // 避免产物依赖 libstdc++-6.dll（CMake 侧由 g++ 驱动自动处理，同样不带 DLL 依赖）。
-    println!("cargo:rustc-link-lib=static=stdc++"); //
+    //
+    // 但不能无条件发 `static=stdc++`：多数 MinGW 发行版（如 w64devkit）把
+    // libstdc++.a 放在 GCC 的私有目录里，而 rustc 默认的 -L 搜索路径**不含**它，
+    // 于是链接期报 "could not find native static library `stdc++`, perhaps an -L
+    // flag is missing?" —— 即便该文件确实存在。所以先问编译器拿到 libstdc++.a 的
+    // 真实路径并把它加进搜索路径；该工具链真的没有静态库时才退回动态，至少不会
+    // 链接失败。
+    match find_static_stdcpp() {
+        Some(path) => {
+            if let Some(dir) = path.parent() {
+                println!("cargo:rustc-link-search=native={}", dir.display());
+            }
+            println!("cargo:rustc-link-lib=static=stdc++"); //
+        }
+        None => {
+            println!(
+                "cargo::warning=thunks-gnu: 未找到静态 libstdc++（libstdc++.a），\
+                 退回动态 -lstdc++；若确有 libstdc++ 符号被引用，运行时将需要 libstdc++-6.dll。"
+            );
+            println!("cargo:rustc-link-lib=stdc++"); //
+        }
+    }
     
     // 上面这份清单是 CMake 汇总"上游全部 #pragma comment(lib, ...)"的结果：
     // GCC 会忽略该指令，所以系统导入库必须由链接方提供。Rust 目标自带
